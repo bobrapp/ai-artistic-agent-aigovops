@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kittitas County Arts Directory</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,700;9..144,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--cream:#FDF6EC;--terracotta:#C65D3E;--sage:#7A9E7E;--deep-brown:#3B2820;--gold:#D4A847;--warm-gray:#8B7D72;--light-sage:#E8F0E8;--light-terra:#FFF0EB;--light-gold:#FFF8E7;--shield-blue:#2C5F7C}
+body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--deep-brown);line-height:1.7}
+.hero{background:linear-gradient(135deg,var(--deep-brown) 0%,#5a3a2e 50%,var(--sage) 100%);color:white;padding:70px 8% 60px;position:relative}
+.hero-label{font-size:.8rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;font-weight:600}
+.hero h1{font-family:'Fraunces',serif;font-size:clamp(2rem,4.5vw,3.2rem);font-weight:700;line-height:1.15;margin-bottom:16px}
+.hero p{font-size:1.1rem;max-width:620px;opacity:.9;line-height:1.7}
+.filter-bar{background:white;padding:16px 8%;border-bottom:2px solid var(--terracotta);display:flex;flex-wrap:wrap;gap:8px;position:sticky;top:0;z-index:100}
+.filter-btn{padding:8px 18px;border-radius:20px;border:1px solid #ddd;background:white;cursor:pointer;font-size:.85rem;font-weight:500;color:var(--deep-brown);transition:all .2s}
+.filter-btn:hover{border-color:var(--terracotta);color:var(--terracotta)}
+.filter-btn.active{background:var(--terracotta);color:white;border-color:var(--terracotta)}
+.content{max-width:1100px;margin:0 auto;padding:40px 8%}
+.section-header{display:flex;align-items:center;gap:14px;margin-top:50px;margin-bottom:20px}
+.section-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0;color:white}
+.section-header h2{font-family:'Fraunces',serif;font-size:1.5rem;font-weight:700}
+.count-badge{background:var(--light-sage);color:var(--sage);font-size:.75rem;font-weight:700;padding:3px 10px;border-radius:12px;margin-left:8px}
+.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+.card{background:white;border-radius:12px;padding:24px;box-shadow:0 1px 4px rgba(0,0,0,.06);transition:box-shadow .2s;border-left:4px solid transparent}
+.card:hover{box-shadow:0 4px 16px rgba(0,0,0,.08)}
+.card.gallery{border-left-color:var(--terracotta)}
+.card.org{border-left-color:var(--sage)}
+.card.artist{border-left-color:var(--gold)}
+.card.event{border-left-color:var(--shield-blue)}
+.card.business{border-left-color:var(--warm-gray)}
+.card.venue{border-left-color:#9b59b6}
+.card.media{border-left-color:#e67e22}
+.card h3{font-family:'Fraunces',serif;font-size:1.05rem;font-weight:600;margin-bottom:6px}
+.card .location{font-size:.8rem;color:var(--warm-gray);font-weight:500;margin-bottom:8px;display:flex;align-items:center;gap:4px}
+.card .desc{font-size:.88rem;color:#5a4a40;line-height:1.6}
+.card .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.card .tag{font-size:.72rem;padding:3px 10px;border-radius:12px;background:var(--cream);color:var(--warm-gray);font-weight:500}
+.card a{color:var(--terracotta);text-decoration:none;font-weight:500;font-size:.85rem}
+.card a:hover{text-decoration:underline}
+.cta-box{background:linear-gradient(135deg,var(--deep-brown),#5a3a2e);color:white;border-radius:16px;padding:40px;margin:50px 0;text-align:center}
+.cta-box h2{font-family:'Fraunces',serif;font-size:1.4rem;margin-bottom:12px}
+.cta-box p{opacity:.9;max-width:550px;margin:0 auto;font-size:.95rem}
+.footer{text-align:center;padding:30px 8%;color:var(--warm-gray);font-size:.82rem;border-top:1px solid #e8e0d8}
+@media(max-width:600px){.hero{padding:50px 6% 40px}.content{padding:30px 6%}.card-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-label">📍 Local Directory</div>
+  <h1>Kittitas County Arts Directory</h1>
+  <p>Galleries, artists, organizations, events, creative businesses, and resources across Ellensburg, Cle Elum, Roslyn, and Thorp. Your guide to the local arts ecosystem.</p>
+</div>
+
+<div class="filter-bar">
+  <button class="filter-btn active" data-filter="all">All</button>
+  <button class="filter-btn" data-filter="gallery">Galleries</button>
+  <button class="filter-btn" data-filter="org">Organizations</button>
+  <button class="filter-btn" data-filter="artist">Artists</button>
+  <button class="filter-btn" data-filter="event">Events</button>
+  <button class="filter-btn" data-filter="business">Creative Businesses</button>
+  <button class="filter-btn" data-filter="venue">Venues</button>
+  <button class="filter-btn" data-filter="media">Media</button>
+</div>
+
+<div class="content">
+
+  <!-- GALLERIES -->
+  <div class="section-header" data-section="gallery">
+    <div class="section-icon" style="background:var(--terracotta)">🖼️</div>
+    <h2>Galleries &amp; Exhibition Spaces <span class="count-badge">8</span></h2>
+  </div>
+  <div class="card-grid">
+    <div class="card gallery" data-cat="gallery">
+      <h3>Gallery One Visual Arts Center</h3>
+      <div class="location">📍 408 N Pearl St, Ellensburg</div>
+      <div class="desc">The heart of Kittitas County's art scene. Nonprofit gallery with Main, Mezzanine, Eveleth Green, Community, and Hallway galleries. Workshops in clay, watercolor, weaving, sketching. Art After School program. Free admission. First Friday openings.</div>
+      <div class="tags"><span class="tag">Nonprofit</span><span class="tag">Classes</span><span class="tag">Free Admission</span><span class="tag">First Fridays</span></div>
+      <div style="margin-top:10px"><a href="https://www.gallery-one.org/" target="_blank" rel="noopener noreferrer">gallery-one.org →</a></div>
+    </div>
+    <div class="card gallery" data-cat="gallery">
+      <h3>Clymer Museum of Art</h3>
+      <div class="location">📍 416 N Pearl St, Ellensburg</div>
+      <div class="desc">Dedicated to the work of John Ford Clymer (1907–1989), celebrated illustrator and painter of the American West. Permanent collection plus rotating exhibitions. Adjacent to Gallery One on Pearl Street.</div>
+      <div class="tags"><span class="tag">Museum</span><span class="tag">Western Art</span><span class="tag">Permanent Collection</span></div>
+    </div>
+    <div class="card gallery" data-cat="gallery">
+      <h3>PUNCH Projects — Fire House Gallery</h3>
+      <div class="location">📍 10630 N Thorp Hwy, Thorp</div>
+      <div class="desc">Rural arts collective bridging urban and rural art communities. Converted firehouse gallery with rotating exhibitions, music events, and artist collaborations. Open Saturdays 12–5pm. Crew: Justin Beckman, Howard Barlow, Justin Gibbens, Renee Adams, Will Bow.</div>
+      <div class="tags"><span class="tag">Collective</span><span class="tag">Rural Arts</span><span class="tag">Music Venue</span></div>
+      <div style="margin-top:10px"><a href="https://punchprojects.org/" target="_blank" rel="noopener noreferrer">punchprojects.org →</a></div>
+    </div>
+    <div class="card gallery" data-cat="gallery">
+      <h3>CWU Sarah Spurgeon Gallery</h3>
+      <div class="location">📍 Randall Hall, CWU Campus, Ellensburg</div>
+      <div class="desc">Central Washington University's primary exhibition space. Faculty shows, MFA thesis exhibitions, visiting artist installations, and student work. Free and open to the public during academic year.</div>
+      <div class="tags"><span class="tag">University</span><span class="tag">Free</span><span class="tag">Contemporary</span></div>
+    </div>
+    <div class="card gallery" data-cat="gallery">
+      <h3>Dick and Jane's Spot</h3>
+      <div class="location">📍 101 N Pearl St, Ellensburg</div>
+      <div class="desc">Iconic outdoor art environment and reflector art installation by artists John Villahermosa and Jane Orleman. Evolving public art landmark — a must-see destination for visitors and locals alike.</div>
+      <div class="tags"><span class="tag">Public Art</span><span class="tag">Installation</span><span class="tag">Outdoor</span></div>
+      <div style="margin-top:10px"><a href="https://www.reflectorart.com/spot/" target="_blank" rel="noopener noreferrer">reflectorart.com →</a></div>
+    </div>
+    <div class="card gallery" data-cat="gallery">
+      <h3>Ellensburg Public Library Gallery</h3>
+      <div class="location">📍 209 N Ruby St, Ellensburg</div>
+      <div class="desc">Rotating exhibitions by local artists in the library's gallery space. Free. A quiet, accessible venue for emerging artists to show work.</div>
+      <div class="tags"><span class="tag">Free</span><span class="tag">Emerging Artists</span></div>
+    </div>
+    <div class="card gallery" data-cat="gallery">
+      <h3>Roslyn Mural Walk</h3>
+      <div class="location">📍 Downtown Roslyn</div>
+      <div class="desc">Collection of outdoor murals throughout historic Roslyn, reflecting the town's coal mining heritage and diverse cultural history. Self-guided walking tour.</div>
+      <div class="tags"><span class="tag">Public Art</span><span class="tag">Murals</span><span class="tag">Historic</span></div>
+    </div>
+    <div class="card gallery" data-cat="gallery">
+      <h3>Local Coffee Shops &amp; Restaurants</h3>
+      <div class="location">📍 Various — Ellensburg &amp; Cle Elum</div>
+      <div class="desc">Several cafes and restaurants display and sell local artwork on a rotating basis, including D&amp;M Coffee, The Yellow Church Cafe, and others. Contact venues directly for exhibition opportunities.</div>
+      <div class="tags"><span class="tag">Informal</span><span class="tag">Rotating Shows</span></div>
+    </div>
+  </div>
+
+  <!-- ORGANIZATIONS -->
+  <div class="section-header" data-section="org">
+    <div class="section-icon" style="background:var(--sage)">🏛️</div>
+    <h2>Arts Organizations <span class="count-badge">8</span></h2>
+  </div>
+  <div class="card-grid">
+    <div class="card org" data-cat="org">
+      <h3>Kittitas County Arts Commission</h3>
+      <div class="location">📍 Kittitas County</div>
+      <div class="desc">The sponsor of the Kittitas Artist Business Coach. Led by Dr. Don Solberg. Supports arts programming, artist development, and cultural vitality across the county.</div>
+      <div class="tags"><span class="tag">Government</span><span class="tag">Sponsor</span></div>
+    </div>
+    <div class="card org" data-cat="org">
+      <h3>Gallery One Visual Arts Center (Nonprofit)</h3>
+      <div class="location">📍 Ellensburg</div>
+      <div class="desc">Beyond exhibitions, Gallery One runs arts education programs, community workshops, Art After School, summer camps, and artist development. Membership supports all programming.</div>
+      <div class="tags"><span class="tag">Education</span><span class="tag">Youth Programs</span><span class="tag">Membership</span></div>
+    </div>
+    <div class="card org" data-cat="org">
+      <h3>CWU School of Art + Design</h3>
+      <div class="location">📍 Central Washington University, Ellensburg</div>
+      <div class="desc">BA and BFA programs in Studio Art, Art Education, and Graphic Design. MFA program. Faculty exhibitions, visiting artist lectures, student shows. A pipeline for emerging artists entering the local community.</div>
+      <div class="tags"><span class="tag">University</span><span class="tag">BFA/MFA</span><span class="tag">Faculty</span></div>
+    </div>
+    <div class="card org" data-cat="org">
+      <h3>Artist Trust</h3>
+      <div class="location">📍 Statewide (WA)</div>
+      <div class="desc">Washington State's leading artist support organization. GAP (Grants for Artist Projects), Fellowships, EDGE professional development. Serves hundreds of WA artists annually including Kittitas County residents.</div>
+      <div class="tags"><span class="tag">Grants</span><span class="tag">Statewide</span><span class="tag">Professional Development</span></div>
+      <div style="margin-top:10px"><a href="https://artisttrust.org/" target="_blank" rel="noopener noreferrer">artisttrust.org →</a></div>
+    </div>
+    <div class="card org" data-cat="org">
+      <h3>ArtsWA (Washington State Arts Commission)</h3>
+      <div class="location">📍 Statewide (WA)</div>
+      <div class="desc">State arts commission providing grants, public art commissions, and arts education support. Funds projects across all WA counties including Kittitas.</div>
+      <div class="tags"><span class="tag">State Agency</span><span class="tag">Grants</span><span class="tag">Public Art</span></div>
+    </div>
+    <div class="card org" data-cat="org">
+      <h3>Ellensburg Downtown Association</h3>
+      <div class="location">📍 Downtown Ellensburg</div>
+      <div class="desc">Organizes First Friday Art Walks, Buskers in the Burg, and other downtown events. Key partner for artists seeking visibility and performance opportunities in the downtown core.</div>
+      <div class="tags"><span class="tag">Events</span><span class="tag">Downtown</span><span class="tag">First Fridays</span></div>
+    </div>
+    <div class="card org" data-cat="org">
+      <h3>Cle Elum–Roslyn Chamber of Commerce</h3>
+      <div class="location">📍 Cle Elum</div>
+      <div class="desc">Business networking and events for the Upper County. Connects artists with commercial opportunities, tourism marketing, and community events in the Cle Elum/Roslyn/South Cle Elum area.</div>
+      <div class="tags"><span class="tag">Upper County</span><span class="tag">Business Network</span></div>
+    </div>
+    <div class="card org" data-cat="org">
+      <h3>Kittitas County Chamber of Commerce</h3>
+      <div class="location">📍 Ellensburg</div>
+      <div class="desc">County-wide business support, networking events, and economic development. Resources for artist entrepreneurs including business licensing guidance and networking.</div>
+      <div class="tags"><span class="tag">Business Support</span><span class="tag">Networking</span></div>
+    </div>
+  </div>
+
+  <!-- ARTISTS -->
+  <div class="section-header" data-section="artist">
+    <div class="section-icon" style="background:var(--gold)">🎨</div>
+    <h2>Notable Local Artists <span class="count-badge">12</span></h2>
+  </div>
+  <div class="card-grid">
+    <div class="card artist" data-cat="artist">
+      <h3>John Villahermosa &amp; Jane Orleman</h3>
+      <div class="location">📍 Ellensburg</div>
+      <div class="desc">Creators of Dick and Jane's Spot, Ellensburg's iconic public art installation. Reflector art, mixed media, and large-scale assemblage. Jane sponsors Gallery One exhibitions.</div>
+      <div class="tags"><span class="tag">Installation</span><span class="tag">Public Art</span><span class="tag">Mixed Media</span></div>
+    </div>
+    <div class="card artist" data-cat="artist">
+      <h3>John Ford Clymer (1907–1989)</h3>
+      <div class="location">📍 Ellensburg (legacy)</div>
+      <div class="desc">Celebrated painter and Saturday Evening Post illustrator from Ellensburg. Known for detailed paintings of the American frontier. Legacy preserved at the Clymer Museum.</div>
+      <div class="tags"><span class="tag">Painting</span><span class="tag">Illustration</span><span class="tag">Western Art</span></div>
+    </div>
+    <div class="card artist" data-cat="artist">
+      <h3>Pyth</h3>
+      <div class="location">📍 Kittitas County</div>
+      <div class="desc">Featured in Gallery One's "Inside Out" exhibition. Contemporary visual artist showing in the Main &amp; Mezzanine Gallery.</div>
+      <div class="tags"><span class="tag">Contemporary</span><span class="tag">Gallery One</span></div>
+    </div>
+    <div class="card artist" data-cat="artist">
+      <h3>Cedar Annenkovna</h3>
+      <div class="location">📍 Kittitas County</div>
+      <div class="desc">Featured in Gallery One's "Inside Out" exhibition alongside Buddy Bunting, Henry Frank, and Peter Merts.</div>
+      <div class="tags"><span class="tag">Contemporary</span><span class="tag">Gallery One</span></div>
+    </div>
+    <div class="card artist" data-cat="artist">
+      <h3>Chen Lin</h3>
+      <div class="location">📍 Kittitas County</div>
+      <div class="desc">Solo exhibition "Birds — Warm Memories" in Gallery One's Eveleth Green Gallery. Nature-inspired work.</div>
+      <div class="tags"><span class="tag">Nature</span><span class="tag">Gallery One</span></div>
+    </div>
+    <div class="card artist" data-cat="artist">
+      <h3>Brenden Fuller</h3>
+      <div class="location">📍 Kittitas County</div>
+      <div class="desc">Featured artist at PUNCH Projects Fire House Gallery with "From the Pit" exhibition (March 2026).</div>
+      <div class="tags"><span class="tag">Contemporary</span><span class="tag">PUNCH Projects</span></div>
+    </div>
+    <div class="card artist" data-cat="artist">
+      <h3>Gloria Nesse</h3>
+      <div class="location">📍 Ellensburg</div>
+      <div class="desc">Curator of the CWU Art + Design Club exhibition at Gallery One's Hallway Gallery. Connected to the university arts community.</div>
+      <div class="tags"><span class="tag">Curator</span><span class="tag">CWU</span></div>
+    </div>
+    <div class="card artist" data-cat="artist">
+      <h3>Justin Gibbens</h3>
+      <div class="location">📍 Thorp / Kittitas County</div>
+      <div class="desc">Member of the PUNCH Projects collective. Contemporary artist and one of the founders of the Fire House Gallery rural arts initiative.</div>
+      <div class="tags"><span class="tag">Contemporary</span><span class="tag">PUNCH Collective</span></div>
+    </div>
+    <div class="card artist" data-cat="artist">
+      <h3>Peter Merts</h3>
+      <div class="location">📍 Kittitas County</div>
+      <div class="desc">Featured in Gallery One's "Inside Out" group exhibition. Active in the local arts community.</div>
+      <div class="tags"><span class="tag">Contemporary</span><span class="tag">Gallery One</span></div>
+    </div>
+    <div class="card artist" data-cat="artist">
+      <h3>Buddy Bunting</h3>
+      <div class="location">📍 Kittitas County</div>
+      <div class="desc">Featured in Gallery One's "Inside Out" group exhibition alongside Pyth, Cedar Annenkovna, Henry Frank, and Peter Merts.</div>
+      <div class="tags"><span class="tag">Contemporary</span><span class="tag">Gallery One</span></div>
+    </div>
+    <div class="card artist" data-cat="artist">
+      <h3>Henry Frank</h3>
+      <div class="location">📍 Kittitas County</div>
+      <div class="desc">Featured in Gallery One's "Inside Out" group exhibition in the Main &amp; Mezzanine Gallery.</div>
+      <div class="tags"><span class="tag">Contemporary</span><span class="tag">Gallery One</span></div>
+    </div>
+    <div class="card artist" data-cat="artist">
+      <h3>CWU Art + Design Faculty</h3>
+      <div class="location">📍 CWU, Ellensburg</div>
+      <div class="desc">Active faculty artists exhibiting locally and nationally. Disciplines include painting, sculpture, ceramics, printmaking, photography, graphic design. Faculty shows at Sarah Spurgeon Gallery.</div>
+      <div class="tags"><span class="tag">Faculty</span><span class="tag">Multiple Media</span><span class="tag">University</span></div>
+    </div>
+  </div>
+
+  <!-- EVENTS -->
+  <div class="section-header" data-section="event">
+    <div class="section-icon" style="background:var(--shield-blue)">📅</div>
+    <h2>Events &amp; Festivals <span class="count-badge">8</span></h2>
+  </div>
+  <div class="card-grid">
+    <div class="card event" data-cat="event">
+      <h3>First Friday Art Walk</h3>
+      <div class="location">📍 Downtown Ellensburg</div>
+      <div class="desc">Monthly art walk on the first Friday of each month. Gallery One hosts opening receptions (5–7pm). Multiple downtown businesses participate with displays, live music, and refreshments.</div>
+      <div class="tags"><span class="tag">Monthly</span><span class="tag">Year-round</span><span class="tag">Free</span></div>
+    </div>
+    <div class="card event" data-cat="event">
+      <h3>Buskers in the Burg</h3>
+      <div class="location">📍 Downtown Ellensburg</div>
+      <div class="desc">Summer street performance festival organized by the Ellensburg Downtown Association. Musicians, performers, and artists along Pearl Street. Vendor application required.</div>
+      <div class="tags"><span class="tag">Summer</span><span class="tag">Performance</span><span class="tag">Vendors</span></div>
+    </div>
+    <div class="card event" data-cat="event">
+      <h3>Kittitas County Fair</h3>
+      <div class="location">📍 Kittitas County Fairgrounds, Ellensburg</div>
+      <div class="desc">Labor Day weekend. Art exhibitions, craft vendor booths, rodeo, livestock, and community events. Competitive art categories with awards. Major annual event drawing visitors county-wide.</div>
+      <div class="tags"><span class="tag">Labor Day</span><span class="tag">Annual</span><span class="tag">Vendors</span></div>
+    </div>
+    <div class="card event" data-cat="event">
+      <h3>Ellensburg Farmers Market</h3>
+      <div class="location">📍 Downtown Ellensburg</div>
+      <div class="desc">Saturday mornings, May through October. Artisans and makers can apply for vendor booths alongside produce vendors. Sales tax collection required for tangible art.</div>
+      <div class="tags"><span class="tag">Weekly</span><span class="tag">Summer</span><span class="tag">Vendor Booths</span></div>
+    </div>
+    <div class="card event" data-cat="event">
+      <h3>Gallery One Holiday Show</h3>
+      <div class="location">📍 Gallery One, Ellensburg</div>
+      <div class="desc">Annual holiday art sale and exhibition. One of the best selling opportunities for local artists. Application/submission deadline typically September–October.</div>
+      <div class="tags"><span class="tag">November–December</span><span class="tag">Sales</span><span class="tag">Annual</span></div>
+    </div>
+    <div class="card event" data-cat="event">
+      <h3>CWU Student &amp; Faculty Exhibitions</h3>
+      <div class="location">📍 Sarah Spurgeon Gallery, CWU</div>
+      <div class="desc">Regular exhibitions throughout the academic year including BFA/MFA thesis shows, faculty exhibitions, and visiting artist installations. Free and open to the public.</div>
+      <div class="tags"><span class="tag">Academic Year</span><span class="tag">Free</span></div>
+    </div>
+    <div class="card event" data-cat="event">
+      <h3>PUNCH Projects Events</h3>
+      <div class="location">📍 Fire House Gallery, Thorp</div>
+      <div class="desc">Rotating exhibitions, music events, and creative happenings at the converted firehouse. Check their events calendar for current programming. Open Saturdays.</div>
+      <div class="tags"><span class="tag">Saturdays</span><span class="tag">Music</span><span class="tag">Art</span></div>
+    </div>
+    <div class="card event" data-cat="event">
+      <h3>Holiday Craft Markets</h3>
+      <div class="location">📍 Various — Ellensburg &amp; Cle Elum</div>
+      <div class="desc">November–December craft fairs at community centers, churches, and venues throughout the county. Good entry point for makers and craftspeople to sell directly.</div>
+      <div class="tags"><span class="tag">November–December</span><span class="tag">Craft</span><span class="tag">Sales</span></div>
+    </div>
+  </div>
+
+  <!-- CREATIVE BUSINESSES -->
+  <div class="section-header" data-section="business">
+    <div class="section-icon" style="background:var(--warm-gray)">🏪</div>
+    <h2>Creative Businesses &amp; Services <span class="count-badge">6</span></h2>
+  </div>
+  <div class="card-grid">
+    <div class="card business" data-cat="business">
+      <h3>Solarity Credit Union</h3>
+      <div class="location">📍 Ellensburg &amp; Cle Elum</div>
+      <div class="desc">Local credit union recommended for artist banking. Small business accounts, personal loans, and community-focused financial services. Multiple branches in the county.</div>
+      <div class="tags"><span class="tag">Banking</span><span class="tag">Small Business</span></div>
+    </div>
+    <div class="card business" data-cat="business">
+      <h3>Suncadia Resort</h3>
+      <div class="location">📍 Cle Elum</div>
+      <div class="desc">Major commercial buyer for original art and prints. Hotels, restaurants, and common areas regularly acquire local artwork. Contact their purchasing department for commission opportunities.</div>
+      <div class="tags"><span class="tag">Commercial Buyer</span><span class="tag">Commissions</span><span class="tag">Hospitality</span></div>
+    </div>
+    <div class="card business" data-cat="business">
+      <h3>Art Supply — Regional Sources</h3>
+      <div class="location">📍 Online + Seattle</div>
+      <div class="desc">No dedicated art supply store in Kittitas County. Nearest: Artist &amp; Craftsman Supply (Seattle), Blick Art Materials (online). CWU bookstore carries some supplies. Walmart and craft stores carry basics.</div>
+      <div class="tags"><span class="tag">Supplies</span><span class="tag">Online</span></div>
+    </div>
+    <div class="card business" data-cat="business">
+      <h3>Local Framers &amp; Print Shops</h3>
+      <div class="location">📍 Ellensburg</div>
+      <div class="desc">Custom framing and print services available locally. Contact the Arts Commission for current recommendations. For large-format printing, some artists use Seattle services or online providers.</div>
+      <div class="tags"><span class="tag">Framing</span><span class="tag">Printing</span></div>
+    </div>
+    <div class="card business" data-cat="business">
+      <h3>SCORE Mentoring</h3>
+      <div class="location">📍 Virtual (nearest chapter: Yakima/Tri-Cities)</div>
+      <div class="desc">Free SBA-funded business mentoring. 10,000+ volunteer mentors nationwide. Not artist-specific, but useful for business planning, marketing strategy, and financial management basics.</div>
+      <div class="tags"><span class="tag">Free</span><span class="tag">Mentoring</span><span class="tag">SBA</span></div>
+    </div>
+    <div class="card business" data-cat="business">
+      <h3>WA Small Business Development Center</h3>
+      <div class="location">📍 Virtual + Regional Offices</div>
+      <div class="desc">Free business advising for Washington entrepreneurs. Workshops on business plans, financing, and marketing. Not arts-specific but strong on general small business fundamentals.</div>
+      <div class="tags"><span class="tag">Free</span><span class="tag">State Program</span></div>
+    </div>
+  </div>
+
+  <!-- VENUES -->
+  <div class="section-header" data-section="venue">
+    <div class="section-icon" style="background:#9b59b6">🎭</div>
+    <h2>Venues &amp; Performance Spaces <span class="count-badge">5</span></h2>
+  </div>
+  <div class="card-grid">
+    <div class="card venue" data-cat="venue">
+      <h3>Roslyn Theatre</h3>
+      <div class="location">📍 Downtown Roslyn</div>
+      <div class="desc">Historic single-screen movie theatre in downtown Roslyn. Community gathering spot. Occasionally hosts live events and screenings beyond regular film programming.</div>
+      <div class="tags"><span class="tag">Film</span><span class="tag">Historic</span><span class="tag">Events</span></div>
+    </div>
+    <div class="card venue" data-cat="venue">
+      <h3>CWU Music Department Venues</h3>
+      <div class="location">📍 CWU Campus, Ellensburg</div>
+      <div class="desc">Concert halls and recital spaces hosting student and faculty performances, visiting artists, and community concerts throughout the academic year.</div>
+      <div class="tags"><span class="tag">Music</span><span class="tag">University</span><span class="tag">Performance</span></div>
+    </div>
+    <div class="card venue" data-cat="venue">
+      <h3>Iron Horse Brewery</h3>
+      <div class="location">📍 Ellensburg</div>
+      <div class="desc">Local brewery with event space. Hosts live music, community events, and has displayed local art. A gathering spot for the creative community.</div>
+      <div class="tags"><span class="tag">Live Music</span><span class="tag">Community</span></div>
+    </div>
+    <div class="card venue" data-cat="venue">
+      <h3>The Yellow Church Cafe</h3>
+      <div class="location">📍 Ellensburg</div>
+      <div class="desc">Converted church building serving as cafe and event space. Hosts live music, displays local art, and serves as an informal community arts venue.</div>
+      <div class="tags"><span class="tag">Cafe</span><span class="tag">Live Music</span><span class="tag">Art Display</span></div>
+    </div>
+    <div class="card venue" data-cat="venue">
+      <h3>Coal Mines Trail</h3>
+      <div class="location">📍 Cle Elum to Ronald</div>
+      <div class="desc">Scenic rail-trail connecting communities in the Upper County. Opportunity for public art installations, outdoor exhibitions, and plein air painting. Regional tourist draw.</div>
+      <div class="tags"><span class="tag">Outdoor</span><span class="tag">Public Art Opportunity</span><span class="tag">Trail</span></div>
+    </div>
+  </div>
+
+  <!-- MEDIA -->
+  <div class="section-header" data-section="media">
+    <div class="section-icon" style="background:#e67e22">📰</div>
+    <h2>Local Media <span class="count-badge">3</span></h2>
+  </div>
+  <div class="card-grid">
+    <div class="card media" data-cat="media">
+      <h3>Daily Record</h3>
+      <div class="location">📍 Ellensburg</div>
+      <div class="desc">Ellensburg's daily newspaper. Covers local arts events, exhibitions, and artist features. Good venue for press releases about shows and events.</div>
+      <div class="tags"><span class="tag">Newspaper</span><span class="tag">Press</span></div>
+    </div>
+    <div class="card media" data-cat="media">
+      <h3>Northern Kittitas County Tribune</h3>
+      <div class="location">📍 Cle Elum / Roslyn</div>
+      <div class="desc">Upper County newspaper covering Cle Elum, Roslyn, South Cle Elum, and surrounding communities. Arts and events coverage for the Upper County area.</div>
+      <div class="tags"><span class="tag">Newspaper</span><span class="tag">Upper County</span></div>
+    </div>
+    <div class="card media" data-cat="media">
+      <h3>CWU Observer</h3>
+      <div class="location">📍 CWU, Ellensburg</div>
+      <div class="desc">Student newspaper covering campus arts, exhibitions, performances, and creative community events. Reaches the university audience.</div>
+      <div class="tags"><span class="tag">Student Paper</span><span class="tag">University</span></div>
+    </div>
+  </div>
+
+  <div class="cta-box">
+    <h2>Know someone or something that should be listed?</h2>
+    <p>This directory is maintained by the Kittitas Artist Business Coach and updated regularly. Contact the Kittitas County Arts Commission to suggest additions, corrections, or updates.</p>
+  </div>
+
+</div>
+
+<div class="footer">
+  Kittitas County Arts Directory &bull; A project of the Kittitas County Arts Commission &bull; May 2026<br>
+  <span style="font-size:.75rem;margin-top:4px;display:inline-block;">This directory lists publicly available information. Contact organizations directly for current hours, pricing, and availability.</span>
+</div>
+
+<script>
+(function(){
+  const btns = document.querySelectorAll('.filter-btn');
+  const cards = document.querySelectorAll('.card');
+  const sections = document.querySelectorAll('.section-header');
+  const grids = document.querySelectorAll('.card-grid');
+
+  btns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      btns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+
+      if (filter === 'all') {
+        cards.forEach(c => c.style.display = '');
+        sections.forEach(s => s.style.display = '');
+        grids.forEach(g => g.style.display = '');
+      } else {
+        cards.forEach(c => {
+          c.style.display = c.dataset.cat === filter ? '' : 'none';
+        });
+        sections.forEach(s => {
+          const sectionCat = s.dataset.section;
+          const hasVisible = [...document.querySelectorAll(`.card[data-cat="${sectionCat}"]`)].some(c => c.style.display !== 'none');
+          s.style.display = sectionCat === filter ? '' : 'none';
+        });
+        grids.forEach(g => {
+          const visibleCards = [...g.querySelectorAll('.card')].some(c => c.style.display !== 'none');
+          g.style.display = visibleCards ? '' : 'none';
+        });
+      }
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
