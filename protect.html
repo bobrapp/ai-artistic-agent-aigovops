@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Protection Framework — Kittitas Artist Business Coach</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,700;9..144,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --cream: #FDF6EC;
+    --terracotta: #C65D3E;
+    --sage: #7A9E7E;
+    --deep-brown: #3B2820;
+    --gold: #D4A847;
+    --warm-gray: #8B7D72;
+    --shield-blue: #2C5F7C;
+    --shield-light: #E8F2F7;
+    --alert-red: #C0392B;
+    --alert-light: #FFF0EE;
+    --action-green: #27763D;
+    --action-light: #E8F5EC;
+  }
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--cream);
+    color: var(--deep-brown);
+    line-height: 1.7;
+  }
+
+  /* Hero */
+  .hero {
+    background: linear-gradient(135deg, #1a2a3a 0%, var(--shield-blue) 50%, #2a6a5a 100%);
+    color: white;
+    padding: 80px 8% 70px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -30%;
+    right: -10%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(255,255,255,0.06) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .hero-label {
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .hero h1 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(2.2rem, 5vw, 3.4rem);
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 20px;
+    max-width: 700px;
+  }
+  .hero p {
+    font-size: 1.15rem;
+    line-height: 1.7;
+    max-width: 640px;
+    opacity: 0.9;
+  }
+  .hero-quote {
+    margin-top: 30px;
+    padding: 20px 28px;
+    background: rgba(255,255,255,0.08);
+    border-left: 4px solid var(--gold);
+    border-radius: 0 10px 10px 0;
+    font-family: 'Fraunces', serif;
+    font-size: 1.2rem;
+    font-style: italic;
+    font-weight: 300;
+    max-width: 580px;
+  }
+
+  /* Stats bar */
+  .stats-bar {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1px;
+    background: white;
+    border-bottom: 3px solid var(--shield-blue);
+  }
+  .stat-item {
+    padding: 24px 20px;
+    text-align: center;
+    background: white;
+  }
+  .stat-item .num {
+    font-family: 'Fraunces', serif;
+    font-size: 1.7rem;
+    font-weight: 700;
+    color: var(--shield-blue);
+    display: block;
+    line-height: 1.1;
+    margin-bottom: 4px;
+  }
+  .stat-item .label {
+    font-size: 0.78rem;
+    color: var(--warm-gray);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .content { max-width: 900px; margin: 0 auto; padding: 60px 8%; }
+
+  .intro {
+    font-size: 1.1rem;
+    line-height: 1.85;
+    color: #5a4a40;
+    margin-bottom: 50px;
+    border-left: 4px solid var(--terracotta);
+    padding-left: 24px;
+  }
+
+  /* Layer sections */
+  .layer {
+    margin-bottom: 50px;
+  }
+  .layer-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 8px;
+  }
+  .layer-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    flex-shrink: 0;
+    color: white;
+    font-weight: 700;
+  }
+  .layer-icon.protect { background: var(--shield-blue); }
+  .layer-icon.detect { background: var(--alert-red); }
+  .layer-icon.fight { background: var(--terracotta); }
+  .layer-icon.advocate { background: var(--action-green); }
+  .layer-header h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+  .layer-subtitle {
+    color: var(--warm-gray);
+    font-size: 0.92rem;
+    margin-bottom: 22px;
+    padding-left: 64px;
+  }
+
+  /* Tool cards */
+  .tool-card {
+    background: white;
+    border-radius: 12px;
+    padding: 28px;
+    margin-bottom: 16px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .tool-card h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .tool-tag {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .tag-free { background: #e8f5ec; color: #27763D; }
+  .tag-paid { background: #fff3e0; color: #e65100; }
+  .tag-auto { background: var(--shield-light); color: var(--shield-blue); }
+  .tag-new { background: #fce4ec; color: #c62828; }
+  .tool-card .desc {
+    font-size: 0.92rem;
+    color: #5a4a40;
+    line-height: 1.7;
+  }
+  .tool-card .coach-action {
+    background: var(--cream);
+    border-radius: 8px;
+    padding: 14px 18px;
+    font-size: 0.88rem;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  .coach-action::before {
+    content: '🤖';
+    flex-shrink: 0;
+  }
+  .coach-action strong { color: var(--deep-brown); }
+
+  /* Conversation mockup */
+  .convo-mock {
+    background: white;
+    border-radius: 16px;
+    padding: 28px;
+    margin: 30px 0;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    border: 1px solid #e8e0d8;
+  }
+  .convo-mock .mock-header {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--warm-gray);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #eee;
+  }
+  .msg {
+    max-width: 82%;
+    padding: 14px 18px;
+    border-radius: 16px;
+    margin-bottom: 12px;
+    font-size: 0.9rem;
+    line-height: 1.65;
+  }
+  .msg.artist {
+    background: #fdf6ec;
+    margin-left: auto;
+    border-bottom-right-radius: 4px;
+    color: var(--deep-brown);
+  }
+  .msg.coach {
+    background: var(--shield-light);
+    margin-right: auto;
+    border-bottom-left-radius: 4px;
+    color: #1a2a3a;
+  }
+  .msg .sender {
+    font-weight: 700;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 6px;
+  }
+  .msg.artist .sender { color: var(--terracotta); }
+  .msg.coach .sender { color: var(--shield-blue); }
+
+  /* Opt-out table */
+  .opt-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 0.85rem;
+  }
+  .opt-table th {
+    background: var(--shield-blue);
+    color: white;
+    padding: 10px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .opt-table td {
+    padding: 10px 14px;
+    border-bottom: 1px solid #eee;
+  }
+  .opt-table tr:nth-child(even) { background: #fafafa; }
+  .status-yes { color: var(--action-green); font-weight: 600; }
+  .status-partial { color: #e65100; font-weight: 600; }
+  .status-no { color: var(--alert-red); font-weight: 600; }
+
+  /* Big callout */
+  .callout {
+    background: linear-gradient(135deg, #1a2a3a, var(--shield-blue));
+    color: white;
+    border-radius: 16px;
+    padding: 44px 40px;
+    margin: 50px 0;
+    text-align: center;
+  }
+  .callout h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 14px;
+    line-height: 1.3;
+  }
+  .callout p {
+    font-size: 1rem;
+    opacity: 0.9;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  /* Legal timeline */
+  .legal-item {
+    background: white;
+    border-radius: 10px;
+    padding: 22px 26px;
+    margin-bottom: 14px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .legal-status {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 7px;
+  }
+  .legal-status.active { background: #f39c12; }
+  .legal-status.won { background: var(--action-green); }
+  .legal-status.pending { background: var(--warm-gray); }
+  .legal-item h4 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .legal-item p {
+    font-size: 0.88rem;
+    color: #5a4a40;
+    line-height: 1.6;
+  }
+  .legal-item .amount {
+    font-family: 'Fraunces', serif;
+    font-weight: 700;
+    color: var(--terracotta);
+  }
+
+  /* Checklist */
+  .checklist {
+    background: white;
+    border-radius: 14px;
+    padding: 32px;
+    margin: 30px 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .checklist h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+  }
+  .check-item {
+    display: flex;
+    gap: 14px;
+    padding: 14px 0;
+    border-bottom: 1px solid #f0ece6;
+    align-items: flex-start;
+  }
+  .check-item:last-child { border-bottom: none; }
+  .check-num {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--shield-blue);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.85rem;
+    flex-shrink: 0;
+  }
+  .check-content h4 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 2px;
+  }
+  .check-content p {
+    font-size: 0.88rem;
+    color: var(--warm-gray);
+    line-height: 1.55;
+  }
+  .check-meta {
+    font-size: 0.78rem;
+    margin-top: 4px;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .check-meta span {
+    padding: 2px 8px;
+    border-radius: 4px;
+    background: #f5f0eb;
+    color: var(--warm-gray);
+    font-weight: 500;
+  }
+
+  .footer {
+    text-align: center;
+    padding: 40px 8%;
+    color: var(--warm-gray);
+    font-size: 0.85rem;
+    border-top: 1px solid #e8e0d8;
+  }
+
+  @media (max-width: 600px) {
+    .hero { padding: 50px 6% 40px; }
+    .content { padding: 40px 6%; }
+    .layer-subtitle { padding-left: 0; }
+    .tool-card { padding: 22px; }
+    .msg { max-width: 90%; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-label">🛡️ AI Protection Framework</div>
+  <h1>This AI Fights <em>For</em> Artists, Not Against Them</h1>
+  <p>The Kittitas Artist Business Coach doesn't generate art, compete with artists, or use artist work as training data. It's a business advisor — and it actively helps artists protect their work from AI companies that do.</p>
+  <div class="hero-quote">"The best way to earn artists' trust with AI is to use AI to protect their rights."</div>
+</div>
+
+<div class="stats-bar">
+  <div class="stat-item">
+    <span class="num">$1.5B</span>
+    <span class="label">Largest AI training settlement</span>
+  </div>
+  <div class="stat-item">
+    <span class="num">6M+</span>
+    <span class="label">Glaze downloads</span>
+  </div>
+  <div class="stat-item">
+    <span class="num">92%</span>
+    <span class="label">Voters support artist protections</span>
+  </div>
+  <div class="stat-item">
+    <span class="num">$45–65</span>
+    <span class="label">Copyright registration cost</span>
+  </div>
+</div>
+
+<div class="content">
+
+  <p class="intro">
+    Artists' fear of AI is real — and it's focused on a specific problem: <strong>generative AI companies scraping artwork without consent or compensation.</strong> The Kittitas Artist Business Coach addresses this head-on, not by dismissing the concern, but by giving artists tools to fight back. The coach becomes an active defender across four layers: protect, detect, fight, and advocate.
+  </p>
+
+  <!-- CONVERSATION MOCKUP -->
+  <div class="convo-mock">
+    <div class="mock-header">💬 Example Conversation — Real Protection in Action</div>
+    <div class="msg artist">
+      <div class="sender">Maria — Painter, Ellensburg</div>
+      I just found out someone used AI to generate images that look exactly like my watercolor style. I'm furious. What can I do?
+    </div>
+    <div class="msg coach">
+      <div class="sender">Kittitas Artist Business Coach</div>
+      I completely understand your frustration, Maria. Let's take this step by step.<br><br>
+      <strong>First — are your watercolors registered with the US Copyright Office?</strong> Registration is required before you can file a lawsuit in federal court, and it enables statutory damages up to $150,000 per work. It costs $45–65 per work online at copyright.gov.<br><br>
+      <strong>Second — let's check if your actual images are in known AI training datasets.</strong> I can walk you through searching HaveIBeenTrained.com right now. Upload a few of your most recognizable pieces.<br><br>
+      <strong>Third — let's protect your future work.</strong> I'll help you install Glaze, a free tool from the University of Chicago that makes your images resistant to AI style-copying. Run it on every piece before posting to Instagram or your website.<br><br>
+      <strong>Important legal context:</strong> Copyright protects your specific paintings, but unfortunately not your style itself. If someone generated images "in the style of" your work without copying a specific piece, current law doesn't cover that. However, several active lawsuits (Andersen v. Stability AI) are trying to change this. Want me to connect you with the Graphic Artists Guild? They're leading advocacy on exactly this issue.
+    </div>
+    <div class="msg artist">
+      <div class="sender">Maria</div>
+      Yes — and can you help me register my best pieces? I have about 30 paintings I want to protect.
+    </div>
+    <div class="msg coach">
+      <div class="sender">Kittitas Artist Business Coach</div>
+      Absolutely. You can use the Copyright Office's group registration for unpublished works, which is cheaper per piece. For your 30 paintings, here's what I recommend:<br><br>
+      1. I'll generate a checklist and walk you through photographing each piece to registration standards<br>
+      2. We'll batch-register them as a group — much cheaper than individual registration<br>
+      3. While we're at it, I'll help you add robots.txt blocks to your website so AI crawlers can't scrape new work<br>
+      4. And I'll set you up with C2PA Content Credentials so your images carry cryptographic proof of authorship<br><br>
+      <strong>Total cost: about $65–130 for all 30 paintings.</strong> That's less than the price of a single frame, and it gives you the legal standing to fight.
+    </div>
+  </div>
+
+  <!-- LAYER 1: PROTECT -->
+  <div class="layer">
+    <div class="layer-header">
+      <div class="layer-icon protect">1</div>
+      <h2>Layer 1: Protect — Stop Scraping Before It Happens</h2>
+    </div>
+    <p class="layer-subtitle">The coach walks artists through every available protection tool, step by step.</p>
+
+    <div class="tool-card">
+      <h3>Glaze <span class="tool-tag tag-free">Free</span> <span class="tool-tag tag-auto">Coach-Assisted</span></h3>
+      <div class="desc">Applies imperceptible pixel-level perturbations that cause AI models to learn the <em>wrong</em> style from your images. 6+ million downloads since 2023. Run it on every image before posting to social media, your website, or online galleries.</div>
+      <div class="coach-action"><div><strong>What the coach does:</strong> Walks you through downloading, installing, and running Glaze. Reminds you to re-Glaze when updates ship (protection is an arms race — the LightShed bypass published in 2025 means staying current matters).</div></div>
+    </div>
+
+    <div class="tool-card">
+      <h3>Nightshade <span class="tool-tag tag-free">Free</span></h3>
+      <div class="desc">The "offensive" counterpart to Glaze. Poisons training data so that AI models that scrape your images learn corrupted information. From the same University of Chicago lab. 1.6+ million downloads.</div>
+      <div class="coach-action"><div><strong>What the coach does:</strong> Explains the difference between Glaze (defensive) and Nightshade (offensive), helps you choose the right tool for each use case, and walks through the process.</div></div>
+    </div>
+
+    <div class="tool-card">
+      <h3>robots.txt AI Crawler Blocks <span class="tool-tag tag-free">Free</span> <span class="tool-tag tag-auto">Coach Generates</span></h3>
+      <div class="desc">Block AI companies from scraping your website. The coach generates the exact robots.txt file you need, blocking GPTBot, ClaudeBot, CCBot, Google-Extended, and other known AI crawlers.</div>
+      <div class="coach-action"><div><strong>What the coach does:</strong> Generates your robots.txt file instantly. If you use Squarespace, WordPress, or Wix, provides platform-specific instructions. Also generates the TDMRep file (<code>/.well-known/tdmrep.json</code>) required for EU opt-out protection.</div></div>
+    </div>
+
+    <div class="tool-card">
+      <h3>C2PA Content Credentials <span class="tool-tag tag-free">Free</span></h3>
+      <div class="desc">Cryptographic proof of authorship embedded directly in your image files. Created by Adobe's Content Authenticity Initiative. Records who made the image, when, and with what tools — in a tamper-evident format verifiable at verify.contentauthenticity.org.</div>
+      <div class="coach-action"><div><strong>What the coach does:</strong> Explains how to embed credentials using Adobe's free tools or the open-source c2patool CLI. Helps you verify your credentials are working. Notes the limitation: most social platforms strip metadata, so credentials work best on your own website and direct file sharing.</div></div>
+    </div>
+
+    <div class="tool-card">
+      <h3>Cloudflare AI Bot Blocking <span class="tool-tag tag-free">Free</span> <span class="tool-tag tag-new">New 2025</span></h3>
+      <div class="desc">As of July 2025, Cloudflare defaults to blocking AI crawlers for new sites and added a "Pay Per Crawl" marketplace. If your website uses Cloudflare (free plan available), AI bots are blocked automatically.</div>
+      <div class="coach-action"><div><strong>What the coach does:</strong> Checks if your website already uses Cloudflare. If not, walks you through the free setup. Explains the Pay Per Crawl option — AI companies would have to pay you to scrape your work.</div></div>
+    </div>
+
+    <div class="tool-card">
+      <h3>Cara <span class="tool-tag tag-free">Free</span></h3>
+      <div class="desc">Artist-run social platform that's anti-AI by default. Blocks AI-generated submissions and integrates Glaze for automatic upload-time cloaking. A safe space to share work without scraping risk.</div>
+      <div class="coach-action"><div><strong>What the coach does:</strong> Recommends Cara as a complement to Instagram — share work on both, but know that Cara actively protects you while Meta does not (US artists have no opt-out from Meta's AI training).</div></div>
+    </div>
+  </div>
+
+  <!-- LAYER 2: DETECT -->
+  <div class="layer">
+    <div class="layer-header">
+      <div class="layer-icon detect">2</div>
+      <h2>Layer 2: Detect — Find Out If Your Work Was Used</h2>
+    </div>
+    <p class="layer-subtitle">The coach helps you search for your work in known AI training datasets.</p>
+
+    <div class="tool-card">
+      <h3>Have I Been Trained <span class="tool-tag tag-free">Free</span> <span class="tool-tag tag-auto">Coach-Assisted</span></h3>
+      <div class="desc">Search the LAION-5B dataset (the open dataset behind Stable Diffusion) for your images. Upload your artwork and see if it appears in training data. Also lets you register opt-outs — Stability AI has committed to honoring them for future models. ~80 million artworks flagged by artists so far.</div>
+      <div class="coach-action"><div><strong>What the coach does:</strong> Walks you through the search process. If your work is found, immediately helps you register opt-outs. Then guides you through the next steps (copyright registration for legal standing, connecting with active lawsuits if applicable).</div></div>
+    </div>
+
+    <div class="tool-card">
+      <h3>Spawning AI <span class="tool-tag tag-free">Free</span></h3>
+      <div class="desc">The parent platform behind Have I Been Trained. Provides an API for bulk opt-out registration and tools for platforms to implement opt-out at scale. If you have a large portfolio, Spawning's bulk tools are faster.</div>
+      <div class="coach-action"><div><strong>What the coach does:</strong> For artists with 50+ works, helps set up bulk submission through Spawning rather than one-by-one through Have I Been Trained.</div></div>
+    </div>
+
+    <div class="tool-card">
+      <h3>Style Monitoring (Coming) <span class="tool-tag tag-new">Roadmap</span></h3>
+      <div class="desc">An early-warning system: the coach periodically searches AI image platforms for outputs that closely match your registered style. If someone is using your name or distinctive visual language as an AI prompt, you'll know.</div>
+      <div class="coach-action"><div><strong>What the coach will do:</strong> Automated alerts when your name appears in public prompt databases, AI art galleries, or marketplace listings. "Someone on Midjourney is generating work using your name as a style prompt — here's what you can do."</div></div>
+    </div>
+  </div>
+
+  <!-- OPT-OUT TABLE -->
+  <h3 style="font-family: 'Fraunces', serif; font-size: 1.2rem; margin: 30px 0 16px;">Company-by-Company Opt-Out Status</h3>
+  <p style="font-size: 0.9rem; color: var(--warm-gray); margin-bottom: 16px;">The coach knows the current opt-out process for every major AI company and walks you through each one.</p>
+
+  <table class="opt-table">
+    <thead>
+      <tr>
+        <th>Company</th>
+        <th>Opt-Out?</th>
+        <th>Method</th>
+        <th>Scope</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Stability AI</strong></td>
+        <td class="status-yes">Yes</td>
+        <td>Spawning / HIBT registry</td>
+        <td>Future training only</td>
+      </tr>
+      <tr>
+        <td><strong>OpenAI (DALL-E)</strong></td>
+        <td class="status-partial">Partial</td>
+        <td>Block GPTBot in robots.txt</td>
+        <td>Forward-looking only; Media Manager tool promised but not yet shipped</td>
+      </tr>
+      <tr>
+        <td><strong>Adobe Firefly</strong></td>
+        <td class="status-yes">Yes</td>
+        <td>Adobe opt-out form</td>
+        <td>Adobe Stock / training data</td>
+      </tr>
+      <tr>
+        <td><strong>Midjourney</strong></td>
+        <td class="status-no">No</td>
+        <td>No public registry</td>
+        <td>No opt-out mechanism exists</td>
+      </tr>
+      <tr>
+        <td><strong>Meta (Instagram/FB)</strong></td>
+        <td class="status-partial">EU/UK Only</td>
+        <td>Objection form</td>
+        <td>US artists have NO opt-out from Meta AI training</td>
+      </tr>
+      <tr>
+        <td><strong>DeviantArt</strong></td>
+        <td class="status-yes">Yes (default)</td>
+        <td>noai/noimageai meta tag</td>
+        <td>Auto-applied to all works</td>
+      </tr>
+      <tr>
+        <td><strong>ArtStation</strong></td>
+        <td class="status-yes">Yes</td>
+        <td>NoAI tag per work</td>
+        <td>Must be manually applied</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- LAYER 3: FIGHT -->
+  <div class="layer">
+    <div class="layer-header">
+      <div class="layer-icon fight">3</div>
+      <h2>Layer 3: Fight — Take Action When Violations Happen</h2>
+    </div>
+    <p class="layer-subtitle">The coach generates legal documents and connects you to active litigation.</p>
+
+    <div class="tool-card">
+      <h3>US Copyright Registration <span class="tool-tag tag-paid">$45–65</span> <span class="tool-tag tag-auto">Coach-Assisted</span></h3>
+      <div class="desc"><strong>The single most important step any artist can take.</strong> Registration is required to file a lawsuit in US federal court and enables statutory damages up to $150,000 per infringed work. Group registration for unpublished works dramatically reduces per-piece cost.</div>
+      <div class="coach-action"><div><strong>What the coach does:</strong> Generates a photography checklist for documenting your work to registration standards. Walks you through the online registration process at copyright.gov. Helps you use group registration to batch works and save money. Sets calendar reminders for new works.</div></div>
+    </div>
+
+    <div class="tool-card">
+      <h3>DMCA Takedown Notices <span class="tool-tag tag-free">Free</span> <span class="tool-tag tag-auto">Coach Generates</span></h3>
+      <div class="desc">If an AI model produces output that closely reproduces your specific registered work, you can file a DMCA takedown. The coach generates the complete notice, identifies the platform's designated DMCA agent, and walks you through filing.</div>
+      <div class="coach-action"><div><strong>What the coach does:</strong> Generates a legally compliant DMCA takedown notice customized to your situation. Important caveat: DMCA protects against reproduction of specific works, not style imitation. The coach is honest about what's legally actionable and what isn't.</div></div>
+    </div>
+
+    <div class="tool-card">
+      <h3>Connect to Active Lawsuits <span class="tool-tag tag-free">Free</span></h3>
+      <div class="desc">Multiple class actions are actively fighting for artist rights. The coach tracks their status and helps you determine if you're eligible to join.</div>
+    </div>
+  </div>
+
+  <!-- LAWSUITS -->
+  <h3 style="font-family: 'Fraunces', serif; font-size: 1.2rem; margin: 20px 0 16px;">Active Lawsuits the Coach Tracks</h3>
+
+  <div class="legal-item">
+    <div class="legal-status won"></div>
+    <div>
+      <h4>Bartz v. Anthropic — <span class="amount">$1.5 Billion Settlement</span></h4>
+      <p>Settled October 2025. The largest AI training data settlement in history. Class covered up to 500,000 works at ~$3,000/work. Anthropic agreed to <strong>destroy the pirated datasets</strong>. Book authors, but set the precedent that training on scraped copyrighted material is actionable.</p>
+    </div>
+  </div>
+
+  <div class="legal-item">
+    <div class="legal-status active"></div>
+    <div>
+      <h4>Andersen v. Stability AI, Midjourney, DeviantArt, Runway</h4>
+      <p>Class action by visual artists. Direct copyright infringement claims survived motions. In active discovery. <strong>This is the case that will define visual artist rights against AI.</strong> No trial date set.</p>
+    </div>
+  </div>
+
+  <div class="legal-item">
+    <div class="legal-status active"></div>
+    <div>
+      <h4>Getty Images v. Stability AI (UK)</h4>
+      <p>Judgment November 2025. Trademark infringement claims (generating images with Getty watermarks) survived. The UK case is narrower but established that AI-generated outputs containing copyrighted elements are infringing.</p>
+    </div>
+  </div>
+
+  <div class="legal-item">
+    <div class="legal-status active"></div>
+    <div>
+      <h4>NYT v. OpenAI</h4>
+      <p>Not an artist case, but the most-watched test of fair use for AI training. Motion to dismiss denied March 2025. Discovery ongoing. The outcome will affect all creators.</p>
+    </div>
+  </div>
+
+  <!-- LAYER 4: ADVOCATE -->
+  <div class="layer">
+    <div class="layer-header">
+      <div class="layer-icon advocate">4</div>
+      <h2>Layer 4: Advocate — Stay Informed, Stay Organized</h2>
+    </div>
+    <p class="layer-subtitle">The coach keeps you connected to the movement protecting artist rights.</p>
+
+    <div class="tool-card">
+      <h3>Legislation Alerts <span class="tool-tag tag-auto">Proactive Push</span></h3>
+      <div class="desc">The coach monitors federal and Washington State legislation affecting artist rights and pushes timely alerts.</div>
+      <div class="coach-action"><div><strong>Current tracking:</strong><br>
+      • <strong>TRAIN Act</strong> (federal, Aug 2025) — Would give copyright holders the right to access AI training datasets and sue for unauthorized use. Bipartisan.<br>
+      • <strong>NO FAKES Act</strong> (S.1367, Apr 2025) — Creates property rights in voice and visual likeness against digital replicas.<br>
+      • <strong>CLEAR Act</strong> (federal) — Would require disclosure when copyrighted work is used in AI training. Endorsed by Graphic Artists Guild.<br>
+      • <strong>WA HB 1168</strong> — Would require AI developers to document training data sources. Passed committee but stalled by tech lobby pressure. The coach alerts you when it's revived and tells you who to contact.</div></div>
+    </div>
+
+    <div class="tool-card">
+      <h3>Organization Connections <span class="tool-tag tag-free">Free</span></h3>
+      <div class="desc">The coach connects you to organizations actively fighting for your rights:</div>
+      <div class="coach-action"><div>
+      • <strong>Human Artistry Campaign</strong> — 92% bipartisan voter support. "Stealing Isn't Innovation" campaign with NYT ads.<br>
+      • <strong>Graphic Artists Guild</strong> — Leading CLEAR Act advocacy. Open to independent visual artists. Affordable dues.<br>
+      • <strong>Creators Coalition on AI (CCAI)</strong> — Launched Dec 2025, building collective lobbying infrastructure.<br>
+      • <strong>DACS (UK)</strong> — 100,000+ visual creators. Pushing collective licensing frameworks — the model for what US artists should demand.</div></div>
+    </div>
+
+    <div class="tool-card">
+      <h3>Collective Voice <span class="tool-tag tag-new">Phase 2</span></h3>
+      <div class="desc">The community layer amplifies individual voices. When 50 Kittitas County artists register with the Copyright Office, opt out of AI training, and contact Rep. Shavers about HB 1168 <em>at the same time</em> — that's a story. That's a movement. The coach organizes collective action.</div>
+    </div>
+  </div>
+
+  <!-- BIG CALLOUT -->
+  <div class="callout">
+    <h2>The Trust Equation</h2>
+    <p>Every other AI tool asks artists to trust it. The Kittitas Artist Business Coach earns that trust by actively protecting artists from the AI companies that have broken it. This isn't just a feature — it's the foundation of the entire relationship.</p>
+  </div>
+
+  <!-- ACTION CHECKLIST -->
+  <div class="checklist">
+    <h3>🛡️ The Coach's Protection Checklist — Every Artist, Day One</h3>
+
+    <div class="check-item">
+      <div class="check-num">1</div>
+      <div class="check-content">
+        <h4>Register your best work with the US Copyright Office</h4>
+        <p>Use group registration to batch works. This is your legal foundation — without it, you can't sue.</p>
+        <div class="check-meta"><span>$45–65</span> <span>30 min</span> <span>One-time</span></div>
+      </div>
+    </div>
+
+    <div class="check-item">
+      <div class="check-num">2</div>
+      <div class="check-content">
+        <h4>Search Have I Been Trained for your existing work</h4>
+        <p>Upload your most recognizable pieces. If found, register opt-outs immediately.</p>
+        <div class="check-meta"><span>Free</span> <span>15 min</span> <span>One-time</span></div>
+      </div>
+    </div>
+
+    <div class="check-item">
+      <div class="check-num">3</div>
+      <div class="check-content">
+        <h4>Install and run Glaze on all work before posting online</h4>
+        <p>Invisible protection that makes your images resistant to AI style-copying. Update when new versions ship.</p>
+        <div class="check-meta"><span>Free</span> <span>10 min setup</span> <span>Ongoing</span></div>
+      </div>
+    </div>
+
+    <div class="check-item">
+      <div class="check-num">4</div>
+      <div class="check-content">
+        <h4>Block AI crawlers on your website</h4>
+        <p>The coach generates your robots.txt and TDMRep files. Copy-paste to your site.</p>
+        <div class="check-meta"><span>Free</span> <span>10 min</span> <span>One-time</span></div>
+      </div>
+    </div>
+
+    <div class="check-item">
+      <div class="check-num">5</div>
+      <div class="check-content">
+        <h4>File opt-outs with every AI company that offers them</h4>
+        <p>Stability AI, Adobe, DeviantArt, ArtStation. The coach walks you through each form.</p>
+        <div class="check-meta"><span>Free</span> <span>20 min</span> <span>One-time</span></div>
+      </div>
+    </div>
+
+    <div class="check-item">
+      <div class="check-num">6</div>
+      <div class="check-content">
+        <h4>Embed C2PA Content Credentials in your images</h4>
+        <p>Cryptographic proof of authorship. Use Adobe's free tools or the open-source c2patool.</p>
+        <div class="check-meta"><span>Free</span> <span>15 min setup</span> <span>Ongoing</span></div>
+      </div>
+    </div>
+
+    <div class="check-item">
+      <div class="check-num">7</div>
+      <div class="check-content">
+        <h4>Join an advocacy organization</h4>
+        <p>Graphic Artists Guild or Human Artistry Campaign. Your voice matters — especially from rural communities that are rarely heard.</p>
+        <div class="check-meta"><span>Free–modest dues</span> <span>5 min</span> <span>Annual</span></div>
+      </div>
+    </div>
+  </div>
+
+  <p style="font-size: 0.95rem; color: #5a4a40; line-height: 1.8; margin-top: 30px;">
+    <strong>Total cost to fully protect yourself:</strong> Under $100 and about 2 hours of your time. The coach walks you through every step. That's less than the cost of a single canvas — and it protects your entire body of work.
+  </p>
+
+</div>
+
+<div class="footer">
+  Kittitas Artist Business Coach &bull; AI Protection Framework &bull; Kittitas County Arts Commission &bull; May 2026
+</div>
+
+</body>
+</html>

@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Strategic Roadmap — Kittitas Artist Business Coach</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,700;9..144,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --cream: #FDF6EC;
+    --terracotta: #C65D3E;
+    --sage: #7A9E7E;
+    --deep-brown: #3B2820;
+    --gold: #D4A847;
+    --warm-gray: #8B7D72;
+    --light-sage: #E8F0E8;
+    --light-terra: #FFF0EB;
+    --light-gold: #FFF8E7;
+    --midnight: #1a1a2e;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--cream);
+    color: var(--deep-brown);
+    line-height: 1.7;
+  }
+
+  /* Hero */
+  .hero {
+    background: linear-gradient(135deg, var(--deep-brown) 0%, #5a3a2e 50%, var(--terracotta) 100%);
+    color: white;
+    padding: 80px 8% 70px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(212,168,71,0.15) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .hero-label {
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+    font-weight: 600;
+  }
+  .hero h1 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(2.2rem, 5vw, 3.6rem);
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 20px;
+    max-width: 700px;
+  }
+  .hero p {
+    font-size: 1.15rem;
+    line-height: 1.7;
+    max-width: 620px;
+    opacity: 0.9;
+  }
+
+  /* Summary bar */
+  .summary-bar {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1px;
+    background: white;
+    border-bottom: 3px solid var(--terracotta);
+  }
+  .summary-item {
+    padding: 28px 30px;
+    text-align: center;
+    background: white;
+  }
+  .summary-item .num {
+    font-family: 'Fraunces', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--terracotta);
+    display: block;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .summary-item .label {
+    font-size: 0.82rem;
+    color: var(--warm-gray);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  /* Content */
+  .content {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 60px 8%;
+  }
+
+  .intro {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: #5a4a40;
+    margin-bottom: 50px;
+    border-left: 4px solid var(--sage);
+    padding-left: 24px;
+  }
+
+  /* Section headers */
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 60px;
+    margin-bottom: 10px;
+  }
+  .section-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+  }
+  .section-icon.better { background: var(--light-sage); }
+  .section-icon.useful { background: var(--light-terra); }
+  .section-icon.cheaper { background: var(--light-gold); }
+  .section-header h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+  .section-subtitle {
+    color: var(--warm-gray);
+    font-size: 0.95rem;
+    margin-bottom: 30px;
+    padding-left: 68px;
+  }
+
+  /* Strategy cards */
+  .strategy-card {
+    background: white;
+    border-radius: 12px;
+    padding: 32px;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    border-left: 4px solid transparent;
+    transition: box-shadow 0.2s;
+  }
+  .strategy-card:hover {
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  }
+  .strategy-card.better-card { border-left-color: var(--sage); }
+  .strategy-card.useful-card { border-left-color: var(--terracotta); }
+  .strategy-card.cheaper-card { border-left-color: var(--gold); }
+
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .card-header h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+  .phase-tag {
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+  }
+  .phase-tag.now { background: #e8f5e9; color: #2e7d32; }
+  .phase-tag.soon { background: #fff3e0; color: #e65100; }
+  .phase-tag.later { background: #e3f2fd; color: #1565c0; }
+
+  .card-body { color: #5a4a40; font-size: 0.95rem; line-height: 1.75; }
+  .card-body p { margin-bottom: 12px; }
+  .card-body strong { color: var(--deep-brown); }
+
+  .evidence {
+    background: var(--cream);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin-top: 14px;
+    font-size: 0.88rem;
+    color: var(--warm-gray);
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  .evidence::before {
+    content: '📊';
+    flex-shrink: 0;
+    font-size: 1rem;
+  }
+
+  .example {
+    background: #f8f6f3;
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin-top: 10px;
+    font-size: 0.9rem;
+    font-style: italic;
+    color: #6b5a50;
+    border-left: 3px solid var(--gold);
+  }
+
+  /* Cost projection */
+  .cost-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 0.9rem;
+  }
+  .cost-table th {
+    background: var(--deep-brown);
+    color: white;
+    padding: 12px 16px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .cost-table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid #eee;
+  }
+  .cost-table tr:nth-child(even) { background: #fafafa; }
+  .cost-table .highlight { color: var(--terracotta); font-weight: 600; }
+
+  /* The big idea */
+  .big-idea {
+    background: linear-gradient(135deg, var(--deep-brown), #5a3a2e);
+    color: white;
+    border-radius: 16px;
+    padding: 48px 40px;
+    margin: 50px 0;
+    text-align: center;
+  }
+  .big-idea h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+    line-height: 1.3;
+  }
+  .big-idea p {
+    font-size: 1.05rem;
+    opacity: 0.9;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  /* Comparables */
+  .comparable-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+    margin: 24px 0;
+  }
+  .comparable {
+    background: white;
+    border-radius: 10px;
+    padding: 22px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  }
+  .comparable .name {
+    font-weight: 700;
+    font-size: 0.95rem;
+    margin-bottom: 4px;
+    color: var(--deep-brown);
+  }
+  .comparable .sector {
+    font-size: 0.75rem;
+    color: var(--warm-gray);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 10px;
+  }
+  .comparable .stat {
+    font-family: 'Fraunces', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--terracotta);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .comparable .stat-label {
+    font-size: 0.82rem;
+    color: var(--warm-gray);
+  }
+  .comparable .detail {
+    font-size: 0.85rem;
+    color: #5a4a40;
+    margin-top: 10px;
+    line-height: 1.6;
+  }
+
+  /* Timeline */
+  .timeline {
+    position: relative;
+    padding-left: 36px;
+    margin: 30px 0;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 14px;
+    top: 8px;
+    bottom: 8px;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--sage), var(--gold), var(--terracotta));
+  }
+  .timeline-item {
+    position: relative;
+    margin-bottom: 28px;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -28px;
+    top: 6px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 3px solid var(--sage);
+    background: white;
+  }
+  .timeline-item:nth-child(2)::before { border-color: var(--gold); }
+  .timeline-item:nth-child(3)::before { border-color: var(--terracotta); }
+  .timeline-item h4 {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 1.05rem;
+    margin-bottom: 4px;
+  }
+  .timeline-item p {
+    font-size: 0.9rem;
+    color: #5a4a40;
+    line-height: 1.65;
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding: 40px 8%;
+    color: var(--warm-gray);
+    font-size: 0.85rem;
+    border-top: 1px solid #e8e0d8;
+  }
+
+  @media (max-width: 600px) {
+    .hero { padding: 50px 6% 40px; }
+    .content { padding: 40px 6%; }
+    .section-subtitle { padding-left: 0; }
+    .strategy-card { padding: 24px; }
+    .big-idea { padding: 36px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-label">Strategic Roadmap</div>
+  <h1>Better, More Useful, Cheaper Over Time</h1>
+  <p>How the Kittitas Artist Business Coach improves with every conversation, becomes indispensable to working artists, and costs less as it scales.</p>
+</div>
+
+<div class="summary-bar">
+  <div class="summary-item">
+    <span class="num">60–70%</span>
+    <span class="label">Cost reduction by Year 2</span>
+  </div>
+  <div class="summary-item">
+    <span class="num">3.2 hrs</span>
+    <span class="label">Saved per artist per week</span>
+  </div>
+  <div class="summary-item">
+    <span class="num">$50→$20</span>
+    <span class="label">Monthly cost trajectory</span>
+  </div>
+  <div class="summary-item">
+    <span class="num">2x</span>
+    <span class="label">Engagement with AI tools</span>
+  </div>
+</div>
+
+<div class="content">
+
+  <p class="intro">
+    The best technology systems share a rare trait: they get <strong>better and cheaper simultaneously</strong>. The Kittitas Artist Business Coach is designed for exactly this — every conversation makes it smarter, every community interaction reduces its load, and every cached answer cuts its cost. Here's the roadmap.
+  </p>
+
+  <!-- COMPARABLES -->
+  <div class="section-header">
+    <div class="section-icon better">🌍</div>
+    <h2>What's Working Elsewhere</h2>
+  </div>
+  <p class="section-subtitle">AI-powered advisory platforms are already proving this model across industries.</p>
+
+  <div class="comparable-grid">
+    <div class="comparable">
+      <div class="name">FarmerChat</div>
+      <div class="sector">Agriculture &bull; Kenya, Nigeria, India, Brazil</div>
+      <div class="stat">830,000+</div>
+      <div class="stat-label">farmers using AI advisory</div>
+      <div class="detail">8.1M queries resolved. 73% first-time digital advisory users. Push alerts for weather, pests, market prices. NGO-funded — free at point of use.</div>
+    </div>
+    <div class="comparable">
+      <div class="name">HoneyBook AI</div>
+      <div class="sector">Freelancers &bull; United States</div>
+      <div class="stat">2x</div>
+      <div class="stat-label">more projects booked by AI users</div>
+      <div class="detail">100K+ small businesses. AI users generate 94% higher payment volume. 3+ hours reclaimed per week. AI learns from transaction history.</div>
+    </div>
+    <div class="comparable">
+      <div class="name">Housecall Pro</div>
+      <div class="sector">Home Services &bull; United States</div>
+      <div class="stat">3.2 hrs</div>
+      <div class="stat-label">saved per week for AI users</div>
+      <div class="detail">200K+ service pros. 57% report business growth from AI. CSR AI answers calls 24/7, Coach AI gives growth recommendations, seasonal push alerts.</div>
+    </div>
+    <div class="comparable">
+      <div class="name">Farmers Business Network</div>
+      <div class="sector">Agriculture &bull; US &amp; Canada</div>
+      <div class="stat">117,000</div>
+      <div class="stat-label">member farms, 187M acres</div>
+      <div class="detail">AI advisor "Norm" is free to members. Peer data network makes AI smarter as membership grows. $3B+ in financing. Classic network effect.</div>
+    </div>
+  </div>
+
+  <div class="evidence">
+    The pattern is clear: niche-specific AI advisors that combine domain expertise, local context, and peer community consistently deliver 30–94% improvement in business outcomes for their users.
+  </div>
+
+  <!-- SECTION 1: BETTER -->
+  <div class="section-header">
+    <div class="section-icon better">🧠</div>
+    <h2>Better — Smarter With Every Conversation</h2>
+  </div>
+  <p class="section-subtitle">The coach gets more intelligent over time, not more expensive.</p>
+
+  <div class="strategy-card better-card">
+    <div class="card-header">
+      <h3>1. Learning Loops</h3>
+      <span class="phase-tag now">Pilot Phase</span>
+    </div>
+    <div class="card-body">
+      <p>Every conversation teaches the system something. After each session, the agent saves anonymized patterns: which questions come up most, where artists get confused, what local information is missing.</p>
+      <p><strong>Quarterly curriculum refresh:</strong> A volunteer reviews the patterns and updates modules. Month 1 has the most gaps. By month 6, the coach has encountered most common scenarios.</p>
+      <div class="evidence">Farmers Business Network proved this model: peer data from 117,000 farms makes their AI advisor smarter with every season. The per-user value increases while per-query cost decreases.</div>
+    </div>
+  </div>
+
+  <div class="strategy-card better-card">
+    <div class="card-header">
+      <h3>2. Seasonal Intelligence</h3>
+      <span class="phase-tag now">Pilot Phase</span>
+    </div>
+    <div class="card-body">
+      <p>Don't wait for artists to ask — push timely alerts before deadlines hit:</p>
+      <p><strong>January:</strong> "B&O tax is due. Here's what you need to file."<br>
+      <strong>March:</strong> "Ellensburg Farmers Market applications open next week."<br>
+      <strong>September:</strong> "Gallery One holiday show submission deadline in 2 weeks."<br>
+      <strong>December:</strong> "Year-end bookkeeping checklist — 15 minutes now saves hours in April."</p>
+      <div class="evidence">FarmerChat's push notifications for weather and pest forecasts are their highest-engagement feature. Proactive alerts have 3–5x the engagement rate of passive advisory tools.</div>
+    </div>
+  </div>
+
+  <div class="strategy-card better-card">
+    <div class="card-header">
+      <h3>3. Outcome Tracking</h3>
+      <span class="phase-tag soon">Phase 2</span>
+    </div>
+    <div class="card-body">
+      <p>Move from "artists used the tool" to "artists earned more money." Track real outcomes:</p>
+      <p>• Did the artist actually file their B&O tax?<br>
+      • Did they raise prices after the pricing module?<br>
+      • Did they get the gallery placement? The grant?</p>
+      <p><strong>This data is the pitch for sustained funding.</strong> When you can say "artists who used the coach earned $3,200 more per year," the program funds itself.</p>
+      <div class="evidence">Pentacle's FootPath program proved that tracking outcomes changes everything: their documented 39% income increase secured ongoing foundation funding that one-time workshops never could.</div>
+    </div>
+  </div>
+
+  <!-- SECTION 2: MORE USEFUL -->
+  <div class="section-header">
+    <div class="section-icon useful">🔧</div>
+    <h2>More Useful — From Advice to Action</h2>
+  </div>
+  <p class="section-subtitle">The biggest leap: don't just tell artists what to do — help them do it.</p>
+
+  <div class="strategy-card useful-card">
+    <div class="card-header">
+      <h3>4. Templates & Forms Library</h3>
+      <span class="phase-tag now">Pilot Phase</span>
+    </div>
+    <div class="card-body">
+      <p>The #1 thing artists actually need — ready-to-use documents they can customize:</p>
+      <p>• Gallery consignment agreement (WA-specific)<br>
+      • Commission contract template<br>
+      • Invoice template with sales tax line<br>
+      • Basic bookkeeping spreadsheet<br>
+      • Grant application narrative template<br>
+      • Artist statement worksheet</p>
+      <p><strong>The coach doesn't just explain contracts — it generates a draft contract from your conversation.</strong> "Based on what you told me about this gallery deal, here's a consignment agreement to start from."</p>
+      <div class="example">"I just got asked to show at a coffee shop in Cle Elum. They want to hang 8 pieces." → Coach generates a consignment agreement with the coffee shop's name, your pieces, 70/30 split, insurance requirements, and pickup terms.</div>
+    </div>
+  </div>
+
+  <div class="strategy-card useful-card">
+    <div class="card-header">
+      <h3>5. Live Local Directory</h3>
+      <span class="phase-tag soon">Phase 2</span>
+    </div>
+    <div class="card-body">
+      <p>Not just a list of names — an alive, maintained resource with context:</p>
+      <p><strong>"Sarah Chen, CPA"</strong> — Handles 12 artist clients. Peak season is Feb–April, best to call now. Charges $200 for basic Schedule C review. Maria says she really understood consignment accounting.</p>
+      <p>Referrals include real context: who's available, what they charge, who other artists recommend. Updated by the community itself.</p>
+      <div class="evidence">Every effective program in the global landscape has a referral network — SCORE pairs mentors with specialists, Fractured Atlas connects to CPAs. The coach's advantage: it can match the right professional to the specific question in real time.</div>
+    </div>
+  </div>
+
+  <div class="strategy-card useful-card">
+    <div class="card-header">
+      <h3>6. Tool Integrations</h3>
+      <span class="phase-tag later">Phase 3</span>
+    </div>
+    <div class="card-body">
+      <p>Connect the coach to tools artists already use:</p>
+      <p><strong>Square/Stripe:</strong> "Your Saturday market sales were $340. After materials ($85) and booth fee ($50), your net was $205. Sales tax collected: $31.28 — set that aside."</p>
+      <p><strong>Etsy/Shopify:</strong> "Your average sale price is $47. Based on your time tracking, you're earning $12/hour. Let's talk about raising prices."</p>
+      <p><strong>Calendar:</strong> Auto-add grant deadlines, tax dates, fair application windows.</p>
+      <div class="evidence">HoneyBook's AI generates 94% higher payment volume for users precisely because it's connected to real transaction data — not giving abstract advice, but analyzing actual numbers.</div>
+    </div>
+  </div>
+
+  <div class="strategy-card useful-card">
+    <div class="card-header">
+      <h3>7. Peer Community</h3>
+      <span class="phase-tag soon">Phase 2</span>
+    </div>
+    <div class="card-body">
+      <p>The research is unambiguous: <strong>community matters as much as content.</strong></p>
+      <p>• The coach brokers introductions: "You're pricing ceramics for the first time. Dani in Cle Elum went through this last year — want me to connect you?"<br>
+      • Monthly virtual meetups organized by topic<br>
+      • A shared "wins board" where artists post milestones<br>
+      • Peer answers to common questions reduce AI load by 30–50%</p>
+      <div class="evidence">ACRE's cohort model in rural Appalachia proves that peer networks in small communities create lasting support structures. Housecall Pro's community forum is their second-highest engagement feature after the AI itself.</div>
+    </div>
+  </div>
+
+  <!-- THE BIG IDEA -->
+  <div class="big-idea">
+    <h2>The Flywheel: Better + Useful + Cheaper = Compounding</h2>
+    <p>Every conversation makes the coach smarter (better). Smarter coaching drives better outcomes (more useful). Better outcomes attract more artists, whose questions get cached (cheaper). The system improves in all three dimensions simultaneously.</p>
+  </div>
+
+  <!-- SECTION 3: CHEAPER -->
+  <div class="section-header">
+    <div class="section-icon cheaper">💰</div>
+    <h2>Cheaper — Costs That Shrink Over Time</h2>
+  </div>
+  <p class="section-subtitle">Architecture decisions that compound into dramatic savings.</p>
+
+  <div class="strategy-card cheaper-card">
+    <div class="card-header">
+      <h3>8. Model Routing</h3>
+      <span class="phase-tag now">Pilot Phase</span>
+    </div>
+    <div class="card-body">
+      <p>Not every question needs the most powerful AI. Smart routing uses the right model for each query:</p>
+      <p><strong>Tier 1 — Cached / lookup</strong> (~$0.001): "What's the sales tax rate in Kittitas County?" → Instant cached answer, no AI needed.<br>
+      <strong>Tier 2 — Simple advisory</strong> (~$0.005): "Do I need a business license for a craft fair?" → Small, fast model with curriculum context.<br>
+      <strong>Tier 3 — Complex coaching</strong> (~$0.03–0.05): "Help me build a 3-year business plan for my ceramics studio." → Full model with deep reasoning.</p>
+      <p><strong>Expected savings: 60–70% cost reduction</strong> because 80% of questions fall into Tiers 1 and 2.</p>
+    </div>
+  </div>
+
+  <div class="strategy-card cheaper-card">
+    <div class="card-header">
+      <h3>9. Cache Common Questions</h3>
+      <span class="phase-tag now">Pilot Phase</span>
+    </div>
+    <div class="card-body">
+      <p>Pilot data will reveal that most questions cluster around a small number of topics. Cache those answers:</p>
+      <p>• Sales tax at markets → cached with variations<br>
+      • B&O tax threshold → cached<br>
+      • "Do I need an LLC?" → cached with decision tree<br>
+      • Gallery consignment standard terms → cached<br>
+      • Health insurance options for self-employed → cached seasonally</p>
+      <p><strong>First-time answers cost money. Repeat answers should cost almost nothing.</strong> Semantic caching (matching intent, not just exact words) means "Do I charge sales tax at the fair?" and "What about tax at the farmers market?" both hit the same cached answer.</p>
+    </div>
+  </div>
+
+  <div class="strategy-card cheaper-card">
+    <div class="card-header">
+      <h3>10. Community Self-Service</h3>
+      <span class="phase-tag soon">Phase 2</span>
+    </div>
+    <div class="card-body">
+      <p>Every question answered by a peer artist is a question the AI doesn't handle:</p>
+      <p>• FAQ wiki built automatically from real conversations (anonymized)<br>
+      • Peer mentors for common topics — 2–3 "power users" from the pilot become community champions<br>
+      • The AI shifts to moderator role: summarizing threads, flagging when professional advice is needed, connecting peers</p>
+      <div class="evidence">This is exactly what Springboard for the Arts does — peer networks scale, paid staff doesn't. Tradies Success Academy (Australia) uses a self-serve library of 567 lessons as their primary cost reduction lever: members implement solutions without ongoing human coaching hours.</div>
+    </div>
+  </div>
+
+  <div class="strategy-card cheaper-card">
+    <div class="card-header">
+      <h3>11. Proactive Prevention</h3>
+      <span class="phase-tag now">Pilot Phase</span>
+    </div>
+    <div class="card-body">
+      <p>A $0.01 reminder text prevents a $0.10 emergency coaching session.</p>
+      <p>When the coach pushes a "B&O tax deadline is next week" alert, the artist files on time. No panicked conversation about penalties. No complex back-and-forth about amended returns. <strong>Prevention is always cheaper than remediation.</strong></p>
+      <p>Scheduled alerts cost fractions of a cent. Crisis conversations cost 10–50x more.</p>
+    </div>
+  </div>
+
+  <!-- COST PROJECTION -->
+  <h3 style="font-family: 'Fraunces', serif; font-size: 1.3rem; margin-top: 40px; margin-bottom: 16px;">Projected Cost Trajectory</h3>
+
+  <table class="cost-table">
+    <thead>
+      <tr>
+        <th>Timeframe</th>
+        <th>Artists</th>
+        <th>Monthly Cost</th>
+        <th>Cost / Artist</th>
+        <th>Key Driver</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Pilot (Month 1–3)</strong></td>
+        <td>10–20</td>
+        <td>~$50</td>
+        <td>$2.50–5.00</td>
+        <td>Learning phase — most questions are new</td>
+      </tr>
+      <tr>
+        <td><strong>Phase 1 (Month 4–8)</strong></td>
+        <td>20–40</td>
+        <td>~$35</td>
+        <td class="highlight">$0.90–1.75</td>
+        <td>Caching kicks in, model routing active</td>
+      </tr>
+      <tr>
+        <td><strong>Phase 2 (Month 9–18)</strong></td>
+        <td>40–80</td>
+        <td>~$25</td>
+        <td class="highlight">$0.30–0.65</td>
+        <td>Community self-service, FAQ wiki live</td>
+      </tr>
+      <tr>
+        <td><strong>Phase 3 (Year 2+)</strong></td>
+        <td>80–200</td>
+        <td>~$20</td>
+        <td class="highlight">$0.10–0.25</td>
+        <td>Most queries cached, community handles 40%+</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="evidence">
+    This is not speculative. AI inference costs have dropped 90%+ over the past 18 months and continue falling. Model routing alone (using smaller models for simple queries) typically delivers 60–70% cost reduction in production systems. Combined with caching and community self-service, the per-artist cost approaches zero at scale.
+  </div>
+
+  <!-- IMPLEMENTATION TIMELINE -->
+  <div class="section-header" style="margin-top: 60px;">
+    <div class="section-icon better">📅</div>
+    <h2>Implementation Timeline</h2>
+  </div>
+  <p class="section-subtitle">Phased rollout — each phase builds on the previous one.</p>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <h4>Phase 1: Pilot (Now → Month 3)</h4>
+      <p>10–20 artists. Core coaching on all 15 modules. Learning loops active — every conversation improves the system. Templates library started. Seasonal alerts configured. <strong>Cost: ~$50/month total.</strong> Collect outcome data from day one.</p>
+    </div>
+    <div class="timeline-item">
+      <h4>Phase 2: Community (Month 4 → 9)</h4>
+      <p>Expand to 40–80 artists. Launch peer community (Discord/Slack). FAQ wiki auto-generated from conversations. Live local directory with peer reviews. Peer mentors reduce AI load. <strong>Cost drops to ~$25/month</strong> despite 4x more artists.</p>
+    </div>
+    <div class="timeline-item">
+      <h4>Phase 3: Integration (Month 10 → 18)</h4>
+      <p>Connect to Square, Etsy, Google Calendar. Automated bookkeeping summaries. Grant matching alerts. Outcome tracking dashboard. <strong>Cost stabilizes at ~$20/month</strong> for 80–200 artists. Publish impact report for sustained funding.</p>
+    </div>
+  </div>
+
+  <!-- BOTTOM LINE -->
+  <div class="big-idea">
+    <h2>The Bottom Line</h2>
+    <p>By Year 2, the Kittitas Artist Business Coach will serve 10x more artists at half the cost, with better answers, real outcome data, and a self-sustaining community. The question isn't whether this works — FarmerChat, HoneyBook, and Housecall Pro have already proved the model. The question is whether Kittitas County gets there first for artists.</p>
+  </div>
+
+</div>
+
+<div class="footer">
+  Kittitas Artist Business Coach &bull; Strategic Roadmap &bull; Prepared for KCAC Board &bull; May 2026
+</div>
+
+</body>
+</html>
