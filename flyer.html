@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kittitas Artist Business Coach — Pilot Recruitment Flyer</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #FDF8F0;
+    --warm-white: #FEFCF8;
+    --terracotta: #C2714F;
+    --terracotta-light: #E8A88C;
+    --deep-brown: #3D2B1F;
+    --charcoal: #2C2C2C;
+    --sage: #7A8B6F;
+    --sage-light: #E8EDE4;
+    --gold: #D4A853;
+    --muted: #8B7D6B;
+    --border: rgba(61,43,31,0.1);
+  }
+
+  @page { size: letter; margin: 0; }
+  @media print {
+    body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .page { break-inside: avoid; box-shadow: none !important; }
+  }
+
+  html { background: #E8E0D8; }
+
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    color: var(--charcoal);
+    -webkit-font-smoothing: antialiased;
+    display: flex;
+    justify-content: center;
+    padding: 2rem;
+  }
+
+  h1, h2, h3, h4 { font-family: 'Fraunces', Georgia, serif; }
+
+  .page {
+    width: 8.5in;
+    min-height: 11in;
+    background: var(--cream);
+    overflow: hidden;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.12);
+    position: relative;
+  }
+
+  /* === TOP BANNER === */
+  .banner {
+    background: var(--deep-brown);
+    color: var(--cream);
+    padding: 1.8rem 2.2rem 1.6rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .banner::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--terracotta), var(--gold), var(--sage));
+  }
+  .banner-kicker {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.6rem;
+  }
+  .banner h1 {
+    font-size: 2rem;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 0.5rem;
+  }
+  .banner-sub {
+    font-size: 0.95rem;
+    color: rgba(253,248,240,0.65);
+    line-height: 1.4;
+    max-width: 480px;
+  }
+  .banner-badge {
+    position: absolute;
+    top: 1.6rem;
+    right: 2rem;
+    background: var(--terracotta);
+    color: white;
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 800;
+    font-size: 0.85rem;
+    padding: 0.55rem 1rem;
+    border-radius: 8px;
+    text-align: center;
+    line-height: 1.2;
+  }
+  .banner-badge small {
+    display: block;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 0.6rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    opacity: 0.8;
+    margin-top: 0.15rem;
+  }
+
+  /* === BODY === */
+  .content {
+    padding: 1.5rem 2.2rem 1.2rem;
+  }
+
+  /* Hook line */
+  .hook {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    line-height: 1.45;
+    color: var(--deep-brown);
+    margin-bottom: 1.2rem;
+    padding-bottom: 1.2rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .hook em {
+    color: var(--terracotta);
+    font-style: normal;
+  }
+
+  /* Two-column what you get */
+  .what-section-title {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--sage);
+    margin-bottom: 0.8rem;
+  }
+  .what-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.7rem 1.4rem;
+    margin-bottom: 1.3rem;
+  }
+  .what-item {
+    display: flex;
+    gap: 0.6rem;
+    align-items: flex-start;
+  }
+  .what-icon {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    background: var(--sage-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    margin-top: 0.1rem;
+  }
+  .what-text h4 {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--deep-brown);
+    margin-bottom: 0.1rem;
+    font-family: 'Inter', sans-serif;
+  }
+  .what-text p {
+    font-size: 0.72rem;
+    color: var(--muted);
+    line-height: 1.4;
+  }
+
+  /* Topic pills */
+  .topics-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    margin-bottom: 1.3rem;
+    padding-bottom: 1.3rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .topic-pill {
+    font-size: 0.6rem;
+    font-weight: 600;
+    padding: 0.25rem 0.6rem;
+    border-radius: 4px;
+    background: white;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    letter-spacing: 0.02em;
+  }
+  .topic-pill.accent {
+    background: var(--terracotta);
+    color: white;
+    border-color: var(--terracotta);
+  }
+
+  /* Example conversation */
+  .example-section {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1rem 1.2rem;
+    margin-bottom: 1.3rem;
+  }
+  .example-label {
+    font-size: 0.55rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--sage);
+    margin-bottom: 0.6rem;
+  }
+  .chat-row {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+    align-items: flex-start;
+  }
+  .chat-row:last-child { margin-bottom: 0; }
+  .chat-avatar {
+    flex-shrink: 0;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    font-size: 0.5rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0.15rem;
+  }
+  .chat-avatar.artist {
+    background: var(--terracotta-light);
+    color: var(--deep-brown);
+  }
+  .chat-avatar.coach {
+    background: var(--sage-light);
+    color: var(--sage);
+  }
+  .chat-bubble {
+    font-size: 0.7rem;
+    line-height: 1.45;
+    padding: 0.45rem 0.65rem;
+    border-radius: 8px;
+    max-width: 85%;
+  }
+  .chat-bubble.artist {
+    background: rgba(194,113,79,0.08);
+    color: var(--deep-brown);
+  }
+  .chat-bubble.coach {
+    background: var(--sage-light);
+    color: var(--charcoal);
+  }
+
+  /* How to join */
+  .join-section {
+    background: var(--deep-brown);
+    color: var(--cream);
+    border-radius: 10px;
+    padding: 1.2rem 1.4rem;
+    margin-bottom: 1rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 1.5rem;
+    align-items: center;
+  }
+  .join-section h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+  .join-steps {
+    list-style: none;
+  }
+  .join-steps li {
+    font-size: 0.75rem;
+    line-height: 1.5;
+    padding: 0.2rem 0;
+    color: rgba(253,248,240,0.75);
+    display: flex;
+    gap: 0.5rem;
+    align-items: flex-start;
+  }
+  .step-num {
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 800;
+    color: var(--gold);
+    font-size: 0.85rem;
+    flex-shrink: 0;
+    width: 1rem;
+  }
+  .join-qr {
+    width: 100px;
+    height: 100px;
+    background: white;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0.4rem;
+  }
+  .join-qr-placeholder {
+    font-size: 0.5rem;
+    color: var(--muted);
+    text-align: center;
+    line-height: 1.3;
+    font-weight: 500;
+  }
+  .join-qr-url {
+    font-size: 0.45rem;
+    color: var(--terracotta);
+    font-weight: 600;
+    margin-top: 0.25rem;
+    word-break: break-all;
+    text-align: center;
+  }
+
+  /* Footer */
+  .footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2.2rem 1.4rem;
+    gap: 1rem;
+  }
+  .footer-left {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .footer-logo {
+    width: 28px;
+    height: 28px;
+    background: var(--deep-brown);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--cream);
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 800;
+    font-size: 0.85rem;
+  }
+  .footer-text {
+    font-size: 0.65rem;
+    color: var(--muted);
+    line-height: 1.4;
+  }
+  .footer-text strong {
+    color: var(--deep-brown);
+    display: block;
+  }
+  .footer-details {
+    text-align: right;
+    font-size: 0.6rem;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  .footer-details strong {
+    color: var(--terracotta);
+  }
+
+  /* Responsive for email viewing */
+  @media (max-width: 700px) {
+    body { padding: 0; }
+    .page { width: 100%; min-height: auto; box-shadow: none; }
+    .what-grid { grid-template-columns: 1fr; }
+    .join-section { grid-template-columns: 1fr; text-align: center; }
+    .join-qr { margin: 0 auto; }
+    .banner-badge { position: static; margin-top: 0.8rem; display: inline-block; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- BANNER -->
+  <div class="banner">
+    <div class="banner-kicker">Kittitas County Arts Commission · Pilot Program</div>
+    <h1>Free Business Coach<br>for Kittitas Artists</h1>
+    <p class="banner-sub">An AI-powered advisor that answers your business questions — taxes, pricing, contracts, grants, and more — with real Washington state and Kittitas County specifics.</p>
+    <div class="banner-badge">
+      FREE
+      <small>Pilot · Summer 2026</small>
+    </div>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="content">
+
+    <!-- Hook -->
+    <p class="hook">
+      You make the art. But who helps with the <em>business</em>?<br>
+      Taxes, pricing, contracts, galleries, insurance — most artists figure it out alone. <em>You don't have to anymore.</em>
+    </p>
+
+    <!-- What you get -->
+    <div class="what-section-title">What pilot artists get — completely free</div>
+    <div class="what-grid">
+      <div class="what-item">
+        <div class="what-icon">💬</div>
+        <div class="what-text">
+          <h4>Ask anything, anytime</h4>
+          <p>Business questions answered in plain English — 24/7, nights and weekends included.</p>
+        </div>
+      </div>
+      <div class="what-item">
+        <div class="what-icon">📚</div>
+        <div class="what-text">
+          <h4>15 guided lessons</h4>
+          <p>Walk through taxes, pricing, contracts, marketing, and more at your own pace.</p>
+        </div>
+      </div>
+      <div class="what-item">
+        <div class="what-icon">📍</div>
+        <div class="what-text">
+          <h4>Local knowledge</h4>
+          <p>WA tax law, Kittitas County resources, Gallery One, the County Fair — built in.</p>
+        </div>
+      </div>
+      <div class="what-item">
+        <div class="what-icon">🤝</div>
+        <div class="what-text">
+          <h4>Pro referrals when needed</h4>
+          <p>Vetted local CPAs, attorneys, and grant programs — not random internet results.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Topics -->
+    <div class="topics-row">
+      <span class="topic-pill accent">WA Taxes</span>
+      <span class="topic-pill accent">Pricing</span>
+      <span class="topic-pill">Contracts</span>
+      <span class="topic-pill">Copyright</span>
+      <span class="topic-pill">Bookkeeping</span>
+      <span class="topic-pill">Galleries</span>
+      <span class="topic-pill">Selling Online</span>
+      <span class="topic-pill">Art Fairs</span>
+      <span class="topic-pill">Email Marketing</span>
+      <span class="topic-pill">Health Insurance</span>
+      <span class="topic-pill">Retirement</span>
+      <span class="topic-pill">Business Structure</span>
+      <span class="topic-pill">Grants</span>
+      <span class="topic-pill">Website</span>
+      <span class="topic-pill">Instagram</span>
+    </div>
+
+    <!-- Example conversation -->
+    <div class="example-section">
+      <div class="example-label">Example conversation</div>
+      <div class="chat-row">
+        <div class="chat-avatar artist">You</div>
+        <div class="chat-bubble artist">Do I need to collect sales tax if I sell pottery at Buskers in the Burg?</div>
+      </div>
+      <div class="chat-row">
+        <div class="chat-avatar coach">KC</div>
+        <div class="chat-bubble coach">Yes — Washington requires you to collect sales tax at the event location's rate. For Buskers in the Burg, that's Ellensburg's rate of about 8.2%. The event organizer may issue a sub-permit that handles some of this — I'd recommend confirming with the Ellensburg Downtown Association in writing before the event. You'll need your WA UBI number and reseller permit. Want me to walk you through the full sales tax module?</div>
+      </div>
+      <div class="chat-row">
+        <div class="chat-avatar artist">You</div>
+        <div class="chat-bubble artist">Wait, what's a UBI number?</div>
+      </div>
+      <div class="chat-row">
+        <div class="chat-avatar coach">KC</div>
+        <div class="chat-bubble coach">Your Unified Business Identifier — it's Washington's version of a business registration number. You get one when you register with the Department of Revenue. It takes about 15 minutes online and there's no fee. Let me walk you through it step by step.</div>
+      </div>
+    </div>
+
+    <!-- How to join -->
+    <div class="join-section">
+      <div>
+        <h3>Join the Pilot — It's Free</h3>
+        <ul class="join-steps">
+          <li><span class="step-num">1</span> Email us or scan the QR code to sign up</li>
+          <li><span class="step-num">2</span> Get access to the coach within 48 hours</li>
+          <li><span class="step-num">3</span> Ask your first business question — that's it</li>
+        </ul>
+      </div>
+      <div class="join-qr">
+        <div class="join-qr-placeholder">
+          ▪ ▪ ▪ ▪ ▪<br>
+          ▪&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▪<br>
+          ▪&nbsp;&nbsp;QR&nbsp;&nbsp;▪<br>
+          ▪&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▪<br>
+          ▪ ▪ ▪ ▪ ▪
+        </div>
+        <div class="join-qr-url">bobrapp.github.io/<br>ai-artistic-agent-aigovops</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-left">
+      <div class="footer-logo">K</div>
+      <div class="footer-text">
+        <strong>Kittitas Artist Business Coach</strong>
+        A project of the Kittitas County Arts Commission
+      </div>
+    </div>
+    <div class="footer-details">
+      <strong>Contact:</strong> arts@kittitascounty.org<br>
+      Gallery One · 408 N Pearl St · Ellensburg<br>
+      Accepting 10–20 pilot artists · Summer 2026
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
