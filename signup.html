@@ -693,8 +693,8 @@
 
   <div class="success-card" id="successCard">
     <div class="success-icon">🎉</div>
-    <h2>You're in!</h2>
-    <p>Thanks for signing up for the pilot. We'll be in touch within a week with your login and a quick orientation.</p>
+    <h2>Almost there!</h2>
+    <p>Your email app should have opened with your sign-up details. Just hit <strong>Send</strong> and you're in. If your email didn't open, send your name and medium to <a href="mailto:hello@kittitas-coach.org" style="color:var(--terracotta);">hello@kittitas-coach.org</a> and we'll get you set up.</p>
 
     <div class="next-steps">
       <h3>While you wait:</h3>
@@ -766,32 +766,66 @@ function handleSubmit(e) {
     return;
   }
 
-  // Collect data
-  const formData = {
-    name: document.getElementById('name').value,
-    email: document.getElementById('email').value,
-    location: document.getElementById('location').value,
-    medium: document.getElementById('medium').value,
-    experience: document.getElementById('experience').value,
-    channels: [...document.querySelectorAll('input[name="channels"]:checked')].map(c => c.value),
-    priorities: [...document.querySelectorAll('input[name="priorities"]:checked')].map(c => c.value),
-    burning: document.getElementById('burning').value,
-    referral: document.getElementById('referral').value,
-    submitted: new Date().toISOString()
-  };
+  // Collect form values
+  const name = document.getElementById('name').value;
+  const artistEmail = document.getElementById('email').value;
+  const loc = document.getElementById('location');
+  const location = loc.options[loc.selectedIndex]?.text || '';
+  const med = document.getElementById('medium');
+  const medium = med.options[med.selectedIndex]?.text || '';
+  const exp = document.getElementById('experience');
+  const experience = exp.options[exp.selectedIndex]?.text || '';
+  const channels = [...document.querySelectorAll('input[name="channels"]:checked')].map(c => {
+    return c.closest('.checkbox-item').querySelector('.check-label').textContent;
+  }).join(', ') || 'None selected';
+  const priorities = [...document.querySelectorAll('input[name="priorities"]:checked')].map(c => {
+    return c.closest('.checkbox-item').querySelector('.check-label').textContent;
+  }).join(', ') || 'None selected';
+  const burning = document.getElementById('burning').value || '(not provided)';
+  const ref = document.getElementById('referral');
+  const referral = ref.options[ref.selectedIndex]?.text || '(not provided)';
 
-  // Log to console (replace with real backend later)
-  console.log('Pilot signup:', JSON.stringify(formData, null, 2));
+  // Build email body
+  const subject = encodeURIComponent(`Pilot Signup: ${name}`);
+  const body = encodeURIComponent(
+`NEW PILOT SIGNUP
+================
 
-  // For now, also save to localStorage as a simple collection mechanism
+Name: ${name}
+Email: ${artistEmail}
+Location: ${location}
+Date: ${new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
+
+CREATIVE WORK
+Medium: ${medium}
+Experience: ${experience}
+Sales channels: ${channels}
+
+NEEDS
+Top priorities: ${priorities}
+#1 question: ${burning}
+
+Referral source: ${referral}
+
+---
+Submitted via the pilot sign-up form at bobrapp.github.io/ai-artistic-agent-aigovops/signup.html`
+  );
+
+  // Open email client
+  window.location.href = `mailto:hello@kittitas-coach.org?subject=${subject}&body=${body}`;
+
+  // Also save to localStorage as backup
+  const formData = { name, email: artistEmail, location, medium, experience, channels, priorities, burning, referral, submitted: new Date().toISOString() };
   const signups = JSON.parse(localStorage.getItem('pilot-signups') || '[]');
   signups.push(formData);
   localStorage.setItem('pilot-signups', JSON.stringify(signups));
 
-  // Show success
-  document.getElementById('formCard').classList.add('hide');
-  document.getElementById('successCard').classList.add('show');
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  // Show success after a brief delay (so mailto: has time to open)
+  setTimeout(() => {
+    document.getElementById('formCard').classList.add('hide');
+    document.getElementById('successCard').classList.add('show');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, 500);
 }
 
 // Clear error on input
