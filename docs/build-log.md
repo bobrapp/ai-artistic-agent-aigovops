@@ -109,3 +109,27 @@ Both pieces share the v9 t-shirt's six-tone palette and halftone screen-print fi
 ### Notes
 - All three v9 pieces (t-shirt, logo, sticker) now share: the same multi-ethnic fusion human/silicon hybrid AI-Yes character, the green YES chest emblem as the singular spot color, the six-tone screen-print-ready palette, halftone dot texture, and Inter/Söhne-territory professional sans-serif typography.
 - AI Mavens brand system v9 is complete.
+
+---
+
+## Session: AI Mavens v9.1 Refinement — Drop "AI MAVENS" Text
+
+**Timestamp (UTC):** 2026-05-11T15:28:52Z
+**User:** bobrapp
+**Model:** Claude Opus 4.7 (orchestrator) + Gemini Nano Banana Pro
+**Platform:** Hyperagent
+
+### Change Summary
+Removed the "AI MAVENS" wordmark from the logo and sticker. The character and visual system stay identical; only the text composition was cleaned.
+
+**Logo:** outer ring text changed from "LET THE TOKENS FLOW · AI MAVENS · LET THE TOKENS FLOW · AI MAVENS ·" to "LET THE TOKENS FLOW · LET THE TOKENS FLOW · LET THE TOKENS FLOW · LET THE TOKENS FLOW ·" — one headline, repeated cleanly around the circumference.
+
+**Sticker:** "AI MAVENS" bottom arc replaced with "© 2026 AIGOVOPS FOUNDATION" — the foundation mark now balances the top arc directly rather than living in a separate inner band. Inner footer band removed.
+
+### Files Updated (overwriting at the same v9 paths)
+| Asset | Path |
+|-------|------|
+| Logo (cleaned) | `assets/ai-mavens/v9/ai-mavens-logo-v9.png` |
+| Sticker (cleaned) | `assets/ai-mavens/v9/ai-mavens-sticker-v9.png` |
+
+The t-shirt did not contain any "AI MAVENS" text in its rendered design and was not affected by this refinement.
