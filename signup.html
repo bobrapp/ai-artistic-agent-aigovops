@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Join the Pilot — Kittitas Artist Business Coach</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #FDF8F0;
+    --cream-dark: #F5F0EA;
+    --ink: #2C1810;
+    --ink-soft: #5C4A3A;
+    --ink-muted: #8B7A6B;
+    --terracotta: #C4653A;
+    --terracotta-hover: #D4754A;
+    --terracotta-light: rgba(196,101,58,0.08);
+    --sage: #7A8B6F;
+    --sage-light: #E8EDE4;
+    --gold: #D4A843;
+    --deep-brown: #3D2B1F;
+    --border: #E0D8CE;
+    --border-focus: #C4653A;
+    --error: #C44B3A;
+    --success: #5A8B4F;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--cream-dark);
+    color: var(--ink);
+    min-height: 100vh;
+  }
+
+  /* Header */
+  header {
+    background: var(--deep-brown);
+    color: var(--cream);
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .brand-mark {
+    width: 36px; height: 36px;
+    background: var(--terracotta);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Fraunces', serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: white;
+  }
+
+  .brand-text {
+    font-family: 'Fraunces', serif;
+    font-size: 1rem;
+    font-weight: 600;
+  }
+
+  .brand-text small {
+    display: block;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 400;
+    opacity: 0.7;
+    margin-top: 1px;
+  }
+
+  /* Hero */
+  .hero {
+    background: linear-gradient(135deg, var(--deep-brown) 0%, #5C3A28 100%);
+    color: var(--cream);
+    padding: 56px 24px 48px;
+    text-align: center;
+  }
+
+  .hero h1 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+
+  .hero h1 span { color: var(--gold); }
+
+  .hero p {
+    max-width: 540px;
+    margin: 0 auto;
+    font-size: 1.05rem;
+    line-height: 1.65;
+    opacity: 0.85;
+  }
+
+  .hero .badges {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 24px;
+  }
+
+  .hero .badge {
+    background: rgba(253,248,240,0.12);
+    border: 1px solid rgba(253,248,240,0.2);
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 0.82rem;
+    font-weight: 500;
+  }
+
+  /* Main container */
+  .container {
+    max-width: 640px;
+    margin: -24px auto 60px;
+    padding: 0 16px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Form card */
+  .form-card {
+    background: white;
+    border-radius: 14px;
+    box-shadow: 0 4px 30px rgba(44,24,16,0.1);
+    padding: 36px 32px 40px;
+  }
+
+  .form-card h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  .form-card .subtitle {
+    color: var(--ink-muted);
+    font-size: 0.88rem;
+    margin-bottom: 28px;
+    line-height: 1.5;
+  }
+
+  /* Form fields */
+  .field {
+    margin-bottom: 22px;
+  }
+
+  .field label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+
+  .field label .optional {
+    font-weight: 400;
+    color: var(--ink-muted);
+    font-size: 0.8rem;
+  }
+
+  .field input[type="text"],
+  .field input[type="email"],
+  .field textarea,
+  .field select {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.92rem;
+    color: var(--ink);
+    background: white;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    -webkit-appearance: none;
+  }
+
+  .field input:focus,
+  .field textarea:focus,
+  .field select:focus {
+    outline: none;
+    border-color: var(--border-focus);
+    box-shadow: 0 0 0 3px rgba(196,101,58,0.12);
+  }
+
+  .field input::placeholder,
+  .field textarea::placeholder {
+    color: var(--ink-muted);
+    opacity: 0.6;
+  }
+
+  .field textarea {
+    resize: vertical;
+    min-height: 80px;
+  }
+
+  .field select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%235C4A3A' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 36px;
+    cursor: pointer;
+  }
+
+  .field .hint {
+    font-size: 0.78rem;
+    color: var(--ink-muted);
+    margin-top: 5px;
+    line-height: 1.45;
+  }
+
+  /* Checkbox group */
+  .checkbox-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  @media (max-width: 480px) {
+    .checkbox-group { grid-template-columns: 1fr; }
+  }
+
+  .checkbox-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px 12px;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    user-select: none;
+  }
+
+  .checkbox-item:hover {
+    border-color: var(--terracotta);
+    background: var(--terracotta-light);
+  }
+
+  .checkbox-item.checked {
+    border-color: var(--terracotta);
+    background: var(--terracotta-light);
+  }
+
+  .checkbox-item input[type="checkbox"] {
+    display: none;
+  }
+
+  .check-box {
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    border: 2px solid var(--border);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    margin-top: 1px;
+  }
+
+  .checkbox-item.checked .check-box {
+    background: var(--terracotta);
+    border-color: var(--terracotta);
+  }
+
+  .check-box svg {
+    opacity: 0;
+    transition: opacity 0.15s;
+  }
+
+  .checkbox-item.checked .check-box svg {
+    opacity: 1;
+  }
+
+  .check-label {
+    font-size: 0.85rem;
+    line-height: 1.4;
+    color: var(--ink);
+  }
+
+  /* Submit */
+  .submit-btn {
+    width: 100%;
+    padding: 16px;
+    background: var(--terracotta);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+    margin-top: 8px;
+  }
+
+  .submit-btn:hover { background: var(--terracotta-hover); }
+  .submit-btn:active { transform: scale(0.99); }
+  .submit-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+  .privacy-note {
+    text-align: center;
+    font-size: 0.78rem;
+    color: var(--ink-muted);
+    margin-top: 14px;
+    line-height: 1.5;
+  }
+
+  /* Divider */
+  .divider {
+    height: 1px;
+    background: var(--border);
+    margin: 28px 0;
+  }
+
+  .section-label {
+    font-family: 'Fraunces', serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--deep-brown);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .section-label .num {
+    width: 24px; height: 24px;
+    background: var(--sage-light);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--sage);
+  }
+
+  /* Success state */
+  .success-card {
+    display: none;
+    background: white;
+    border-radius: 14px;
+    box-shadow: 0 4px 30px rgba(44,24,16,0.1);
+    padding: 48px 32px;
+    text-align: center;
+  }
+
+  .success-card.show { display: block; }
+  .form-card.hide { display: none; }
+
+  .success-icon {
+    width: 72px; height: 72px;
+    background: var(--sage-light);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 20px;
+    font-size: 32px;
+  }
+
+  .success-card h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 1.5rem;
+    margin-bottom: 12px;
+  }
+
+  .success-card p {
+    color: var(--ink-soft);
+    line-height: 1.7;
+    margin-bottom: 10px;
+    max-width: 440px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .success-card .next-steps {
+    text-align: left;
+    background: var(--cream);
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin: 24px 0;
+  }
+
+  .success-card .next-steps h3 {
+    font-size: 0.88rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+
+  .success-card .next-steps li {
+    font-size: 0.88rem;
+    color: var(--ink-soft);
+    margin-bottom: 6px;
+    line-height: 1.5;
+  }
+
+  .back-link {
+    display: inline-block;
+    margin-top: 16px;
+    color: var(--terracotta);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+  }
+
+  .back-link:hover { text-decoration: underline; }
+
+  /* Info bar */
+  .info-bar {
+    max-width: 640px;
+    margin: 20px auto 0;
+    padding: 0 16px;
+  }
+
+  .info-bar .card {
+    background: white;
+    border-radius: 10px;
+    padding: 20px 24px;
+    box-shadow: 0 1px 8px rgba(44,24,16,0.05);
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+
+  .info-bar .icon {
+    font-size: 24px;
+    min-width: 32px;
+    text-align: center;
+  }
+
+  .info-bar h4 {
+    font-size: 0.88rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  .info-bar p {
+    font-size: 0.82rem;
+    color: var(--ink-soft);
+    line-height: 1.55;
+  }
+
+  /* Validation */
+  .field.error input,
+  .field.error select,
+  .field.error textarea {
+    border-color: var(--error);
+  }
+
+  .field .error-msg {
+    display: none;
+    font-size: 0.78rem;
+    color: var(--error);
+    margin-top: 4px;
+  }
+
+  .field.error .error-msg { display: block; }
+
+  @media (max-width: 600px) {
+    .hero { padding: 40px 20px 36px; }
+    .form-card { padding: 28px 22px 32px; }
+    header { padding: 12px 16px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand-mark">K</div>
+  <div class="brand-text">
+    Kittitas Artist Business Coach
+    <small>A project of the Kittitas County Arts Commission</small>
+  </div>
+</header>
+
+<div class="hero">
+  <h1>Join the <span>Pilot Program</span></h1>
+  <p>25 Kittitas County artists. 90 days of free business coaching. Help us build something that actually works for creatives.</p>
+  <div class="badges">
+    <div class="badge">🎨 All mediums welcome</div>
+    <div class="badge">🆓 Completely free</div>
+    <div class="badge">🛡️ AI protection included</div>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="form-card" id="formCard">
+    <h2>Tell us about yourself</h2>
+    <p class="subtitle">Takes about 2 minutes. We'll follow up within a week.</p>
+
+    <form id="signupForm" onsubmit="handleSubmit(event)">
+
+      <!-- Section 1: About You -->
+      <div class="section-label"><span class="num">1</span> About you</div>
+
+      <div class="field">
+        <label for="name">Full name</label>
+        <input type="text" id="name" name="name" placeholder="Your name" required>
+        <div class="error-msg">Please enter your name.</div>
+      </div>
+
+      <div class="field">
+        <label for="email">Email address</label>
+        <input type="email" id="email" name="email" placeholder="you@example.com" required>
+        <div class="error-msg">Please enter a valid email address.</div>
+      </div>
+
+      <div class="field">
+        <label for="location">Where in Kittitas County? <span class="optional">(optional)</span></label>
+        <select id="location" name="location">
+          <option value="">Select your area...</option>
+          <option value="ellensburg">Ellensburg</option>
+          <option value="cle-elum">Cle Elum</option>
+          <option value="roslyn">Roslyn</option>
+          <option value="thorp">Thorp</option>
+          <option value="kittitas">Kittitas (town)</option>
+          <option value="other-county">Other Kittitas County area</option>
+        </select>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- Section 2: Your Art -->
+      <div class="section-label"><span class="num">2</span> Your creative work</div>
+
+      <div class="field">
+        <label for="medium">Primary medium</label>
+        <select id="medium" name="medium" required>
+          <option value="">What kind of work do you make?</option>
+          <option value="painting">Painting (oil, acrylic, watercolor)</option>
+          <option value="drawing-illustration">Drawing / Illustration</option>
+          <option value="sculpture">Sculpture</option>
+          <option value="ceramics-pottery">Ceramics / Pottery</option>
+          <option value="photography">Photography</option>
+          <option value="printmaking">Printmaking</option>
+          <option value="fiber-textile">Fiber / Textile arts</option>
+          <option value="jewelry-metalwork">Jewelry / Metalwork</option>
+          <option value="woodworking">Woodworking</option>
+          <option value="glass">Glass</option>
+          <option value="digital-art">Digital art / Design</option>
+          <option value="music">Music / Performance</option>
+          <option value="theater-dance">Theater / Dance</option>
+          <option value="writing-poetry">Writing / Poetry</option>
+          <option value="film-video">Film / Video</option>
+          <option value="mixed-media">Mixed media</option>
+          <option value="other">Other</option>
+        </select>
+        <div class="error-msg">Please select your primary medium.</div>
+      </div>
+
+      <div class="field">
+        <label for="experience">Experience level</label>
+        <select id="experience" name="experience" required>
+          <option value="">Where are you in your art practice?</option>
+          <option value="exploring">Just exploring — not sure if this is a hobby or a business yet</option>
+          <option value="early">Early stage — making and selling some work, figuring it out</option>
+          <option value="established">Established — selling regularly, this is a real part of my income</option>
+          <option value="full-time">Full-time artist — this is my primary livelihood</option>
+          <option value="returning">Returning — used to sell, getting back into it</option>
+        </select>
+        <div class="error-msg">Please select your experience level.</div>
+      </div>
+
+      <div class="field">
+        <label>Where do you currently sell? <span class="optional">(check all that apply)</span></label>
+        <div class="checkbox-group">
+          <label class="checkbox-item" onclick="toggleCheck(this)">
+            <input type="checkbox" name="channels" value="own-website">
+            <div class="check-box"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <span class="check-label">My own website</span>
+          </label>
+          <label class="checkbox-item" onclick="toggleCheck(this)">
+            <input type="checkbox" name="channels" value="etsy">
+            <div class="check-box"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <span class="check-label">Etsy / online marketplace</span>
+          </label>
+          <label class="checkbox-item" onclick="toggleCheck(this)">
+            <input type="checkbox" name="channels" value="gallery">
+            <div class="check-box"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <span class="check-label">Gallery / consignment</span>
+          </label>
+          <label class="checkbox-item" onclick="toggleCheck(this)">
+            <input type="checkbox" name="channels" value="fairs">
+            <div class="check-box"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <span class="check-label">Art fairs / markets</span>
+          </label>
+          <label class="checkbox-item" onclick="toggleCheck(this)">
+            <input type="checkbox" name="channels" value="instagram">
+            <div class="check-box"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <span class="check-label">Instagram / social media</span>
+          </label>
+          <label class="checkbox-item" onclick="toggleCheck(this)">
+            <input type="checkbox" name="channels" value="commissions">
+            <div class="check-box"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <span class="check-label">Commissions / custom work</span>
+          </label>
+          <label class="checkbox-item" onclick="toggleCheck(this)">
+            <input type="checkbox" name="channels" value="studio">
+            <div class="check-box"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <span class="check-label">Studio / direct sales</span>
+          </label>
+          <label class="checkbox-item" onclick="toggleCheck(this)">
+            <input type="checkbox" name="channels" value="not-selling">
+            <div class="check-box"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <span class="check-label">Not selling yet</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- Section 3: What you need -->
+      <div class="section-label"><span class="num">3</span> What you need help with</div>
+
+      <div class="field">
+        <label>Top priorities <span class="optional">(pick up to 3)</span></label>
+        <div class="checkbox-group">
+          <label class="checkbox-item" onclick="toggleCheck(this, 'priorities', 3)">
+            <input type="checkbox" name="priorities" value="taxes">
+            <div class="check-box"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <span class="check-label">Taxes & bookkeeping</span>
+          </label>
+          <label class="checkbox-item" onclick="toggleCheck(this, 'priorities', 3)">
+            <input type="checkbox" name="priorities" value="pricing">
+            <div class="check-box"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <span class="check-label">Pricing my work</span>
+          </label>
+          <label class="checkbox-item" onclick="toggleCheck(this, 'priorities', 3)">
+            <input type="checkbox" name="priorities" value="ai-protection">
+            <div class="check-box"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <span class="check-label">Protecting my work from AI</span>
+          </label>
+          <label class="checkbox-item" onclick="toggleCheck(this, 'priorities', 3)">
+            <input type="checkbox" name="priorities" value="contracts">
+            <div class="check-box"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <span class="check-label">Contracts & legal</span>
+          </label>
+          <label class="checkbox-item" onclick="toggleCheck(this, 'priorities', 3)">
+            <input type="checkbox" name="priorities" value="marketing">
+            <div class="check-box"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <span class="check-label">Marketing & social media</span>
+          </label>
+          <label class="checkbox-item" onclick="toggleCheck(this, 'priorities', 3)">
+            <input type="checkbox" name="priorities" value="selling">
+            <div class="check-box"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <span class="check-label">Finding places to sell</span>
+          </label>
+          <label class="checkbox-item" onclick="toggleCheck(this, 'priorities', 3)">
+            <input type="checkbox" name="priorities" value="grants">
+            <div class="check-box"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <span class="check-label">Grants & funding</span>
+          </label>
+          <label class="checkbox-item" onclick="toggleCheck(this, 'priorities', 3)">
+            <input type="checkbox" name="priorities" value="business-setup">
+            <div class="check-box"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <span class="check-label">Setting up my business (LLC, etc.)</span>
+          </label>
+        </div>
+        <div class="hint">This helps us customize your experience from day one.</div>
+      </div>
+
+      <div class="field">
+        <label for="burning">What's your #1 business question right now? <span class="optional">(optional)</span></label>
+        <textarea id="burning" name="burning" placeholder="The thing that keeps you up at night, confuses you most, or the reason you clicked this link..."></textarea>
+        <div class="hint">There are no wrong answers. "I have no idea what I'm doing" is a perfectly valid response.</div>
+      </div>
+
+      <div class="field">
+        <label for="referral">How did you hear about this? <span class="optional">(optional)</span></label>
+        <select id="referral" name="referral">
+          <option value="">Select one...</option>
+          <option value="email">Email from the Arts Commission</option>
+          <option value="gallery">Gallery One or another gallery</option>
+          <option value="cwu">CWU / Central Washington University</option>
+          <option value="chamber">Chamber of Commerce</option>
+          <option value="artist-friend">Another artist</option>
+          <option value="social-media">Social media</option>
+          <option value="newspaper">Daily Record / NKC Tribune</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+
+      <button type="submit" class="submit-btn" id="submitBtn">Join the pilot program →</button>
+
+      <p class="privacy-note">Your information stays with the Kittitas County Arts Commission.<br>We don't sell data. Ever.</p>
+    </form>
+  </div>
+
+  <div class="success-card" id="successCard">
+    <div class="success-icon">🎉</div>
+    <h2>You're in!</h2>
+    <p>Thanks for signing up for the pilot. We'll be in touch within a week with your login and a quick orientation.</p>
+
+    <div class="next-steps">
+      <h3>While you wait:</h3>
+      <ul>
+        <li>🛡️ <strong>Search <a href="https://haveibeentrained.com" target="_blank" rel="noopener">Have I Been Trained</a></strong> to check if your work is in AI training datasets</li>
+        <li>🖼️ <strong>Download <a href="https://glaze.cs.uchicago.edu" target="_blank" rel="noopener">Glaze</a></strong> (free) and run it on your next 5 images before posting</li>
+        <li>📋 <strong>Gather your tax docs</strong> — the coach can help you sort through them on day one</li>
+      </ul>
+    </div>
+
+    <p style="font-size:0.88rem;">Questions? Email <a href="mailto:hello@kittitas-coach.org" style="color:var(--terracotta);">hello@kittitas-coach.org</a></p>
+
+    <a href="index.html" class="back-link">← Back to the main site</a>
+  </div>
+
+</div>
+
+<div class="info-bar">
+  <div class="card">
+    <div class="icon">🤔</div>
+    <div>
+      <h4>Not sure about using an AI tool?</h4>
+      <p>Totally fair. This coach doesn't generate art, doesn't use your work, and doesn't compete with you. It's a business advisor — like using AI for your taxes, not an AI that paints your paintings. It even helps you protect your work from AI companies that <em>are</em> the problem. <a href="protect.html" style="color:var(--terracotta); font-weight:500;">Learn more →</a></p>
+    </div>
+  </div>
+</div>
+
+<script>
+function toggleCheck(el, groupName, maxCount) {
+  const checkbox = el.querySelector('input[type="checkbox"]');
+
+  // If trying to check and we have a max, enforce it
+  if (!el.classList.contains('checked') && maxCount && groupName) {
+    const checked = document.querySelectorAll(`input[name="${groupName}"]:checked`);
+    if (checked.length >= maxCount) return;
+  }
+
+  el.classList.toggle('checked');
+  checkbox.checked = !checkbox.checked;
+}
+
+function handleSubmit(e) {
+  e.preventDefault();
+
+  // Basic validation
+  let valid = true;
+  const required = ['name', 'email', 'medium', 'experience'];
+
+  required.forEach(id => {
+    const field = document.getElementById(id);
+    const parent = field.closest('.field');
+    if (!field.value.trim()) {
+      parent.classList.add('error');
+      valid = false;
+    } else {
+      parent.classList.remove('error');
+    }
+  });
+
+  // Email format
+  const email = document.getElementById('email');
+  if (email.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) {
+    email.closest('.field').classList.add('error');
+    valid = false;
+  }
+
+  if (!valid) {
+    document.querySelector('.field.error')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    return;
+  }
+
+  // Collect data
+  const formData = {
+    name: document.getElementById('name').value,
+    email: document.getElementById('email').value,
+    location: document.getElementById('location').value,
+    medium: document.getElementById('medium').value,
+    experience: document.getElementById('experience').value,
+    channels: [...document.querySelectorAll('input[name="channels"]:checked')].map(c => c.value),
+    priorities: [...document.querySelectorAll('input[name="priorities"]:checked')].map(c => c.value),
+    burning: document.getElementById('burning').value,
+    referral: document.getElementById('referral').value,
+    submitted: new Date().toISOString()
+  };
+
+  // Log to console (replace with real backend later)
+  console.log('Pilot signup:', JSON.stringify(formData, null, 2));
+
+  // For now, also save to localStorage as a simple collection mechanism
+  const signups = JSON.parse(localStorage.getItem('pilot-signups') || '[]');
+  signups.push(formData);
+  localStorage.setItem('pilot-signups', JSON.stringify(signups));
+
+  // Show success
+  document.getElementById('formCard').classList.add('hide');
+  document.getElementById('successCard').classList.add('show');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// Clear error on input
+document.querySelectorAll('input, select, textarea').forEach(el => {
+  el.addEventListener('input', () => {
+    el.closest('.field')?.classList.remove('error');
+  });
+});
+</script>
+
+</body>
+</html>
