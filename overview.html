@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kittitas Artist Business Coach — Site Overview v0.3</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #f5efe4;
+    --paper: #fdfaf3;
+    --ink: #1a1612;
+    --ink-soft: #4a3f33;
+    --ink-muted: #7a6f60;
+    --terracotta: #c4593a;
+    --terracotta-deep: #973f25;
+    --sage: #6b7a5c;
+    --gold: #b88a3a;
+    --border: rgba(26,22,18,0.12);
+    --border-soft: rgba(26,22,18,0.06);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--paper); color: var(--ink); font-family: 'Inter', -apple-system, sans-serif; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+
+  /* Header */
+  .header {
+    padding: 48px 6vw 56px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  .header-top {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+  .header-mark {
+    width: 42px; height: 42px; border-radius: 50%; background: var(--terracotta);
+    display: grid; place-items: center; color: var(--paper); font-family: 'Fraunces', serif;
+    font-weight: 700; font-size: 20px;
+  }
+  .header-brand {
+    font-family: 'Fraunces', serif; font-weight: 600; font-size: 15px;
+  }
+  .header-brand small {
+    display: block; font-family: 'Inter', sans-serif; font-weight: 400;
+    font-size: 11px; color: var(--ink-muted); letter-spacing: 0.04em;
+    text-transform: uppercase; margin-top: 2px;
+  }
+  .header h1 {
+    font-family: 'Fraunces', serif; font-weight: 500;
+    font-size: clamp(36px, 5vw, 56px); line-height: 1.05;
+    letter-spacing: -0.025em; margin-bottom: 16px;
+  }
+  .header h1 em { font-style: italic; color: var(--terracotta); font-weight: 400; }
+  .header .lede {
+    font-family: 'Fraunces', serif; font-size: 19px; line-height: 1.5;
+    color: var(--ink-soft); max-width: 65ch; font-weight: 400;
+  }
+
+  /* Stats bar */
+  .stats-bar {
+    display: flex; gap: 0; margin: 40px 0 0;
+    border: 1px solid var(--border-soft); border-radius: 8px; overflow: hidden;
+    background: var(--border-soft);
+  }
+  .stat-cell {
+    flex: 1; background: var(--paper); padding: 20px 16px; text-align: center;
+  }
+  .stat-cell + .stat-cell { border-left: 1px solid var(--border-soft); }
+  .stat-val {
+    font-family: 'Fraunces', serif; font-size: 28px; font-weight: 500;
+    color: var(--terracotta); line-height: 1;
+  }
+  .stat-label {
+    font-size: 11px; color: var(--ink-muted); letter-spacing: 0.06em;
+    text-transform: uppercase; margin-top: 6px;
+  }
+  @media (max-width: 600px) {
+    .stats-bar { flex-wrap: wrap; }
+    .stat-cell { flex: 1 1 50%; }
+  }
+
+  /* Version badge */
+  .version-strip {
+    display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+    margin: 32px 0 0; padding: 16px 20px; background: var(--cream);
+    border-radius: 8px; font-size: 13px; color: var(--ink-soft);
+  }
+  .v-badge {
+    background: var(--terracotta); color: var(--paper); padding: 4px 12px;
+    border-radius: 999px; font-weight: 700; font-size: 12px; letter-spacing: 0.04em;
+  }
+  .v-tag {
+    display: inline-flex; align-items: center; gap: 5px;
+    padding: 3px 10px; background: var(--paper); border-radius: 999px;
+    font-size: 12px; font-weight: 500; color: var(--ink-muted);
+    border: 1px solid var(--border-soft);
+  }
+  .v-tag .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--sage); }
+
+  /* Section dividers */
+  .section-label {
+    max-width: 1400px; margin: 56px auto 20px; padding: 0 6vw;
+    display: flex; align-items: center; gap: 14px;
+  }
+  .section-label .num {
+    font-family: 'JetBrains Mono', monospace; font-size: 13px;
+    color: var(--terracotta); font-weight: 500;
+  }
+  .section-label .text {
+    font-size: 12px; font-weight: 600; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--ink-muted);
+  }
+  .section-label .rule { flex: 1; height: 1px; background: var(--border); }
+
+  /* Page cards grid */
+  .cards {
+    max-width: 1400px; margin: 0 auto; padding: 0 6vw;
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+    gap: 28px;
+  }
+  @media (max-width: 500px) { .cards { grid-template-columns: 1fr; } }
+
+  .card {
+    background: var(--paper); border: 1px solid var(--border);
+    border-radius: 10px; overflow: hidden; transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .card:hover { transform: translateY(-3px); box-shadow: 0 16px 40px rgba(26,22,18,0.1); }
+
+  .card-preview {
+    position: relative; aspect-ratio: 16/10; overflow: hidden;
+    background: var(--cream); border-bottom: 1px solid var(--border-soft);
+  }
+  .card-preview iframe {
+    width: 200%; height: 200%; border: none;
+    transform: scale(0.5); transform-origin: top left;
+    pointer-events: none;
+  }
+  .card-preview-overlay {
+    position: absolute; inset: 0; cursor: pointer;
+  }
+  .card-preview-overlay:hover + .card-visit,
+  .card-visit:hover {
+    opacity: 1;
+  }
+  .card-visit {
+    position: absolute; bottom: 12px; right: 12px;
+    background: var(--ink); color: var(--paper); padding: 6px 14px;
+    border-radius: 999px; font-size: 12px; font-weight: 600;
+    text-decoration: none; opacity: 0; transition: opacity 0.2s;
+    z-index: 2;
+  }
+  .card-visit:hover { background: var(--terracotta-deep); opacity: 1; }
+
+  .card-body { padding: 22px 24px 26px; }
+  .card-type {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    color: var(--terracotta); margin-bottom: 8px; font-weight: 500;
+  }
+  .card-body h3 {
+    font-family: 'Fraunces', serif; font-weight: 600; font-size: 20px;
+    line-height: 1.2; margin-bottom: 8px; letter-spacing: -0.01em;
+  }
+  .card-body p {
+    font-size: 14px; line-height: 1.6; color: var(--ink-soft); margin-bottom: 14px;
+  }
+  .card-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+  .tag {
+    font-size: 11px; font-weight: 500; padding: 3px 10px;
+    border-radius: 999px; background: var(--cream); color: var(--ink-muted);
+  }
+  .tag.new { background: rgba(196,89,58,0.1); color: var(--terracotta); font-weight: 600; }
+
+  /* v0.3 changelog */
+  .changelog {
+    max-width: 1400px; margin: 56px auto 0; padding: 0 6vw 80px;
+  }
+  .changelog h2 {
+    font-family: 'Fraunces', serif; font-weight: 600; font-size: 28px;
+    line-height: 1.2; margin-bottom: 24px;
+  }
+  .changelog-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+  }
+  @media (max-width: 700px) { .changelog-grid { grid-template-columns: 1fr; } }
+  .cl-item {
+    display: flex; gap: 14px; padding: 16px 20px;
+    background: var(--cream); border-radius: 8px;
+  }
+  .cl-icon {
+    width: 36px; height: 36px; border-radius: 50%; flex-shrink: 0;
+    display: grid; place-items: center; font-size: 16px;
+    background: var(--paper); border: 1px solid var(--border-soft);
+  }
+  .cl-text h4 {
+    font-family: 'Inter', sans-serif; font-weight: 600; font-size: 14px;
+    margin-bottom: 3px;
+  }
+  .cl-text p {
+    font-size: 13px; color: var(--ink-muted); line-height: 1.5;
+  }
+
+  /* Footer */
+  .overview-footer {
+    text-align: center; padding: 32px 6vw; border-top: 1px solid var(--border-soft);
+    font-size: 13px; color: var(--ink-muted); max-width: 1400px; margin: 0 auto;
+  }
+  .overview-footer a {
+    color: var(--terracotta); text-decoration: none; font-weight: 600;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-top">
+    <div class="header-mark">K</div>
+    <div class="header-brand">
+      Kittitas Artist Business Coach
+      <small>Site Overview & Architecture</small>
+    </div>
+  </div>
+  <h1>Nine pages. One <em>complete system.</em></h1>
+  <p class="lede">A free, AI-powered business advisory service for working artists in Kittitas County, WA. Every page below is live on GitHub Pages — built entirely through conversation with an AI agent.</p>
+
+  <div class="stats-bar">
+    <div class="stat-cell"><div class="stat-val">9</div><div class="stat-label">Pages</div></div>
+    <div class="stat-cell"><div class="stat-val">16</div><div class="stat-label">Modules</div></div>
+    <div class="stat-cell"><div class="stat-val">50+</div><div class="stat-label">Directory entries</div></div>
+    <div class="stat-cell"><div class="stat-val">10</div><div class="stat-label">Sections on homepage</div></div>
+    <div class="stat-cell"><div class="stat-val">$0</div><div class="stat-label">Dev cost</div></div>
+    <div class="stat-cell"><div class="stat-val">0</div><div class="stat-label">Broken links</div></div>
+  </div>
+
+  <div class="version-strip">
+    <span class="v-badge">v0.3</span>
+    <span>Latest release — May 2026</span>
+    <span class="v-tag"><span class="dot"></span> All E2E tests passing</span>
+    <span class="v-tag"><span class="dot" style="background:var(--terracotta)"></span> 3 nav fixes shipped</span>
+  </div>
+</div>
+
+<!-- CORE PAGES -->
+<div class="section-label">
+  <span class="num">01</span>
+  <span class="text">Core Pages</span>
+  <span class="rule"></span>
+</div>
+
+<div class="cards">
+
+  <div class="card">
+    <div class="card-preview">
+      <iframe src="https://bobrapp.github.io/ai-artistic-agent-aigovops/" loading="lazy" sandbox="allow-scripts allow-same-origin"></iframe>
+      <a class="card-preview-overlay" href="https://bobrapp.github.io/ai-artistic-agent-aigovops/" target="_blank" rel="noopener noreferrer"></a>
+      <a class="card-visit" href="https://bobrapp.github.io/ai-artistic-agent-aigovops/" target="_blank" rel="noopener noreferrer">Visit page →</a>
+    </div>
+    <div class="card-body">
+      <div class="card-type">index.html · Homepage</div>
+      <h3>Kittitas Artist Business Coach</h3>
+      <p>The main landing page. Hero with trust badges, 3 entry paths, chat preview, 16-module curriculum grid, local resources, coverage map, behind-the-scenes stats, social proof quotes, FAQ section, and pilot CTA.</p>
+      <div class="card-tags">
+        <span class="tag">10 sections</span>
+        <span class="tag">16 curriculum modules</span>
+        <span class="tag new">v0.3 — FAQ + quotes + scroll reveal</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-preview">
+      <iframe src="https://bobrapp.github.io/ai-artistic-agent-aigovops/showcase.html" loading="lazy" sandbox="allow-scripts allow-same-origin"></iframe>
+      <a class="card-preview-overlay" href="https://bobrapp.github.io/ai-artistic-agent-aigovops/showcase.html" target="_blank" rel="noopener noreferrer"></a>
+      <a class="card-visit" href="https://bobrapp.github.io/ai-artistic-agent-aigovops/showcase.html" target="_blank" rel="noopener noreferrer">Visit page →</a>
+    </div>
+    <div class="card-body">
+      <div class="card-type">showcase.html · Interactive Demo</div>
+      <h3>Self-Running Demo</h3>
+      <p>A 10-section auto-advancing showcase with typewriter chat animations, SVG ring timer, module grid, and simulated coach conversations. Shows the coach in action without needing live AI access.</p>
+      <div class="card-tags">
+        <span class="tag">Auto-play + manual nav</span>
+        <span class="tag">10 demo sections</span>
+        <span class="tag new">Nav links expanded</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-preview">
+      <iframe src="https://bobrapp.github.io/ai-artistic-agent-aigovops/signup.html" loading="lazy" sandbox="allow-scripts allow-same-origin"></iframe>
+      <a class="card-preview-overlay" href="https://bobrapp.github.io/ai-artistic-agent-aigovops/signup.html" target="_blank" rel="noopener noreferrer"></a>
+      <a class="card-visit" href="https://bobrapp.github.io/ai-artistic-agent-aigovops/signup.html" target="_blank" rel="noopener noreferrer">Visit page →</a>
+    </div>
+    <div class="card-body">
+      <div class="card-type">signup.html · Pilot Application</div>
+      <h3>Join the Pilot</h3>
+      <p>Pilot recruitment form collecting name, email, medium, location, and what artists want help with. Uses mailto: submission with localStorage backup. Targets 10–20 artists for summer 2026.</p>
+      <div class="card-tags">
+        <span class="tag">mailto: form</span>
+        <span class="tag">localStorage backup</span>
+        <span class="tag">Shared nav</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- CONTENT PAGES -->
+<div class="section-label">
+  <span class="num">02</span>
+  <span class="text">Content Pages</span>
+  <span class="rule"></span>
+</div>
+
+<div class="cards">
+
+  <div class="card">
+    <div class="card-preview">
+      <iframe src="https://bobrapp.github.io/ai-artistic-agent-aigovops/directory.html" loading="lazy" sandbox="allow-scripts allow-same-origin"></iframe>
+      <a class="card-preview-overlay" href="https://bobrapp.github.io/ai-artistic-agent-aigovops/directory.html" target="_blank" rel="noopener noreferrer"></a>
+      <a class="card-visit" href="https://bobrapp.github.io/ai-artistic-agent-aigovops/directory.html" target="_blank" rel="noopener noreferrer">Visit page →</a>
+    </div>
+    <div class="card-body">
+      <div class="card-type">directory.html · Arts Directory</div>
+      <h3>Kittitas County Arts Directory</h3>
+      <p>Searchable, filterable directory of 50+ local arts entries — galleries, studios, venues, organizations, suppliers, and professional services across Ellensburg, Cle Elum, and the county.</p>
+      <div class="card-tags">
+        <span class="tag">50+ entries</span>
+        <span class="tag">Category filters</span>
+        <span class="tag">Search</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-preview">
+      <iframe src="https://bobrapp.github.io/ai-artistic-agent-aigovops/protect.html" loading="lazy" sandbox="allow-scripts allow-same-origin"></iframe>
+      <a class="card-preview-overlay" href="https://bobrapp.github.io/ai-artistic-agent-aigovops/protect.html" target="_blank" rel="noopener noreferrer"></a>
+      <a class="card-visit" href="https://bobrapp.github.io/ai-artistic-agent-aigovops/protect.html" target="_blank" rel="noopener noreferrer">Visit page →</a>
+    </div>
+    <div class="card-body">
+      <div class="card-type">protect.html · AI Protection</div>
+      <h3>AI Protection Framework</h3>
+      <p>The four-layer shield: Protect (metadata armor, Glaze, Nightshade), Detect (reverse image search), Fight (DMCA, legal options), Advocate (policy engagement). Builds trust by leading with artist protection.</p>
+      <div class="card-tags">
+        <span class="tag">4-layer framework</span>
+        <span class="tag">Tool recommendations</span>
+        <span class="tag">Shared nav</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-preview">
+      <iframe src="https://bobrapp.github.io/ai-artistic-agent-aigovops/hibt.html" loading="lazy" sandbox="allow-scripts allow-same-origin"></iframe>
+      <a class="card-preview-overlay" href="https://bobrapp.github.io/ai-artistic-agent-aigovops/hibt.html" target="_blank" rel="noopener noreferrer"></a>
+      <a class="card-visit" href="https://bobrapp.github.io/ai-artistic-agent-aigovops/hibt.html" target="_blank" rel="noopener noreferrer">Visit page →</a>
+    </div>
+    <div class="card-body">
+      <div class="card-type">hibt.html · Behind the Build</div>
+      <h3>How I Built This</h3>
+      <p>Full editorial article documenting the build process — architecture, timeline, stats, tech stack, governance decisions, and the case for AI-assisted public services. Written in warm editorial style.</p>
+      <div class="card-tags">
+        <span class="tag">8-session timeline</span>
+        <span class="tag">Stats grid</span>
+        <span class="tag new">Nav self-link added</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- COMMISSION PAGES -->
+<div class="section-label">
+  <span class="num">03</span>
+  <span class="text">Commission & Outreach</span>
+  <span class="rule"></span>
+</div>
+
+<div class="cards">
+
+  <div class="card">
+    <div class="card-preview">
+      <iframe src="https://bobrapp.github.io/ai-artistic-agent-aigovops/pitch.html" loading="lazy" sandbox="allow-scripts allow-same-origin"></iframe>
+      <a class="card-preview-overlay" href="https://bobrapp.github.io/ai-artistic-agent-aigovops/pitch.html" target="_blank" rel="noopener noreferrer"></a>
+      <a class="card-visit" href="https://bobrapp.github.io/ai-artistic-agent-aigovops/pitch.html" target="_blank" rel="noopener noreferrer">Visit page →</a>
+    </div>
+    <div class="card-body">
+      <div class="card-type">pitch.html · Board Presentation</div>
+      <h3>Board Pitch Deck</h3>
+      <p>Full-screen slide presentation for the KCAC board. Arrow key navigation, touch swipe, dot indicators. Covers the problem, solution, architecture, pilot plan, budget, and governance framework.</p>
+      <div class="card-tags">
+        <span class="tag">Slide deck</span>
+        <span class="tag">Keyboard + touch nav</span>
+        <span class="tag new">Back-to-site link added</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-preview">
+      <iframe src="https://bobrapp.github.io/ai-artistic-agent-aigovops/roadmap.html" loading="lazy" sandbox="allow-scripts allow-same-origin"></iframe>
+      <a class="card-preview-overlay" href="https://bobrapp.github.io/ai-artistic-agent-aigovops/roadmap.html" target="_blank" rel="noopener noreferrer"></a>
+      <a class="card-visit" href="https://bobrapp.github.io/ai-artistic-agent-aigovops/roadmap.html" target="_blank" rel="noopener noreferrer">Visit page →</a>
+    </div>
+    <div class="card-body">
+      <div class="card-type">roadmap.html · Strategic Plan</div>
+      <h3>Strategic Roadmap</h3>
+      <p>Multi-phase strategic plan showing how the coach evolves from pilot to full deployment. Covers timeline, milestones, success metrics, expansion strategy, and long-term sustainability.</p>
+      <div class="card-tags">
+        <span class="tag">Multi-phase plan</span>
+        <span class="tag">Milestones</span>
+        <span class="tag">Shared nav</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-preview" style="background:linear-gradient(135deg, var(--cream) 0%, rgba(196,89,58,0.08) 100%); display:flex; align-items:center; justify-content:center;">
+      <div style="text-align:center; padding:24px;">
+        <div style="font-size:40px; margin-bottom:12px;">📧</div>
+        <div style="font-family:'Fraunces',serif; font-size:18px; font-weight:600; color:var(--ink);">Recruitment Emails</div>
+        <div style="font-size:13px; color:var(--ink-muted); margin-top:6px;">3 templates for pilot outreach</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="card-type">recruit.html · Email Templates</div>
+      <h3>Pilot Recruitment Emails</h3>
+      <p>Three ready-to-send email templates for recruiting pilot participants: personal invitation, community announcement, and professional network outreach. All CTAs wired to the signup page.</p>
+      <div class="card-tags">
+        <span class="tag">3 email templates</span>
+        <span class="tag">Copy-ready</span>
+        <span class="tag">CTAs → signup.html</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- v0.3 CHANGELOG -->
+<div class="section-label">
+  <span class="num">04</span>
+  <span class="text">What's new in v0.3</span>
+  <span class="rule"></span>
+</div>
+
+<div class="changelog">
+  <h2>v0.3 Changelog</h2>
+  <div class="changelog-grid">
+    <div class="cl-item">
+      <div class="cl-icon">♿</div>
+      <div class="cl-text">
+        <h4>Skip-to-content link</h4>
+        <p>Keyboard-accessible jump link for screen readers, hidden until focused</p>
+      </div>
+    </div>
+    <div class="cl-item">
+      <div class="cl-icon">⬆️</div>
+      <div class="cl-text">
+        <h4>Back-to-top button</h4>
+        <p>Floating button appears after scrolling 600px, smooth-scrolls to top</p>
+      </div>
+    </div>
+    <div class="cl-item">
+      <div class="cl-icon">✨</div>
+      <div class="cl-text">
+        <h4>Scroll-reveal animations</h4>
+        <p>All homepage sections fade+slide in on scroll via IntersectionObserver</p>
+      </div>
+    </div>
+    <div class="cl-item">
+      <div class="cl-icon">🧭</div>
+      <div class="cl-text">
+        <h4>Active nav highlighting</h4>
+        <p>Current section highlights in terracotta as you scroll down the page</p>
+      </div>
+    </div>
+    <div class="cl-item">
+      <div class="cl-icon">❓</div>
+      <div class="cl-text">
+        <h4>FAQ section (8 Q&As)</h4>
+        <p>Common objections answered: "Is this an AI art generator?", "Can I trust AI for tax advice?", etc.</p>
+      </div>
+    </div>
+    <div class="cl-item">
+      <div class="cl-icon">💬</div>
+      <div class="cl-text">
+        <h4>Social proof quotes</h4>
+        <p>Three composite artist testimonials showing real use cases for the coach</p>
+      </div>
+    </div>
+    <div class="cl-item">
+      <div class="cl-icon">🔗</div>
+      <div class="cl-text">
+        <h4>Module anchor IDs</h4>
+        <p>Each of the 16 curriculum modules has #mod-01 through #mod-16 deep links</p>
+      </div>
+    </div>
+    <div class="cl-item">
+      <div class="cl-icon">🌐</div>
+      <div class="cl-text">
+        <h4>Open Graph meta tags</h4>
+        <p>Proper social sharing previews for Twitter, Facebook, LinkedIn, Slack</p>
+      </div>
+    </div>
+    <div class="cl-item">
+      <div class="cl-icon">🖨️</div>
+      <div class="cl-text">
+        <h4>Print-friendly stylesheet</h4>
+        <p>Hides interactive elements, ensures clean readability when printing</p>
+      </div>
+    </div>
+    <div class="cl-item">
+      <div class="cl-icon">🔧</div>
+      <div class="cl-text">
+        <h4>3 nav fixes</h4>
+        <p>pitch.html back link, showcase.html expanded nav, hibt.html self-link</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="overview-footer">
+  <p>Kittitas Artist Business Coach — a project of the Kittitas County Arts Commission</p>
+  <p style="margin-top:8px;">
+    <a href="https://bobrapp.github.io/ai-artistic-agent-aigovops/" target="_blank" rel="noopener noreferrer">Live site</a> ·
+    <a href="https://github.com/bobrapp/ai-artistic-agent-aigovops" target="_blank" rel="noopener noreferrer">GitHub</a> ·
+    v0.3 · May 2026 · E2E tested: 0 broken links, 0 bugs
+  </p>
+</div>
+
+</body>
+</html>
