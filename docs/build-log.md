@@ -287,3 +287,48 @@ https://bobrapp.github.io/ai-artistic-agent-aigovops/brand-ai-mavens.html
 - The page references all v9.3 assets via relative paths so it works on GitHub Pages.
 - Self-contained — no external dependencies beyond Google Fonts (Inter + JetBrains Mono).
 - Open for follow-on work: optional link from `index.html` to surface this as a navigable page in the main site.
+
+---
+
+## Session: AI Mavens Print Pack — Clean Designs + Cuttable Sheets
+
+**Timestamp (UTC):** 2026-05-11T16:02:05Z
+**User:** bobrapp
+**Model:** Claude Opus 4.7 (orchestrator) + Gemini Nano Banana Pro
+**Platform:** Hyperagent
+
+### Prompt Summary
+Build clean, laser-printer-friendly versions of the t-shirt, sticker, and small card — ready to print and cut at home, and ready to send to a t-shirt printer.
+
+### Result Summary
+The v9.3 hero designs use halftone dot texture for screen-print authenticity, which doesn't reproduce cleanly on a home laser printer. This session produced flat, no-halftone counterparts for laser-friendly home production, plus a print-ready single-page HTML deliverable.
+
+**Clean flat artwork (new):**
+- T-shirt — flat-color version of the v9.3 design with the same character, same mantra, same lockup, rendered in vector-look flat illustration. Limited 6-color palette for direct spot-color screen-print separations.
+- Sticker — flat-color version of the v9.3 sticker bust with the same arc text. Same brand palette, no halftone, prints crisp on a home laser printer.
+
+**Business card design:**
+Built directly in HTML/CSS using the v9.3 logo image. Standard 3.5″ × 2″ US business card layout with logo on the left and foundation info on the right (AIGOVOPS FOUNDATION mark, "Let the tokens flow." tagline with green flow, aigovops.foundation URL, © 2026 micro line).
+
+**Print Pack HTML (`print-pack-ai-mavens.html`):**
+A single-page printable deliverable with three letter-size pages, designed with `@media print` and `@page` rules so it exports cleanly to PDF via the browser's print dialog. Screen-only instructions at the top, hidden when printing.
+
+- **Page 1** — T-shirt artwork at print scale with print-shop specs sidebar (color callouts with hex chips, print method, garment notes, source file path). Ready to email to a t-shirt printer.
+- **Page 2** — Sticker cut sheet: 6 stickers at 2.75″ diameter in a 2×3 grid with corner crop marks. Print on sticker paper (Avery 22566 or equiv), cut along crop marks.
+- **Page 3** — Business card cut sheet: 10 cards at 3.5″ × 2″ in a 2×5 grid with dashed interior cut lines and corner crop marks. Print on cardstock (Avery 8371 or 80-100lb), cut along lines.
+
+### Assets Generated (committed)
+| Asset | Path |
+|-------|------|
+| Clean t-shirt artwork | `assets/ai-mavens/v9/print/ai-mavens-tshirt-print.png` |
+| Clean sticker artwork | `assets/ai-mavens/v9/print/ai-mavens-sticker-print.png` |
+| Print pack HTML | `print-pack-ai-mavens.html` |
+
+### Live URL
+https://bobrapp.github.io/ai-artistic-agent-aigovops/print-pack-ai-mavens.html
+
+### Notes
+- The v9.3 hero designs (with halftone) remain at `assets/ai-mavens/v9/` for the brand sheet and presentation use.
+- The clean print-ready versions live at `assets/ai-mavens/v9/print/` — same brand, simpler rendering optimized for production.
+- Print pack tested for letter-size paper (US default). For A4, the user would adjust the `@page` size and margins.
+- Browser print settings to use: paper Letter, margins None, background graphics On.

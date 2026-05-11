@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AI Mavens — Print Pack · AIgovops Foundation</title>
+<meta name="description" content="Print-ready pack for the AI Mavens brand system. Three letter-size pages: t-shirt artwork for the print shop, sticker cut sheet, and business card cut sheet. Print to PDF with crop marks." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  /* ───────── PRINT SETUP ───────── */
+  @page {
+    size: letter;
+    margin: 0;
+  }
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  html, body {
+    font-family: 'Inter', system-ui, sans-serif;
+    color: #1B2A4A;
+    background: #E9EBEE;
+  }
+
+  /* ───────── SCREEN-ONLY HEADER ───────── */
+  .instructions {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem 2.5rem;
+    background: white;
+    border: 1px solid rgba(27, 42, 74, 0.1);
+    border-radius: 8px;
+  }
+  .instructions h1 {
+    font-size: 1.65rem;
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    margin-bottom: 0.5rem;
+  }
+  .instructions .sub {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #5C7A99;
+    margin-bottom: 2rem;
+  }
+  .instructions h2 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin: 1.5rem 0 0.5rem;
+  }
+  .instructions p, .instructions ul {
+    color: #5C7A99;
+    font-size: 0.92rem;
+    line-height: 1.65;
+    margin-bottom: 0.5rem;
+  }
+  .instructions ul {
+    padding-left: 1.5rem;
+  }
+  .instructions li {
+    margin-bottom: 0.3rem;
+  }
+  .instructions code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85em;
+    background: #F0F2F5;
+    padding: 0.1em 0.4em;
+    border-radius: 3px;
+    color: #1B2A4A;
+  }
+  .instructions .print-btn {
+    display: inline-block;
+    margin-top: 1.5rem;
+    padding: 0.75rem 1.5rem;
+    background: #1B2A4A;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    border: none;
+    font-family: inherit;
+  }
+  .instructions .print-btn:hover {
+    background: #3D8BFF;
+  }
+  @media print {
+    .instructions {
+      display: none;
+    }
+  }
+
+  /* ───────── PAGE CONTAINER ───────── */
+  .page {
+    width: 8.5in;
+    height: 11in;
+    background: white;
+    margin: 1.5rem auto;
+    box-shadow: 0 8px 30px rgba(27, 42, 74, 0.12);
+    position: relative;
+    overflow: hidden;
+    page-break-after: always;
+  }
+  .page:last-child {
+    page-break-after: auto;
+  }
+  @media print {
+    .page {
+      box-shadow: none;
+      margin: 0;
+    }
+    body {
+      background: white;
+    }
+  }
+
+  /* ───────── PAGE HEADER ───────── */
+  .page-header {
+    position: absolute;
+    top: 0.4in;
+    left: 0.5in;
+    right: 0.5in;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8pt;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #5C7A99;
+  }
+  .page-header .brand {
+    color: #1B2A4A;
+    font-weight: 500;
+  }
+
+  .page-footer {
+    position: absolute;
+    bottom: 0.35in;
+    left: 0.5in;
+    right: 0.5in;
+    text-align: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 7pt;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #5C7A99;
+  }
+
+  /* ───────── PAGE 1: T-SHIRT ───────── */
+  .page-tshirt {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0.7in 0.5in;
+  }
+  .tshirt-title {
+    font-size: 14pt;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.1in;
+    text-align: center;
+  }
+  .tshirt-subtitle {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8pt;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #5C7A99;
+    margin-bottom: 0.25in;
+  }
+  .tshirt-art {
+    width: 5.6in;
+    height: 7in;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.2in;
+  }
+  .tshirt-art img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  .tshirt-specs {
+    width: 6.5in;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.15in 0.4in;
+    font-size: 8pt;
+    line-height: 1.5;
+    color: #5C7A99;
+  }
+  .tshirt-specs .spec-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 7pt;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #1B2A4A;
+    font-weight: 500;
+    margin-bottom: 0.04in;
+  }
+  .tshirt-specs .spec-value {
+    color: #5C7A99;
+    font-size: 8pt;
+  }
+  .color-row {
+    display: flex;
+    gap: 0.3em;
+    flex-wrap: wrap;
+    margin-top: 0.04in;
+  }
+  .color-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3em;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 7pt;
+    color: #1B2A4A;
+  }
+  .color-chip .swatch {
+    width: 0.1in;
+    height: 0.1in;
+    border-radius: 2px;
+    border: 0.5pt solid rgba(27, 42, 74, 0.15);
+  }
+
+  /* ───────── PAGE 2: STICKER SHEET ───────── */
+  .page-stickers {
+    padding: 0.7in 0.5in;
+  }
+  .sheet-title {
+    font-size: 14pt;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 0.05in;
+    letter-spacing: -0.02em;
+  }
+  .sheet-subtitle {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8pt;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #5C7A99;
+    text-align: center;
+    margin-bottom: 0.3in;
+  }
+  .sticker-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 2.75in);
+    grid-auto-rows: 2.75in;
+    gap: 0.4in;
+    justify-content: center;
+    align-content: center;
+    margin: 0 auto;
+  }
+  .sticker-cell {
+    position: relative;
+    width: 2.75in;
+    height: 2.75in;
+  }
+  .sticker-cell img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+  }
+  /* crop marks at corners */
+  .crop-tl, .crop-tr, .crop-bl, .crop-br {
+    position: absolute;
+    width: 0.18in;
+    height: 0.18in;
+  }
+  .crop-tl { top: -0.18in; left: -0.18in; border-top: 0.4pt solid #1B2A4A; border-left: 0.4pt solid #1B2A4A; }
+  .crop-tr { top: -0.18in; right: -0.18in; border-top: 0.4pt solid #1B2A4A; border-right: 0.4pt solid #1B2A4A; }
+  .crop-bl { bottom: -0.18in; left: -0.18in; border-bottom: 0.4pt solid #1B2A4A; border-left: 0.4pt solid #1B2A4A; }
+  .crop-br { bottom: -0.18in; right: -0.18in; border-bottom: 0.4pt solid #1B2A4A; border-right: 0.4pt solid #1B2A4A; }
+
+  .sheet-notes {
+    position: absolute;
+    bottom: 0.7in;
+    left: 0.5in;
+    right: 0.5in;
+    text-align: center;
+    font-size: 7pt;
+    color: #5C7A99;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* ───────── PAGE 3: BUSINESS CARD SHEET ───────── */
+  .page-cards {
+    padding: 0.7in 0.5in;
+  }
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 3.5in);
+    grid-auto-rows: 2in;
+    gap: 0;
+    justify-content: center;
+    align-content: center;
+    margin: 0 auto;
+  }
+  .card-cell {
+    position: relative;
+    width: 3.5in;
+    height: 2in;
+    background: #D7DDE3;
+    display: flex;
+    align-items: center;
+    padding: 0.18in 0.22in;
+    overflow: hidden;
+  }
+  .card-cell .card-logo {
+    width: 1.5in;
+    height: 1.5in;
+    flex-shrink: 0;
+  }
+  .card-cell .card-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  .card-cell .card-body {
+    flex: 1;
+    padding-left: 0.18in;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .card-body .card-foundation {
+    font-size: 8.5pt;
+    font-weight: 700;
+    letter-spacing: -0.005em;
+    color: #1B2A4A;
+    margin-bottom: 0.04in;
+    line-height: 1.15;
+  }
+  .card-body .card-tagline {
+    font-size: 7pt;
+    color: #5C7A99;
+    margin-bottom: 0.08in;
+    line-height: 1.25;
+  }
+  .card-body .card-tagline .green {
+    color: #2BB673;
+    font-weight: 600;
+  }
+  .card-body .card-divider {
+    width: 0.4in;
+    height: 0.5pt;
+    background: #1B2A4A;
+    margin-bottom: 0.07in;
+  }
+  .card-body .card-url {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 6.5pt;
+    letter-spacing: 0.06em;
+    color: #1B2A4A;
+    margin-bottom: 0.02in;
+  }
+  .card-body .card-copyright {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 5.5pt;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #5C7A99;
+  }
+  /* card cut lines: thin grey line between cards so user knows where to cut */
+  .card-cell {
+    border-right: 0.3pt dashed rgba(27, 42, 74, 0.25);
+    border-bottom: 0.3pt dashed rgba(27, 42, 74, 0.25);
+  }
+  .card-cell:nth-child(2n) {
+    border-right: none;
+  }
+  .card-cell:nth-last-child(-n+2):not(:nth-last-child(-n+3)) {
+    border-bottom: none;
+  }
+  /* outer crop marks */
+  .cards-frame {
+    position: relative;
+    width: 7in;
+    margin: 0 auto;
+  }
+  .cards-frame::before,
+  .cards-frame::after {
+    content: '';
+    position: absolute;
+    width: 0.15in;
+    height: 0.15in;
+  }
+  .cards-frame::before {
+    top: -0.18in;
+    left: -0.18in;
+    border-top: 0.4pt solid #1B2A4A;
+    border-left: 0.4pt solid #1B2A4A;
+  }
+  .cards-frame::after {
+    top: -0.18in;
+    right: -0.18in;
+    border-top: 0.4pt solid #1B2A4A;
+    border-right: 0.4pt solid #1B2A4A;
+  }
+  .cards-frame-bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 0;
+  }
+  .cards-frame-bottom::before,
+  .cards-frame-bottom::after {
+    content: '';
+    position: absolute;
+    width: 0.15in;
+    height: 0.15in;
+  }
+  .cards-frame-bottom::before {
+    bottom: 0;
+    left: -0.18in;
+    border-bottom: 0.4pt solid #1B2A4A;
+    border-left: 0.4pt solid #1B2A4A;
+  }
+  .cards-frame-bottom::after {
+    bottom: 0;
+    right: -0.18in;
+    border-bottom: 0.4pt solid #1B2A4A;
+    border-right: 0.4pt solid #1B2A4A;
+  }
+</style>
+</head>
+<body>
+
+<!-- ───── SCREEN-ONLY INSTRUCTIONS ───── -->
+<div class="instructions">
+  <h1>AI Mavens — Print Pack</h1>
+  <div class="sub">AIgovops Foundation · Brand System v9.3</div>
+
+  <p>This page produces three letter-size sheets ready for production. Use your browser's print dialog (<code>⌘P</code> on Mac, <code>Ctrl+P</code> on Windows) and <strong>Save as PDF</strong> to export.</p>
+
+  <h2>Page 1 — T-Shirt Artwork</h2>
+  <p>Full-scale artwork ready to email to your t-shirt printer. Includes color callouts and print specs. Send as the PDF, or grab the source PNG at <code>assets/ai-mavens/v9/print/ai-mavens-tshirt-print.png</code>.</p>
+
+  <h2>Page 2 — Sticker Cut Sheet</h2>
+  <p>Six 2.75&Prime; round stickers on letter-size paper with crop marks. Print on full-sheet sticker paper (Avery 22566 or equivalent), cut along the crop marks with scissors or a circular punch.</p>
+
+  <h2>Page 3 — Business Card Cut Sheet</h2>
+  <p>Ten 3.5&Prime; × 2&Prime; standard US business cards in a 2 × 5 grid. Print on 80-100lb cardstock or use Avery 8371 perforated cards (no cutting needed). Dashed lines mark interior cuts; solid corner marks frame the sheet.</p>
+
+  <h2>Browser Print Settings</h2>
+  <ul>
+    <li>Paper size: <strong>Letter (8.5&Prime; × 11&Prime;)</strong></li>
+    <li>Margins: <strong>None</strong> (the page sets its own)</li>
+    <li>Background graphics: <strong>On</strong> (so the navy bar and color callouts print)</li>
+    <li>Headers and footers: <strong>Off</strong></li>
+  </ul>
+
+  <button class="print-btn" onclick="window.print()">⌘ Print This Pack</button>
+</div>
+
+
+<!-- ───── PAGE 1: T-SHIRT ARTWORK ───── -->
+<div class="page page-tshirt">
+  <div class="page-header">
+    <span class="brand">AIGOVOPS FOUNDATION · BRAND v9.3</span>
+    <span>Page 1 of 3 · T-Shirt Art</span>
+  </div>
+
+  <div class="tshirt-title">T-Shirt Artwork — Print Shop Hand-off</div>
+  <div class="tshirt-subtitle">LET THE TOKENS FLOW · YES — SHIP / STEADY / RECOVER AI</div>
+
+  <div class="tshirt-art">
+    <img src="assets/ai-mavens/v9/print/ai-mavens-tshirt-print.png" alt="AI Mavens t-shirt artwork — clean flat version for print" />
+  </div>
+
+  <div class="tshirt-specs">
+    <div>
+      <div class="spec-label">Print Method</div>
+      <div class="spec-value">Spot-color screen print (5–6 screens) preferred. DTG acceptable for short runs.</div>
+    </div>
+    <div>
+      <div class="spec-label">Garment</div>
+      <div class="spec-value">Heather grey or charcoal cotton tee. Center chest, design ~11&Prime; tall.</div>
+    </div>
+    <div>
+      <div class="spec-label">Source File</div>
+      <div class="spec-value">assets/ai-mavens/v9/print/ai-mavens-tshirt-print.png · 1600×2000 px at 2K · upscale to 300 DPI for print.</div>
+    </div>
+    <div>
+      <div class="spec-label">Color Palette</div>
+      <div class="color-row">
+        <span class="color-chip"><span class="swatch" style="background:#D7DDE3"></span>#D7DDE3</span>
+        <span class="color-chip"><span class="swatch" style="background:#A8B2BD"></span>#A8B2BD</span>
+        <span class="color-chip"><span class="swatch" style="background:#5C7A99"></span>#5C7A99</span>
+        <span class="color-chip"><span class="swatch" style="background:#1B2A4A"></span>#1B2A4A</span>
+        <span class="color-chip"><span class="swatch" style="background:#3D8BFF"></span>#3D8BFF</span>
+        <span class="color-chip"><span class="swatch" style="background:#2BB673"></span>#2BB673</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">© 2026 AIGOVOPS FOUNDATION · ALL RIGHTS RESERVED</div>
+</div>
+
+
+<!-- ───── PAGE 2: STICKER CUT SHEET ───── -->
+<div class="page page-stickers">
+  <div class="page-header">
+    <span class="brand">AIGOVOPS FOUNDATION · BRAND v9.3</span>
+    <span>Page 2 of 3 · Sticker Cut Sheet</span>
+  </div>
+
+  <div class="sheet-title">Sticker Cut Sheet</div>
+  <div class="sheet-subtitle">Print on sticker paper · Cut along crop marks</div>
+
+  <div class="sticker-grid">
+    <div class="sticker-cell">
+      <div class="crop-tl"></div><div class="crop-tr"></div><div class="crop-bl"></div><div class="crop-br"></div>
+      <img src="assets/ai-mavens/v9/print/ai-mavens-sticker-print.png" alt="AI Mavens sticker" />
+    </div>
+    <div class="sticker-cell">
+      <div class="crop-tl"></div><div class="crop-tr"></div><div class="crop-bl"></div><div class="crop-br"></div>
+      <img src="assets/ai-mavens/v9/print/ai-mavens-sticker-print.png" alt="AI Mavens sticker" />
+    </div>
+    <div class="sticker-cell">
+      <div class="crop-tl"></div><div class="crop-tr"></div><div class="crop-bl"></div><div class="crop-br"></div>
+      <img src="assets/ai-mavens/v9/print/ai-mavens-sticker-print.png" alt="AI Mavens sticker" />
+    </div>
+    <div class="sticker-cell">
+      <div class="crop-tl"></div><div class="crop-tr"></div><div class="crop-bl"></div><div class="crop-br"></div>
+      <img src="assets/ai-mavens/v9/print/ai-mavens-sticker-print.png" alt="AI Mavens sticker" />
+    </div>
+    <div class="sticker-cell">
+      <div class="crop-tl"></div><div class="crop-tr"></div><div class="crop-bl"></div><div class="crop-br"></div>
+      <img src="assets/ai-mavens/v9/print/ai-mavens-sticker-print.png" alt="AI Mavens sticker" />
+    </div>
+    <div class="sticker-cell">
+      <div class="crop-tl"></div><div class="crop-tr"></div><div class="crop-bl"></div><div class="crop-br"></div>
+      <img src="assets/ai-mavens/v9/print/ai-mavens-sticker-print.png" alt="AI Mavens sticker" />
+    </div>
+  </div>
+
+  <div class="sheet-notes">
+    Letter 8.5&Prime; × 11&Prime; · 6 stickers · 2.75&Prime; diameter · Avery 22566 or equivalent
+  </div>
+
+  <div class="page-footer">© 2026 AIGOVOPS FOUNDATION · ALL RIGHTS RESERVED</div>
+</div>
+
+
+<!-- ───── PAGE 3: BUSINESS CARD CUT SHEET ───── -->
+<div class="page page-cards">
+  <div class="page-header">
+    <span class="brand">AIGOVOPS FOUNDATION · BRAND v9.3</span>
+    <span>Page 3 of 3 · Business Card Cut Sheet</span>
+  </div>
+
+  <div class="sheet-title">Business Card Cut Sheet</div>
+  <div class="sheet-subtitle">Print on cardstock · Cut along dashed lines · Crop marks at corners</div>
+
+  <div class="cards-frame">
+    <div class="card-grid">
+      <!-- 10 cards (2 × 5) -->
+      <div class="card-cell">
+        <div class="card-logo"><img src="assets/ai-mavens/v9/ai-mavens-logo-v9.png" alt="AI Mavens logo" /></div>
+        <div class="card-body">
+          <div class="card-foundation">AIGOVOPS FOUNDATION</div>
+          <div class="card-tagline">Let the tokens <span class="green">flow</span>.</div>
+          <div class="card-divider"></div>
+          <div class="card-url">aigovops.foundation</div>
+          <div class="card-copyright">© 2026 · All Rights Reserved</div>
+        </div>
+      </div>
+      <div class="card-cell">
+        <div class="card-logo"><img src="assets/ai-mavens/v9/ai-mavens-logo-v9.png" alt="AI Mavens logo" /></div>
+        <div class="card-body">
+          <div class="card-foundation">AIGOVOPS FOUNDATION</div>
+          <div class="card-tagline">Let the tokens <span class="green">flow</span>.</div>
+          <div class="card-divider"></div>
+          <div class="card-url">aigovops.foundation</div>
+          <div class="card-copyright">© 2026 · All Rights Reserved</div>
+        </div>
+      </div>
+      <div class="card-cell">
+        <div class="card-logo"><img src="assets/ai-mavens/v9/ai-mavens-logo-v9.png" alt="AI Mavens logo" /></div>
+        <div class="card-body">
+          <div class="card-foundation">AIGOVOPS FOUNDATION</div>
+          <div class="card-tagline">Let the tokens <span class="green">flow</span>.</div>
+          <div class="card-divider"></div>
+          <div class="card-url">aigovops.foundation</div>
+          <div class="card-copyright">© 2026 · All Rights Reserved</div>
+        </div>
+      </div>
+      <div class="card-cell">
+        <div class="card-logo"><img src="assets/ai-mavens/v9/ai-mavens-logo-v9.png" alt="AI Mavens logo" /></div>
+        <div class="card-body">
+          <div class="card-foundation">AIGOVOPS FOUNDATION</div>
+          <div class="card-tagline">Let the tokens <span class="green">flow</span>.</div>
+          <div class="card-divider"></div>
+          <div class="card-url">aigovops.foundation</div>
+          <div class="card-copyright">© 2026 · All Rights Reserved</div>
+        </div>
+      </div>
+      <div class="card-cell">
+        <div class="card-logo"><img src="assets/ai-mavens/v9/ai-mavens-logo-v9.png" alt="AI Mavens logo" /></div>
+        <div class="card-body">
+          <div class="card-foundation">AIGOVOPS FOUNDATION</div>
+          <div class="card-tagline">Let the tokens <span class="green">flow</span>.</div>
+          <div class="card-divider"></div>
+          <div class="card-url">aigovops.foundation</div>
+          <div class="card-copyright">© 2026 · All Rights Reserved</div>
+        </div>
+      </div>
+      <div class="card-cell">
+        <div class="card-logo"><img src="assets/ai-mavens/v9/ai-mavens-logo-v9.png" alt="AI Mavens logo" /></div>
+        <div class="card-body">
+          <div class="card-foundation">AIGOVOPS FOUNDATION</div>
+          <div class="card-tagline">Let the tokens <span class="green">flow</span>.</div>
+          <div class="card-divider"></div>
+          <div class="card-url">aigovops.foundation</div>
+          <div class="card-copyright">© 2026 · All Rights Reserved</div>
+        </div>
+      </div>
+      <div class="card-cell">
+        <div class="card-logo"><img src="assets/ai-mavens/v9/ai-mavens-logo-v9.png" alt="AI Mavens logo" /></div>
+        <div class="card-body">
+          <div class="card-foundation">AIGOVOPS FOUNDATION</div>
+          <div class="card-tagline">Let the tokens <span class="green">flow</span>.</div>
+          <div class="card-divider"></div>
+          <div class="card-url">aigovops.foundation</div>
+          <div class="card-copyright">© 2026 · All Rights Reserved</div>
+        </div>
+      </div>
+      <div class="card-cell">
+        <div class="card-logo"><img src="assets/ai-mavens/v9/ai-mavens-logo-v9.png" alt="AI Mavens logo" /></div>
+        <div class="card-body">
+          <div class="card-foundation">AIGOVOPS FOUNDATION</div>
+          <div class="card-tagline">Let the tokens <span class="green">flow</span>.</div>
+          <div class="card-divider"></div>
+          <div class="card-url">aigovops.foundation</div>
+          <div class="card-copyright">© 2026 · All Rights Reserved</div>
+        </div>
+      </div>
+      <div class="card-cell">
+        <div class="card-logo"><img src="assets/ai-mavens/v9/ai-mavens-logo-v9.png" alt="AI Mavens logo" /></div>
+        <div class="card-body">
+          <div class="card-foundation">AIGOVOPS FOUNDATION</div>
+          <div class="card-tagline">Let the tokens <span class="green">flow</span>.</div>
+          <div class="card-divider"></div>
+          <div class="card-url">aigovops.foundation</div>
+          <div class="card-copyright">© 2026 · All Rights Reserved</div>
+        </div>
+      </div>
+      <div class="card-cell">
+        <div class="card-logo"><img src="assets/ai-mavens/v9/ai-mavens-logo-v9.png" alt="AI Mavens logo" /></div>
+        <div class="card-body">
+          <div class="card-foundation">AIGOVOPS FOUNDATION</div>
+          <div class="card-tagline">Let the tokens <span class="green">flow</span>.</div>
+          <div class="card-divider"></div>
+          <div class="card-url">aigovops.foundation</div>
+          <div class="card-copyright">© 2026 · All Rights Reserved</div>
+        </div>
+      </div>
+    </div>
+    <div class="cards-frame-bottom"></div>
+  </div>
+
+  <div class="sheet-notes">
+    Letter 8.5&Prime; × 11&Prime; · 10 cards · 3.5&Prime; × 2&Prime; · Avery 8371 perforated or 80-100lb cardstock
+  </div>
+
+  <div class="page-footer">© 2026 AIGOVOPS FOUNDATION · ALL RIGHTS RESERVED</div>
+</div>
+
+</body>
+</html>
