@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How I Built This — Kittitas Artist Business Coach</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--cream:#f5efe4;--paper:#fdfaf3;--ink:#1a1612;--ink-soft:#4a3f33;--ink-muted:#7a6f60;--terracotta:#c4593a;--terracotta-deep:#973f25;--sage:#6b7a5c;--gold:#b88a3a;--border:rgba(26,22,18,0.12);--border-soft:rgba(26,22,18,0.06)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--paper);color:var(--ink);font-family:'Inter',-apple-system,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+
+/* Shared Nav */
+.site-nav{background:var(--paper);border-bottom:1px solid var(--border-soft);padding:0 6vw;position:sticky;top:0;z-index:999}
+.site-nav-inner{max-width:1280px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;height:56px}
+.site-nav .sn-brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink)}
+.site-nav .sn-mark{width:32px;height:32px;border-radius:50%;background:var(--terracotta);display:grid;place-items:center;color:var(--paper);font-family:'Fraunces',serif;font-weight:700;font-size:15px}
+.site-nav .sn-name{font-family:'Fraunces',serif;font-weight:600;font-size:14px}
+.site-nav .sn-links{display:flex;gap:24px;font-size:13px;font-weight:500}
+.site-nav .sn-links a{color:var(--ink-soft);text-decoration:none;transition:color 0.2s}
+.site-nav .sn-links a:hover{color:var(--terracotta)}
+.site-nav .sn-links a.sn-cta{background:var(--ink);color:var(--paper);padding:6px 14px;border-radius:999px;font-weight:600}
+.site-nav .sn-links a.sn-cta:hover{background:var(--terracotta-deep)}
+.site-nav .sn-hamburger{display:none;background:none;border:none;cursor:pointer;padding:8px;color:var(--ink)}
+.site-nav .sn-hamburger svg{width:24px;height:24px}
+.site-nav .sn-mobile{display:none;position:absolute;top:56px;left:0;right:0;background:var(--paper);border-bottom:1px solid var(--border);padding:16px 6vw;box-shadow:0 8px 24px rgba(26,22,18,0.08)}
+.site-nav .sn-mobile a{display:block;padding:10px 0;color:var(--ink-soft);text-decoration:none;font-size:15px;font-weight:500;border-bottom:1px solid var(--border-soft)}
+.site-nav .sn-mobile a:last-child{border-bottom:none}
+.site-nav .sn-mobile a:hover{color:var(--terracotta)}
+.site-nav .sn-mobile a.sn-cta{display:inline-block;margin-top:8px;background:var(--ink);color:var(--paper);padding:10px 20px;border-radius:999px;font-weight:600;border-bottom:none}
+@media(max-width:720px){.site-nav .sn-links{display:none}.site-nav .sn-hamburger{display:block}.site-nav .sn-mobile.open{display:block}}
+
+/* Article layout */
+.article{max-width:760px;margin:0 auto;padding:60px 6vw 100px}
+.article-header{margin-bottom:56px}
+.eyebrow{font-size:12px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--terracotta);margin-bottom:20px}
+h1{font-family:'Fraunces',serif;font-weight:500;font-size:clamp(32px,5vw,48px);line-height:1.1;letter-spacing:-0.02em;margin-bottom:20px}
+h1 em{font-style:italic;color:var(--terracotta);font-weight:400}
+.lede{font-family:'Fraunces',serif;font-size:19px;line-height:1.5;color:var(--ink-soft);font-weight:400}
+.byline{margin-top:24px;display:flex;align-items:center;gap:14px;font-size:14px;color:var(--ink-muted)}
+.byline-avatar{width:40px;height:40px;border-radius:50%;background:var(--cream);display:grid;place-items:center;font-size:18px}
+.byline-name{font-weight:600;color:var(--ink)}
+
+/* Prose */
+.prose h2{font-family:'Fraunces',serif;font-weight:600;font-size:28px;line-height:1.2;letter-spacing:-0.01em;margin:56px 0 20px;padding-top:32px;border-top:1px solid var(--border-soft)}
+.prose h3{font-family:'Fraunces',serif;font-weight:600;font-size:20px;line-height:1.3;margin:36px 0 14px}
+.prose p{font-size:16px;line-height:1.7;color:var(--ink-soft);margin-bottom:20px}
+.prose strong{color:var(--ink);font-weight:600}
+.prose a{color:var(--terracotta);text-decoration:underline;text-underline-offset:2px}
+.prose ul,.prose ol{margin:0 0 20px 24px;color:var(--ink-soft)}
+.prose li{margin-bottom:8px;font-size:16px;line-height:1.6}
+
+/* Callout box */
+.callout{background:var(--cream);padding:28px 32px;border-left:3px solid var(--terracotta);margin:32px 0;border-radius:0 6px 6px 0}
+.callout p{margin-bottom:0;font-size:15px}
+.callout p + p{margin-top:12px}
+
+/* Code block */
+.code-block{background:var(--ink);color:#e8dcc8;padding:24px 28px;border-radius:8px;margin:24px 0;overflow-x:auto;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.7}
+.code-block .comment{color:#7a6f60}
+.code-block .highlight{color:#e8a78a}
+
+/* Timeline */
+.build-timeline{margin:32px 0;border-left:2px solid var(--border);padding-left:28px}
+.build-step{position:relative;margin-bottom:28px}
+.build-step::before{content:'';position:absolute;left:-34px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--terracotta);border:2px solid var(--paper)}
+.build-step .step-label{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--terracotta);margin-bottom:4px}
+.build-step h4{font-family:'Fraunces',serif;font-weight:600;font-size:17px;margin-bottom:6px}
+.build-step p{font-size:14px;color:var(--ink-soft);line-height:1.6;margin:0}
+
+/* Stats grid */
+.stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border-soft);border:1px solid var(--border-soft);border-radius:8px;overflow:hidden;margin:32px 0}
+@media(max-width:560px){.stats-grid{grid-template-columns:1fr}}
+.sg-cell{background:var(--paper);padding:24px;text-align:center}
+.sg-val{font-family:'Fraunces',serif;font-size:28px;font-weight:500;color:var(--terracotta);line-height:1}
+.sg-label{font-size:12px;color:var(--ink-muted);letter-spacing:0.06em;text-transform:uppercase;margin-top:6px}
+
+/* Tech stack */
+.stack-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:24px 0}
+@media(max-width:560px){.stack-grid{grid-template-columns:1fr}}
+.stack-card{background:var(--cream);padding:20px;border-radius:8px}
+.stack-card h4{font-family:'Inter',sans-serif;font-weight:600;font-size:14px;margin-bottom:4px}
+.stack-card p{font-size:13px;color:var(--ink-muted);margin:0;line-height:1.5}
+
+/* Footer */
+.article-footer{text-align:center;padding:40px 0;border-top:1px solid var(--border-soft);margin-top:64px;font-size:13px;color:var(--ink-muted)}
+.article-footer a{color:var(--terracotta);text-decoration:none;font-weight:600}
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="site-nav-inner">
+    <a href="index.html" class="sn-brand">
+      <div class="sn-mark">K</div>
+      <div class="sn-name">Kittitas Artist Business Coach</div>
+    </a>
+    <div class="sn-links">
+      <a href="index.html">Home</a>
+      <a href="directory.html">Directory</a>
+      <a href="protect.html">AI protection</a>
+      <a href="roadmap.html">Roadmap</a>
+      <a href="pitch.html">Board pitch</a>
+      <a href="signup.html">Join the pilot</a>
+      <a href="showcase.html" class="sn-cta">See demo →</a>
+    </div>
+    <button class="sn-hamburger" onclick="document.querySelector('.sn-mobile').classList.toggle('open')" aria-label="Menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+  </div>
+  <div class="sn-mobile">
+    <a href="index.html">Home</a>
+    <a href="directory.html">Arts directory</a>
+    <a href="protect.html">AI protection</a>
+    <a href="roadmap.html">Roadmap</a>
+    <a href="pitch.html">Board pitch</a>
+    <a href="signup.html">Join the pilot</a>
+    <a href="showcase.html" class="sn-cta">See demo →</a>
+  </div>
+</nav>
+
+<article class="article">
+  <header class="article-header">
+    <div class="eyebrow">Behind the Build</div>
+    <h1>How I Built the Kittitas Artist <em>Business Coach</em></h1>
+    <p class="lede">The entire project — an AI-powered business advisory system for rural artists, a 16-module curriculum, an 8-page website, a self-running demo, and a pilot recruitment pipeline — was built in a single conversation with an AI agent. Here's how.</p>
+    <div class="byline">
+      <div class="byline-avatar">🎨</div>
+      <div>
+        <div class="byline-name">Dr. Don Solberg</div>
+        Kittitas County Arts Commission · May 2026
+      </div>
+    </div>
+  </header>
+
+  <div class="prose">
+
+    <h2>The premise</h2>
+    <p>Kittitas County, Washington — home to about 480 working artists across Ellensburg, Cle Elum, Roslyn, and the surrounding valley — had a gap. Artists here are brilliant at their craft. The business side? Taxes, contracts, pricing, galleries, grants, insurance — that's where they're alone.</p>
+    <p>A CPA charges $200/hour. A consultant in Seattle is a 90-minute drive. Most artists piece it together from blog posts and friends who learned the hard way.</p>
+    <p>The idea: <strong>what if we built a 24/7 AI business advisor that actually knows Kittitas County?</strong> Not a generic chatbot. A coach that knows Gallery One's consignment terms, Washington's B&O tax rules, Buskers in the Burg deadlines, and the difference between a sole proprietorship and an LLC at $14,000 in pottery sales.</p>
+
+    <div class="callout">
+      <p><strong>The constraint that shaped everything:</strong> This is a rural arts commission with a tiny budget. No content production studio. No paid consultants on retainer. No course platform to maintain. The entire system had to run on ~$50/month and ~1 hour/month of volunteer maintenance.</p>
+    </div>
+
+    <h2>The build process</h2>
+    <p>What you see at <a href="index.html">bobrapp.github.io/ai-artistic-agent-aigovops</a> was built through a series of iterative conversations with a Hyperagent AI agent. No traditional development environment. No IDE. No deployment pipeline. Just a conversation that produced:</p>
+
+    <div class="stats-grid">
+      <div class="sg-cell"><div class="sg-val">9</div><div class="sg-label">Pages built</div></div>
+      <div class="sg-cell"><div class="sg-val">16</div><div class="sg-label">Curriculum modules</div></div>
+      <div class="sg-cell"><div class="sg-val">50+</div><div class="sg-label">Directory entries</div></div>
+      <div class="sg-cell"><div class="sg-val">12,500</div><div class="sg-label">Word system prompt</div></div>
+      <div class="sg-cell"><div class="sg-val">~$50</div><div class="sg-label">Monthly run cost</div></div>
+      <div class="sg-cell"><div class="sg-val">0</div><div class="sg-label">Lines of code written by hand</div></div>
+    </div>
+
+    <h2>The architecture</h2>
+    <p>The system has three layers:</p>
+
+    <h3>1. The AI Coach (the brain)</h3>
+    <p>A custom-configured AI agent running on Anthropic's Claude, with a detailed system prompt covering:</p>
+    <ul>
+      <li>Washington state tax law (B&O, sales tax, UBI registration)</li>
+      <li>Business formation guidance (sole prop vs. LLC vs. S-corp thresholds)</li>
+      <li>Kittitas County-specific knowledge (venues, institutions, professionals, deadlines)</li>
+      <li>A four-layer AI protection framework (Protect, Detect, Fight, Advocate)</li>
+      <li>Pricing methodologies, contract templates, grant writing guidance</li>
+      <li>Appropriate disclaimers and handoff to licensed professionals</li>
+    </ul>
+
+    <h3>2. The Living Curriculum (the knowledge)</h3>
+    <p>Sixteen modules covering every aspect of the business of being an artist, from "Hobby or Business?" to "Protecting Your Work from AI." Each module is a guided conversation — not a recorded video or a PDF. The coach walks you through, asks about your situation, and gives next steps that fit.</p>
+
+    <div class="code-block">
+      <span class="comment">// The 16-module curriculum</span><br>
+      <span class="highlight">01</span> Hobby or Business?<br>
+      <span class="highlight">02</span> Registering in Washington<br>
+      <span class="highlight">03</span> Sole Prop vs. LLC vs. S-corp<br>
+      <span class="highlight">04</span> Pricing Your Work<br>
+      <span class="highlight">05</span> Bookkeeping in 30 Min/Month<br>
+      <span class="highlight">06</span> Federal Taxes for Artists<br>
+      <span class="highlight">07</span> Washington State Taxes<br>
+      <span class="highlight">08</span> Contracts Every Artist Needs<br>
+      <span class="highlight">09</span> Copyright & Trademark<br>
+      <span class="highlight">10</span> Your Portfolio Website<br>
+      <span class="highlight">11</span> Email & Instagram That Sell<br>
+      <span class="highlight">12</span> Galleries & Consignment<br>
+      <span class="highlight">13</span> Selling Online<br>
+      <span class="highlight">14</span> Art Fairs & Festivals<br>
+      <span class="highlight">15</span> Health, Retirement, Longevity<br>
+      <span class="highlight">16</span> Protecting Your Work from AI
+    </div>
+
+    <h3>3. The website (the front door)</h3>
+    <p>A static site on GitHub Pages — nine HTML pages, zero frameworks, zero build tools. Every page is hand-crafted HTML + CSS + vanilla JS, styled in a warm editorial aesthetic with Fraunces serif headings and a terracotta accent palette.</p>
+
+    <div class="stack-grid">
+      <div class="stack-card"><h4>Hosting</h4><p>GitHub Pages — free, auto-deploys on push, SSL included</p></div>
+      <div class="stack-card"><h4>Framework</h4><p>None. Pure HTML/CSS/JS. No React, no build step, no npm.</p></div>
+      <div class="stack-card"><h4>Typography</h4><p>Fraunces (headings), Inter (body), JetBrains Mono (code/tags)</p></div>
+      <div class="stack-card"><h4>Design system</h4><p>CSS custom properties. Cream, terracotta, ink palette. Responsive at 720px breakpoint.</p></div>
+      <div class="stack-card"><h4>Form handling</h4><p>mailto: URI scheme with localStorage backup. No server needed.</p></div>
+      <div class="stack-card"><h4>AI platform</h4><p>Hyperagent — agent config, skills, memories, knowledge base, integrations</p></div>
+    </div>
+
+    <h2>The build timeline</h2>
+    <p>Everything was built through iterative conversation. Each step was a request, a review, and a refinement:</p>
+
+    <div class="build-timeline">
+      <div class="build-step">
+        <div class="step-label">Session 1</div>
+        <h4>System architecture & prompt engineering</h4>
+        <p>Designed the agent's identity, knowledge boundaries, tone, and disclaimer framework. Wrote the 12,500-word system prompt covering taxes, contracts, pricing, local knowledge, and AI protection.</p>
+      </div>
+      <div class="build-step">
+        <div class="step-label">Session 2</div>
+        <h4>Homepage & core pages</h4>
+        <p>Built the main landing page, "How it works" section, chat preview, curriculum grid, and local resources section. Established the visual design system.</p>
+      </div>
+      <div class="build-step">
+        <div class="step-label">Session 3</div>
+        <h4>Board pitch deck & roadmap</h4>
+        <p>Created a full slide presentation for the KCAC board and a multi-phase strategic roadmap showing how the coach improves over time.</p>
+      </div>
+      <div class="build-step">
+        <div class="step-label">Session 4</div>
+        <h4>Living Curriculum modules</h4>
+        <p>Wrote all 16 curriculum modules as detailed conversation scripts. Each module is 2,000–4,000 words of guided dialogue, decision trees, and WA-specific examples.</p>
+      </div>
+      <div class="build-step">
+        <div class="step-label">Session 5</div>
+        <h4>AI Protection Framework</h4>
+        <p>Designed the four-layer shield (Protect, Detect, Fight, Advocate). Added Module 16 to the curriculum. Built the dedicated protect.html page explaining the framework.</p>
+      </div>
+      <div class="build-step">
+        <div class="step-label">Session 6</div>
+        <h4>Arts directory & showcase demo</h4>
+        <p>Built a filterable directory of 50+ Kittitas County arts entries and a self-running 10-section interactive demo with typewriter chat animations.</p>
+      </div>
+      <div class="build-step">
+        <div class="step-label">Session 7</div>
+        <h4>Pilot recruitment & sign-up</h4>
+        <p>Created three versions of a recruitment email, a pilot sign-up form with mailto: submission, and wired all CTAs across the site.</p>
+      </div>
+      <div class="build-step">
+        <div class="step-label">Session 8</div>
+        <h4>E2E testing & polish</h4>
+        <p>Full browser testing at desktop and mobile viewports. Fixed bugs (module names, dead links, missing nav). Added shared navigation, hamburger menu, and cross-page linking.</p>
+      </div>
+    </div>
+
+    <h2>What makes it different</h2>
+
+    <h3>It's agent-first, not content-first</h3>
+    <p>Traditional artist business education creates content: videos, PDFs, webinars, worksheets. This project creates a <em>coach</em>. The content is generated on the fly, tailored to the specific artist's medium, revenue, location, and stage. There's nothing to film, nothing to update manually, nothing that goes stale.</p>
+
+    <h3>It fights for artists, not against them</h3>
+    <p>The biggest trust barrier for AI in the arts world is that most AI tools threaten artists — generating art, scraping training data, competing for commissions. This coach flips that narrative. Module 16 teaches artists to protect their work from AI scraping. The four-layer shield (Protect, Detect, Fight, Advocate) is front and center in the marketing. Leading with protection earns the trust needed to introduce AI as an ally.</p>
+
+    <h3>It knows the county by name</h3>
+    <p>When it tells you about a consignment program, it means Gallery One. When it tells you where to apply for a state grant, it means ArtsWA — with the deadlines specific to our region. When it calculates sales tax, it uses Kittitas County's actual combined rate of ~8.2%. This local grounding is what makes the advice actionable instead of generic.</p>
+
+    <h3>It costs almost nothing to run</h3>
+    <p>Estimated monthly cost: ~$50. No salaries, no office hours, no course platform subscriptions. One well-configured agent serves every artist in the county at near-zero marginal cost. The Commission volunteers ~1 hour/month to refresh seasonal info (grant deadlines, tax changes, fair dates).</p>
+
+    <h2>The AI governance angle</h2>
+    <p>This project is also an experiment in <strong>AI governance for public-interest organizations</strong> (what we call "AiGovOps"). The question isn't just "can AI help artists?" — it's "how should a public arts commission deploy AI responsibly?"</p>
+    <p>Key governance decisions baked into the system:</p>
+    <ul>
+      <li><strong>Transparency:</strong> The coach always identifies as an AI. It never pretends to be human.</li>
+      <li><strong>Scope limits:</strong> It gives general business education, not legal or tax advice. It routes to licensed professionals for anything requiring credentials.</li>
+      <li><strong>Privacy:</strong> Artist conversations are private. No data is sold or used for training.</li>
+      <li><strong>Accountability:</strong> The Arts Commission reviews and maintains the system prompt. Community feedback drives curriculum updates.</li>
+      <li><strong>Artist protection:</strong> The AI actively helps artists fight AI misuse — it doesn't just avoid harm, it advocates for artists' rights.</li>
+    </ul>
+
+    <h2>What's next</h2>
+    <p>The pilot launches summer 2026 with 10–25 Kittitas County artists. If it works — if artists actually use it, if the business outcomes improve, if the trust model holds — the template is replicable. Any rural arts commission with a small budget could deploy a version configured for their county, their tax rules, their venues, their professionals.</p>
+    <p>The code is open. The architecture is documented. The conversation that built it is the proof that you don't need a dev team or a six-figure budget to create something genuinely useful.</p>
+
+    <div class="callout">
+      <p><strong>Want to try it?</strong> <a href="showcase.html">See the interactive demo</a>, <a href="signup.html">join the pilot program</a>, or <a href="mailto:hello@kittitas-coach.org">email us</a> with questions.</p>
+    </div>
+
+  </div>
+
+  <div class="article-footer">
+    <p>Kittitas Artist Business Coach — a project of the Kittitas County Arts Commission</p>
+    <p style="margin-top:8px"><a href="index.html">Home</a> · <a href="showcase.html">Demo</a> · <a href="signup.html">Join the pilot</a> · <a href="https://github.com/bobrapp/ai-artistic-agent-aigovops" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+  </div>
+</article>
+
+</body>
+</html>

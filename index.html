@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎨</text></svg>">
 <title>Kittitas Artist Business Coach — A free resource from the Kittitas County Arts Commission</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,6 +25,7 @@
     --border-soft: rgba(26, 22, 18, 0.06);
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
   html, body { background: var(--paper); color: var(--ink); font-family: 'Inter', -apple-system, sans-serif; line-height: 1.55; -webkit-font-smoothing: antialiased; }
   .serif { font-family: 'Fraunces', Georgia, serif; }
   .mono { font-family: 'JetBrains Mono', monospace; }
@@ -215,6 +217,7 @@
       <a href="roadmap.html">Roadmap</a>
       <a href="pitch.html">Board pitch</a>
       <a href="signup.html">Join the pilot</a>
+      <a href="hibt.html">How I built this</a>
       <a href="showcase.html" style="background:rgba(253,248,240,0.15); padding:0.35rem 0.9rem; border-radius:6px; border:1px solid rgba(253,248,240,0.25);">See it in action →</a>
     </nav>
     <button class="hamburger" onclick="document.querySelector('.mobile-menu').classList.toggle('open')" aria-label="Menu">
@@ -228,6 +231,7 @@
       <a href="roadmap.html">Roadmap</a>
       <a href="pitch.html">Board pitch</a>
       <a href="signup.html">Join the pilot</a>
+      <a href="hibt.html">How I built this</a>
       <a href="showcase.html" class="mm-cta">See it in action →</a>
     </div>
   </header>
@@ -241,6 +245,12 @@
       <a class="btn btn-primary" href="#pilot">Start chatting <span class="arr">→</span></a>
       <a class="btn btn-ghost" href="showcase.html">See the demo <span class="arr">→</span></a>
       <a class="btn btn-ghost" href="#how">How it works</a>
+    </div>
+
+    <div style="margin-top:28px;display:flex;align-items:center;gap:10px;font-size:13px;color:var(--ink-muted);flex-wrap:wrap">
+      <span style="display:inline-flex;align-items:center;gap:6px;padding:6px 12px;background:var(--cream);border-radius:999px;font-weight:500"><span style="color:var(--sage)">🛡️</span> Not an AI art generator</span>
+      <span style="display:inline-flex;align-items:center;gap:6px;padding:6px 12px;background:var(--cream);border-radius:999px;font-weight:500"><span style="color:var(--terracotta)">🔒</span> Your data stays private</span>
+      <span style="display:inline-flex;align-items:center;gap:6px;padding:6px 12px;background:var(--cream);border-radius:999px;font-weight:500"><span style="color:var(--gold)">💡</span> Fights <em>for</em> artists, not against them</span>
     </div>
 
     <div class="hero-image">
@@ -375,7 +385,7 @@
       <div class="module"><div class="mod-num">13</div><h4>Selling online</h4><p>Etsy vs. Shopify vs. your own site, with real numbers.</p></div>
       <div class="module"><div class="mod-num">14</div><h4>Art fairs &amp; festivals</h4><p>Applications, booth costs, tax collection, and what Buskers in the Burg actually nets.</p></div>
       <div class="module"><div class="mod-num">15</div><h4>Health, retirement, longevity</h4><p>Insurance through WA Healthplanfinder, SEP-IRAs, not going broke at 60.</p></div>
-      <div class="module"><div class="mod-num">16</div><h4>Protecting your work from AI</h4><p>Opt-out tools, metadata armor, Glaze &amp; Nightshade, and what the law actually says right now.</p></div>
+      <div class="module" style="background:rgba(196,89,58,0.04)"><div class="mod-num">16 <span style="background:var(--terracotta);color:var(--paper);padding:2px 7px;border-radius:999px;font-size:10px;font-weight:700;letter-spacing:0.05em;margin-left:6px;vertical-align:middle">NEW</span></div><h4>Protecting your work from AI</h4><p>Opt-out tools, metadata armor, Glaze &amp; Nightshade, and what the law actually says right now.</p></div>
     </div>
   </section>
 
@@ -485,11 +495,37 @@
     </div>
   </section>
 
+  <!-- Built with AI teaser -->
+  <section class="section">
+    <div class="section-eyebrow">
+      <span class="num">08</span>
+      <span class="label">Behind the scenes</span>
+      <span class="rule"></span>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center">
+      <div>
+        <h2 style="max-width:18ch">This entire project was built in <em>one conversation.</em></h2>
+        <p class="deck" style="margin-bottom:24px">The AI coach, 16-module curriculum, 9-page website, self-running demo, and pilot recruitment pipeline — all designed, built, tested, and deployed through iterative conversation with an AI agent. No dev team. No six-figure budget.</p>
+        <a href="hibt.html" style="display:inline-flex;align-items:center;gap:8px;font-size:15px;font-weight:600;color:var(--terracotta);text-decoration:none;transition:gap 0.2s" onmouseover="this.style.gap='12px'" onmouseout="this.style.gap='8px'">Read the full story →</a>
+      </div>
+      <div style="background:var(--cream);padding:36px;border-radius:8px">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+          <div><div style="font-family:'Fraunces',serif;font-size:32px;font-weight:500;color:var(--terracotta)">9</div><div style="font-size:12px;color:var(--ink-muted);text-transform:uppercase;letter-spacing:0.06em">Pages built</div></div>
+          <div><div style="font-family:'Fraunces',serif;font-size:32px;font-weight:500;color:var(--terracotta)">16</div><div style="font-size:12px;color:var(--ink-muted);text-transform:uppercase;letter-spacing:0.06em">Modules written</div></div>
+          <div><div style="font-family:'Fraunces',serif;font-size:32px;font-weight:500;color:var(--terracotta)">50+</div><div style="font-size:12px;color:var(--ink-muted);text-transform:uppercase;letter-spacing:0.06em">Directory entries</div></div>
+          <div><div style="font-family:'Fraunces',serif;font-size:32px;font-weight:500;color:var(--terracotta)">$0</div><div style="font-size:12px;color:var(--ink-muted);text-transform:uppercase;letter-spacing:0.06em">Dev cost</div></div>
+        </div>
+        <div style="margin-top:20px;padding-top:16px;border-top:1px solid var(--border-soft);font-size:13px;color:var(--ink-muted)">Built with <a href="https://hyperagent.com" target="_blank" rel="noopener noreferrer" style="color:var(--terracotta);text-decoration:none;font-weight:600">Hyperagent</a> + Claude · Hosted on GitHub Pages</div>
+      </div>
+    </div>
+  </section>
+
   <!-- CTA -->
   <section class="cta" id="pilot">
     <div class="cta-inner">
+      <p style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:#e8a78a;margin-bottom:16px">Summer 2026 · Limited spots</p>
       <h2>We're launching the pilot with <em>10 to 20 Kittitas artists.</em></h2>
-      <p>If you're a working artist, maker, performer, or creative based in Ellensburg, Cle Elum, or anywhere in Kittitas County — and you've ever wished there were someone to ask the business questions — we'd love to have you in the first cohort.</p>
+      <p>If you're a working artist, maker, performer, or creative based in Ellensburg, Cle Elum, or anywhere in Kittitas County — and you've ever wished there were someone to ask the business questions — we'd love to have you in the first cohort. Completely free. 90-day test run. Your feedback shapes the future.</p>
       <div class="hero-actions">
         <a class="btn btn-primary" href="signup.html">Apply for the pilot <span class="arr">→</span></a>
         <a class="btn btn-ghost" href="pitch.html">Read the full proposal</a>
@@ -516,6 +552,7 @@
       <a href="#curriculum">Curriculum</a>
       <a href="directory.html">Arts directory</a>
       <a href="protect.html">AI protection</a>
+      <a href="hibt.html">How I built this</a>
     </div>
     <div class="footer-col">
       <h6>Commission</h6>
@@ -529,11 +566,12 @@
       <a href="mailto:hello@kittitas-coach.org">hello@kittitas-coach.org</a>
       <a href="mailto:hello@kittitas-coach.org?subject=Vetted%20professional%20application">Become a vetted pro</a>
       <a href="mailto:hello@kittitas-coach.org?subject=Topic%20suggestion">Suggest a topic</a>
+      <a href="https://github.com/bobrapp/ai-artistic-agent-aigovops" target="_blank" rel="noopener noreferrer">Open source on GitHub</a>
     </div>
   </div>
   <div class="footer-bottom">
     <span>© 2026 Kittitas County Arts Commission</span>
-    <span class="mono">Concept v0.1 · For review by Dr. Don Solberg</span>
+    <span class="mono">v0.2 · Built with AI · For review by Dr. Don Solberg</span>
   </div>
 </footer>
 </div>
