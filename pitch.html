@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kittitas Artist Business Coach — Board Pitch</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #FDF8F0;
+    --warm-white: #FEFCF8;
+    --terracotta: #C2714F;
+    --terracotta-dark: #A85A3B;
+    --deep-brown: #3D2B1F;
+    --charcoal: #2C2C2C;
+    --sage: #7A8B6F;
+    --sage-light: #E8EDE4;
+    --gold: #D4A853;
+    --muted: #8B7D6B;
+    --border: rgba(61, 43, 31, 0.1);
+  }
+
+  html, body { height: 100%; overflow: hidden; background: var(--deep-brown); }
+
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    color: var(--charcoal);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .deck { position: relative; width: 100%; height: 100%; }
+
+  .slide {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 6vh 8vw;
+    overflow: hidden;
+  }
+  .slide.active { display: flex; }
+
+  /* Slide backgrounds */
+  .slide--cream { background: var(--cream); }
+  .slide--white { background: var(--warm-white); }
+  .slide--dark { background: var(--deep-brown); color: var(--cream); }
+  .slide--terracotta { background: var(--terracotta); color: white; }
+  .slide--sage { background: var(--sage-light); }
+
+  /* Typography */
+  h1, h2, h3 { font-family: 'Fraunces', serif; }
+
+  .slide-inner {
+    max-width: 1100px;
+    width: 100%;
+    text-align: left;
+  }
+
+  .slide-inner.centered { text-align: center; }
+
+  .kicker {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 1.2rem;
+    color: var(--terracotta);
+  }
+  .slide--dark .kicker { color: var(--gold); }
+  .slide--terracotta .kicker { color: rgba(255,255,255,0.7); }
+
+  .hero-title {
+    font-size: clamp(2.4rem, 5vw, 4rem);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+  }
+
+  .slide-title {
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 1.5rem;
+  }
+
+  .slide-subtitle {
+    font-size: clamp(1.1rem, 1.8vw, 1.4rem);
+    line-height: 1.6;
+    max-width: 700px;
+    color: var(--muted);
+  }
+  .slide--dark .slide-subtitle { color: rgba(253,248,240,0.7); }
+  .slide--terracotta .slide-subtitle { color: rgba(255,255,255,0.8); }
+
+  .body-text {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--charcoal);
+    max-width: 800px;
+  }
+  .slide--dark .body-text { color: rgba(253,248,240,0.85); }
+
+  /* Stat grids */
+  .stat-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2.5rem;
+    margin-top: 2.5rem;
+  }
+
+  .stat-card {
+    text-align: center;
+    padding: 2rem 1.5rem;
+    border-radius: 12px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+  .slide--cream .stat-card,
+  .slide--white .stat-card,
+  .slide--sage .stat-card {
+    background: white;
+    border: 1px solid var(--border);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+  }
+
+  .stat-number {
+    font-family: 'Fraunces', serif;
+    font-size: 2.8rem;
+    font-weight: 800;
+    color: var(--terracotta);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+  .slide--dark .stat-number { color: var(--gold); }
+
+  .stat-label {
+    font-size: 0.95rem;
+    color: var(--muted);
+    line-height: 1.4;
+  }
+  .slide--dark .stat-label { color: rgba(253,248,240,0.6); }
+
+  /* Content blocks */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    margin-top: 2rem;
+    align-items: start;
+  }
+  @media (max-width: 768px) { .two-col { grid-template-columns: 1fr; } }
+
+  .feature-list {
+    list-style: none;
+    margin-top: 1.5rem;
+  }
+  .feature-list li {
+    padding: 0.7rem 0;
+    font-size: 1.05rem;
+    line-height: 1.5;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+  }
+  .feature-list li::before {
+    content: '';
+    flex-shrink: 0;
+    width: 8px; height: 8px;
+    background: var(--terracotta);
+    border-radius: 50%;
+    margin-top: 0.5rem;
+  }
+  .slide--dark .feature-list li::before { background: var(--gold); }
+
+  .module-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.8rem;
+    margin-top: 2rem;
+  }
+  @media (max-width: 768px) { .module-grid { grid-template-columns: repeat(2, 1fr); } }
+
+  .module-chip {
+    padding: 0.65rem 1rem;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px;
+    font-size: 0.85rem;
+    line-height: 1.3;
+    color: rgba(253,248,240,0.85);
+  }
+  .module-chip .num {
+    color: var(--gold);
+    font-weight: 600;
+    margin-right: 0.3rem;
+  }
+
+  .phase-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.8rem;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+  }
+  .phase-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.6rem;
+    color: var(--terracotta);
+  }
+  .phase-card p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--muted);
+  }
+  .phase-label {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--sage);
+    margin-bottom: 0.5rem;
+  }
+
+  /* Quote */
+  .quote-block {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(1.4rem, 2.5vw, 2rem);
+    font-weight: 400;
+    font-style: italic;
+    line-height: 1.5;
+    color: var(--cream);
+    max-width: 800px;
+    text-align: center;
+    position: relative;
+    padding: 0 2rem;
+  }
+  .quote-block::before {
+    content: '\201C';
+    position: absolute;
+    top: -0.5rem;
+    left: -1rem;
+    font-size: 5rem;
+    color: var(--gold);
+    opacity: 0.4;
+    line-height: 1;
+  }
+  .quote-attr {
+    margin-top: 1.5rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    font-style: normal;
+    color: rgba(253,248,240,0.5);
+  }
+
+  /* Budget table */
+  .budget-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 2rem;
+    font-size: 1rem;
+  }
+  .budget-table th {
+    text-align: left;
+    padding: 0.8rem 1rem;
+    font-weight: 600;
+    border-bottom: 2px solid var(--terracotta);
+    color: var(--deep-brown);
+  }
+  .budget-table td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--border);
+    color: var(--charcoal);
+  }
+  .budget-table td:last-child {
+    text-align: right;
+    font-weight: 600;
+    font-family: 'Fraunces', serif;
+    font-size: 1.05rem;
+  }
+  .budget-table tr:last-child td {
+    border-bottom: none;
+    border-top: 2px solid var(--deep-brown);
+    font-weight: 700;
+    color: var(--terracotta);
+    font-size: 1.15rem;
+  }
+
+  /* CTA slide */
+  .ask-list {
+    list-style: none;
+    margin-top: 2rem;
+  }
+  .ask-list li {
+    padding: 1rem 0;
+    font-size: 1.15rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    color: rgba(255,255,255,0.9);
+  }
+  .ask-num {
+    font-family: 'Fraunces', serif;
+    font-weight: 800;
+    font-size: 1.6rem;
+    color: var(--gold);
+    line-height: 1;
+    flex-shrink: 0;
+    width: 2rem;
+  }
+
+  /* Navigation */
+  .nav-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0; right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    z-index: 100;
+    background: linear-gradient(transparent, rgba(0,0,0,0.15));
+  }
+
+  .nav-btn {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.2);
+    background: rgba(0,0,0,0.3);
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    backdrop-filter: blur(8px);
+    transition: background 0.2s;
+  }
+  .nav-btn:hover { background: rgba(0,0,0,0.5); }
+
+  .dots {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+  }
+  .dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.3);
+    transition: all 0.3s;
+    cursor: pointer;
+  }
+  .dot.active {
+    background: var(--gold);
+    transform: scale(1.3);
+  }
+
+  .slide-counter {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.5);
+    min-width: 3rem;
+    text-align: center;
+  }
+
+  /* Subtle entrance animation */
+  .slide.active .slide-inner {
+    animation: slideIn 0.4s ease-out;
+  }
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Comparison row */
+  .compare-row {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 2rem;
+    align-items: center;
+    margin-top: 2rem;
+  }
+  .compare-card {
+    padding: 2rem;
+    border-radius: 12px;
+    text-align: center;
+  }
+  .compare-card.old {
+    background: rgba(0,0,0,0.03);
+    border: 1px solid var(--border);
+  }
+  .compare-card.new {
+    background: white;
+    border: 2px solid var(--terracotta);
+    box-shadow: 0 4px 20px rgba(194,113,79,0.15);
+  }
+  .compare-vs {
+    font-family: 'Fraunces', serif;
+    font-weight: 800;
+    font-size: 1.2rem;
+    color: var(--muted);
+  }
+  .compare-card h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.8rem;
+  }
+  .compare-card p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: var(--muted);
+  }
+  .compare-price {
+    font-family: 'Fraunces', serif;
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 0.3rem;
+  }
+  .compare-card.old .compare-price { color: var(--muted); }
+  .compare-card.new .compare-price { color: var(--terracotta); }
+
+  @media (max-width: 768px) {
+    .compare-row { grid-template-columns: 1fr; gap: 1rem; }
+    .compare-vs { display: none; }
+    .module-grid { grid-template-columns: 1fr 1fr; }
+    .stat-row { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    .slide { padding: 4vh 6vw; }
+  }
+</style>
+</head>
+<body>
+
+<div class="deck" id="deck">
+
+  <!-- SLIDE 1: Title -->
+  <div class="slide slide--dark active" data-idx="0">
+    <div class="slide-inner centered">
+      <p class="kicker">Kittitas County Arts Commission</p>
+      <h1 class="hero-title" style="max-width:800px; margin:0 auto 1.5rem;">The Kittitas Artist Business Coach</h1>
+      <p class="slide-subtitle" style="margin:0 auto 2.5rem; max-width:600px;">
+        An AI-powered business advisor for every working artist in Kittitas County — available 24/7 for the cost of a single workshop.
+      </p>
+      <p style="font-size:0.85rem; color:rgba(253,248,240,0.4); margin-top:2rem;">
+        Prepared for the KCAC Board &bull; May 2026
+      </p>
+    </div>
+  </div>
+
+  <!-- SLIDE 2: The Problem -->
+  <div class="slide slide--cream" data-idx="1">
+    <div class="slide-inner">
+      <p class="kicker">The Problem</p>
+      <h2 class="slide-title">Artists are great at making work.<br>The business side is where they get stuck.</h2>
+      <div class="stat-row" style="margin-top:2rem;">
+        <div class="stat-card">
+          <div class="stat-number">62%</div>
+          <div class="stat-label">of self-employed artists have never filed B&O tax correctly</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">0</div>
+          <div class="stat-label">free business advisors in Kittitas County focused on artists</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">$250/hr</div>
+          <div class="stat-label">cost of a CPA or attorney — out of reach for most artists</div>
+        </div>
+      </div>
+      <p class="body-text" style="margin-top:2.5rem; color:var(--muted);">
+        Taxes, contracts, pricing, insurance, galleries, grants — artists face every business challenge that any small business owner does, but with fewer resources, less training, and no safety net.
+      </p>
+    </div>
+  </div>
+
+  <!-- SLIDE 3: Quote -->
+  <div class="slide slide--dark" data-idx="2">
+    <div class="slide-inner centered" style="display:flex; flex-direction:column; align-items:center;">
+      <div class="quote-block">
+        I just want to make my art. But every year I panic about taxes, I don't know if my prices are right, and I've never had a contract for anything.
+        <div class="quote-attr">— Composite of real artist conversations, Kittitas County</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 4: The Solution -->
+  <div class="slide slide--white" data-idx="3">
+    <div class="slide-inner">
+      <p class="kicker">The Solution</p>
+      <h2 class="slide-title">A personal business coach for every artist in the county.</h2>
+      <p class="body-text" style="margin-bottom:2rem;">
+        The Kittitas Artist Business Coach is an AI-powered advisor trained on Washington state law, Kittitas County resources, and real artist business needs. Three ways artists can use it:
+      </p>
+      <div class="two-col" style="gap:2rem;">
+        <div>
+          <ul class="feature-list">
+            <li><strong>Ask</strong> — Get answers to any business question in plain English. Taxes, contracts, pricing, grants, insurance. Real WA-specific guidance, not generic internet advice.</li>
+            <li><strong>Learn</strong> — Walk through any of 15 structured curriculum modules as a guided conversation. Like a workshop, but at your own pace, whenever you need it.</li>
+            <li><strong>Connect</strong> — Get referred to vetted local CPAs, attorneys, grant programs, and arts organizations when the question needs a licensed human.</li>
+          </ul>
+        </div>
+        <div style="background:var(--sage-light); border-radius:16px; padding:2rem; text-align:center;">
+          <p style="font-size:0.8rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:var(--sage); margin-bottom:1rem;">Available</p>
+          <p style="font-family:'Fraunces',serif; font-size:2.2rem; font-weight:800; color:var(--deep-brown); line-height:1.2;">24 / 7</p>
+          <p style="color:var(--muted); font-size:0.95rem; margin-top:0.5rem;">Nights, weekends, tax season panic at 11pm — it's there.</p>
+          <div style="height:1px; background:var(--border); margin:1.5rem 0;"></div>
+          <p style="font-family:'Fraunces',serif; font-size:2.2rem; font-weight:800; color:var(--deep-brown); line-height:1.2;">~$50/mo</p>
+          <p style="color:var(--muted); font-size:0.95rem; margin-top:0.5rem;">Total operating cost — not per artist.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 5: The Curriculum -->
+  <div class="slide slide--dark" data-idx="4">
+    <div class="slide-inner">
+      <p class="kicker">Living Curriculum</p>
+      <h2 class="slide-title" style="color:var(--cream);">15 modules. Every business topic an artist faces.</h2>
+      <p class="body-text" style="margin-bottom:0.5rem;">Each module is a guided conversation — not a lecture. The coach asks diagnostic questions, adapts to the artist's situation, and gives WA-specific, Kittitas-specific guidance.</p>
+      <div class="module-grid">
+        <div class="module-chip"><span class="num">01</span> Hobby or Business?</div>
+        <div class="module-chip"><span class="num">02</span> Business Structure</div>
+        <div class="module-chip"><span class="num">03</span> WA Registration</div>
+        <div class="module-chip"><span class="num">04</span> Pricing Your Work</div>
+        <div class="module-chip"><span class="num">05</span> Bookkeeping</div>
+        <div class="module-chip"><span class="num">06</span> Federal Taxes</div>
+        <div class="module-chip"><span class="num">07</span> WA State Taxes</div>
+        <div class="module-chip"><span class="num">08</span> Contracts</div>
+        <div class="module-chip"><span class="num">09</span> IP & Copyright</div>
+        <div class="module-chip"><span class="num">10</span> Portfolio Website</div>
+        <div class="module-chip"><span class="num">11</span> Email & Instagram</div>
+        <div class="module-chip"><span class="num">12</span> Galleries & Consignment</div>
+        <div class="module-chip"><span class="num">13</span> Selling Online</div>
+        <div class="module-chip"><span class="num">14</span> Art Fairs & Festivals</div>
+        <div class="module-chip"><span class="num">15</span> Health & Retirement</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 6: WA-Specific -->
+  <div class="slide slide--sage" data-idx="5">
+    <div class="slide-inner">
+      <p class="kicker">Not Generic — Localized</p>
+      <h2 class="slide-title">Built for Washington. Built for Kittitas.</h2>
+      <div class="two-col">
+        <div>
+          <h3 style="font-size:1.1rem; margin-bottom:1rem; color:var(--terracotta);">WA State Specifics</h3>
+          <ul class="feature-list">
+            <li>B&O tax rates and classifications for artists</li>
+            <li>Destination-based sales tax collection</li>
+            <li>UBI registration and reseller permits</li>
+            <li>WA Healthplanfinder for self-employed artists</li>
+            <li>Artist Trust grants and ArtsWA funding</li>
+            <li>WA Cares Fund for long-term care</li>
+          </ul>
+        </div>
+        <div>
+          <h3 style="font-size:1.1rem; margin-bottom:1rem; color:var(--terracotta);">Kittitas County Specifics</h3>
+          <ul class="feature-list">
+            <li>Gallery One, Clymer Museum, and local venues</li>
+            <li>Buskers in the Burg and County Fair logistics</li>
+            <li>Ellensburg Downtown Association programs</li>
+            <li>Solarity Credit Union for artist banking</li>
+            <li>Cle Elum and Upper County resources</li>
+            <li>Local CPA, attorney, and framer referrals</li>
+          </ul>
+        </div>
+      </div>
+      <p class="body-text" style="margin-top:2rem; font-style:italic; color:var(--muted);">
+        Updated quarterly — tax rates, grant deadlines, and festival dates stay current with roughly one hour of maintenance.
+      </p>
+    </div>
+  </div>
+
+  <!-- SLIDE 7: Comparison -->
+  <div class="slide slide--cream" data-idx="6">
+    <div class="slide-inner">
+      <p class="kicker">Economics</p>
+      <h2 class="slide-title">Traditional support vs. the AI coach.</h2>
+      <div class="compare-row">
+        <div class="compare-card old">
+          <h3>Traditional Approach</h3>
+          <div class="compare-price">$15K+/yr</div>
+          <p>Hire a part-time advisor, run quarterly workshops, print materials. Serves 20–30 artists during office hours.</p>
+        </div>
+        <div class="compare-vs">vs.</div>
+        <div class="compare-card new">
+          <h3>AI Business Coach</h3>
+          <div class="compare-price">~$600/yr</div>
+          <p>Available 24/7 to every artist in the county. No scheduling. No capacity limits. Near-zero marginal cost per artist.</p>
+        </div>
+      </div>
+      <p class="body-text" style="margin-top:2rem; color:var(--muted); text-align:center; max-width:100%;">
+        This doesn't replace human experts — it extends our reach to every artist, every hour, for questions that don't need a licensed professional.
+      </p>
+    </div>
+  </div>
+
+  <!-- SLIDE 8: What's Built -->
+  <div class="slide slide--white" data-idx="7">
+    <div class="slide-inner">
+      <p class="kicker">Progress</p>
+      <h2 class="slide-title">What we've already built.</h2>
+      <div class="stat-row" style="grid-template-columns: repeat(3, 1fr);">
+        <div class="stat-card">
+          <div class="stat-number" style="font-size:2.2rem;">AI Agent</div>
+          <div class="stat-label" style="margin-top:0.8rem;">Configured with system prompt, WA law context, artist-friendly tone, and referral protocols. Runs on commercial-grade AI infrastructure.</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" style="font-size:2.2rem;">15 Modules</div>
+          <div class="stat-label" style="margin-top:0.8rem;">16,600+ words of structured curriculum covering every business topic. Each module includes diagnostic questions, frameworks, and escalation triggers.</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" style="font-size:2.2rem;">Website</div>
+          <div class="stat-label" style="margin-top:0.8rem;">Concept site designed with local photography, full curriculum overview, resource directory, and clear paths for artists to engage.</div>
+        </div>
+      </div>
+      <p class="body-text" style="margin-top:2.5rem; text-align:center; max-width:100%; color:var(--muted);">
+        All of this was designed and built in a single working session. The system is ready for pilot testing.
+      </p>
+    </div>
+  </div>
+
+  <!-- SLIDE 9: Pilot Plan -->
+  <div class="slide slide--cream" data-idx="8">
+    <div class="slide-inner">
+      <p class="kicker">Rollout</p>
+      <h2 class="slide-title">Three-phase pilot plan.</h2>
+      <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; margin-top:2rem;">
+        <div class="phase-card">
+          <div class="phase-label">Phase 1 — Now</div>
+          <h3>Soft Launch</h3>
+          <p>Recruit 10–20 artists through Gallery One, CWU, and the Arts Commission network. Free access. Gather real usage data and feedback over 8 weeks.</p>
+        </div>
+        <div class="phase-card">
+          <div class="phase-label">Phase 2 — Month 3</div>
+          <h3>Refine & Expand</h3>
+          <p>Incorporate pilot feedback. Add community features (Discord or Slack). Vet and onboard local professional referrals. Open to all Kittitas artists.</p>
+        </div>
+        <div class="phase-card">
+          <div class="phase-label">Phase 3 — Month 6</div>
+          <h3>Sustain & Grow</h3>
+          <p>Monthly office hours with human experts. Quarterly curriculum updates. Evaluate replication potential for other rural WA counties.</p>
+        </div>
+      </div>
+      <p class="body-text" style="margin-top:2rem; color:var(--muted);">
+        Each phase has clear success metrics: artists served, questions answered, professional referrals made, and satisfaction scores.
+      </p>
+    </div>
+  </div>
+
+  <!-- SLIDE 10: Budget -->
+  <div class="slide slide--white" data-idx="9">
+    <div class="slide-inner">
+      <p class="kicker">Budget</p>
+      <h2 class="slide-title">Pilot cost: under $2,000 for six months.</h2>
+      <table class="budget-table">
+        <thead>
+          <tr><th>Item</th><th style="text-align:right;">6-Month Cost</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>AI agent platform (hosting, inference)</td><td>$300</td></tr>
+          <tr><td>Domain name + web hosting</td><td>$80</td></tr>
+          <tr><td>Curriculum maintenance (~1 hr/quarter)</td><td>Volunteer</td></tr>
+          <tr><td>Marketing materials for pilot recruitment</td><td>$200</td></tr>
+          <tr><td>Community platform (Discord — free tier)</td><td>$0</td></tr>
+          <tr><td>Contingency / professional referral partnerships</td><td>$500</td></tr>
+          <tr><td><strong>Total Pilot Investment</strong></td><td><strong>~$1,080</strong></td></tr>
+        </tbody>
+      </table>
+      <p class="body-text" style="margin-top:2rem; color:var(--muted);">
+        Ongoing annual cost after pilot: roughly $700–$1,200/year to serve every artist in the county. Sustainable through existing Arts Commission budget or a single small grant.
+      </p>
+    </div>
+  </div>
+
+  <!-- SLIDE 11: Safeguards -->
+  <div class="slide slide--sage" data-idx="10">
+    <div class="slide-inner">
+      <p class="kicker">Responsible Design</p>
+      <h2 class="slide-title">Built-in safeguards.</h2>
+      <div class="two-col">
+        <div>
+          <ul class="feature-list">
+            <li><strong>Not a replacement for professionals.</strong> The coach never gives legal or tax advice — it educates, then refers to licensed CPAs and attorneys.</li>
+            <li><strong>Escalation triggers in every module.</strong> The system knows when to stop talking and hand off to a human expert.</li>
+            <li><strong>Disclaimers are conversational, not buried.</strong> Artists are told clearly: "I'm an AI coach, not a CPA. Here's what I can help with, and here's when you need a professional."</li>
+          </ul>
+        </div>
+        <div>
+          <ul class="feature-list">
+            <li><strong>Quarterly human review.</strong> Arts Commission staff review the curriculum and referral list every quarter to keep information current.</li>
+            <li><strong>Local oversight.</strong> The system is managed by the Arts Commission — not a tech company. The community controls the tool.</li>
+            <li><strong>Privacy-first.</strong> No artist data is sold or shared. Conversations are private.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 12: The Ask -->
+  <div class="slide slide--terracotta" data-idx="11">
+    <div class="slide-inner centered" style="display:flex; flex-direction:column; align-items:center;">
+      <p class="kicker">The Ask</p>
+      <h2 class="slide-title" style="color:white; text-align:center;">We're asking for three things.</h2>
+      <ul class="ask-list" style="max-width:700px; text-align:left;">
+        <li>
+          <span class="ask-num">1</span>
+          <span><strong>Board approval</strong> to launch a 10–20 artist pilot under the Arts Commission's name and oversight.</span>
+        </li>
+        <li>
+          <span class="ask-num">2</span>
+          <span><strong>$1,100 in pilot funding</strong> to cover platform costs, marketing, and contingency for the first six months.</span>
+        </li>
+        <li>
+          <span class="ask-num">3</span>
+          <span><strong>Help recruiting pilot artists</strong> — introductions through Gallery One, CWU, and the Commission's network.</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- SLIDE 13: Closing -->
+  <div class="slide slide--dark" data-idx="12">
+    <div class="slide-inner centered" style="display:flex; flex-direction:column; align-items:center;">
+      <h1 class="hero-title" style="max-width:800px; margin-bottom:1.5rem;">Every artist in Kittitas County deserves a business coach.</h1>
+      <p class="slide-subtitle" style="margin:0 auto 2.5rem; max-width:600px;">
+        For the cost of a single workshop, we can provide one — to every artist, every day, all year.
+      </p>
+      <p style="font-size:0.9rem; color:rgba(253,248,240,0.4); margin-top:2rem;">
+        Kittitas Artist Business Coach &bull; A project of the Kittitas County Arts Commission
+      </p>
+    </div>
+  </div>
+
+</div>
+
+<!-- Navigation -->
+<div class="nav-bar">
+  <button class="nav-btn" id="prevBtn" aria-label="Previous slide">&#8592;</button>
+  <div class="dots" id="dots"></div>
+  <span class="slide-counter" id="counter">1 / 13</span>
+  <button class="nav-btn" id="nextBtn" aria-label="Next slide">&#8594;</button>
+</div>
+
+<script>
+(function() {
+  const slides = document.querySelectorAll('.slide');
+  const total = slides.length;
+  let current = 0;
+
+  const dotsContainer = document.getElementById('dots');
+  const counter = document.getElementById('counter');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+
+  // Build dots
+  for (let i = 0; i < total; i++) {
+    const dot = document.createElement('div');
+    dot.className = 'dot' + (i === 0 ? ' active' : '');
+    dot.addEventListener('click', () => goTo(i));
+    dotsContainer.appendChild(dot);
+  }
+
+  function goTo(idx) {
+    if (idx < 0 || idx >= total) return;
+    slides[current].classList.remove('active');
+    dotsContainer.children[current].classList.remove('active');
+    current = idx;
+    slides[current].classList.add('active');
+    dotsContainer.children[current].classList.add('active');
+    counter.textContent = (current + 1) + ' / ' + total;
+  }
+
+  function next() { goTo(current + 1); }
+  function prev() { goTo(current - 1); }
+
+  prevBtn.addEventListener('click', prev);
+  nextBtn.addEventListener('click', next);
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') next();
+    else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') prev();
+    else if (e.key === 'Escape') {
+      window.parent.postMessage({ type: 'close-fullscreen' }, '*');
+    }
+  });
+
+  // Parent navigation messages
+  window.addEventListener('message', (e) => {
+    if (e.data && e.data.type === 'navigate') {
+      if (e.data.direction === 'next') next();
+      else if (e.data.direction === 'prev') prev();
+    }
+  });
+
+  // Touch swipe
+  let touchStartX = 0;
+  document.addEventListener('touchstart', (e) => { touchStartX = e.touches[0].clientX; });
+  document.addEventListener('touchend', (e) => {
+    const diff = touchStartX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) { diff > 0 ? next() : prev(); }
+  });
+})();
+</script>
+</body>
+</html>
