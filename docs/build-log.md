@@ -212,3 +212,38 @@ The parallel "YES — [verb] AI" structure is more memorable, more confident, an
 - v9.3 is the current brand state for the AI Mavens system.
 - The mantra evolved across the session: GET/STAY/RECOVER framing (v8-v9) → Micro-adjust replaces Disaster Averted (v9) → simplified to YES — Ship/Steady/Recover AI parallel structure (v9.3).
 - All three pieces now read the same mantra, making the brand voice unmistakable on every surface.
+
+---
+
+## Session: AI Mavens v9.3 Mockups — Conference Tee + Laptop Sticker + Business Card
+
+**Timestamp (UTC):** 2026-05-11T15:38:59Z
+**User:** bobrapp
+**Model:** Claude Opus 4.7 (orchestrator) + Gemini Nano Banana 2 (image generation, with v9.3 source designs as input images)
+**Platform:** Hyperagent
+
+### Prompt Summary
+Generate three realistic product mockups showing the v9.3 brand pieces in real-world contexts. Each mockup used the corresponding v9.3 design as an inputImage so the printed/applied artwork is faithfully preserved.
+
+### Result Summary
+
+**T-shirt mockup — Conference setting:**
+A documentary-style portrait of a person at an AI/tech conference wearing the v9.3 t-shirt. Heather grey/charcoal tee, the v9.3 graphic crisp on the chest, conference lanyard visible, blurred attendees and stage signage in the background. Editorial photography aesthetic.
+
+**Sticker mockup — MacBook lid:**
+A documentary-style shot of the v9.3 die-cut sticker applied to a silver/space-grey MacBook Pro lid. Surrounded by a curated set of developer stickers (GitHub, Vercel, Stripe, Linear) for context. Warm wooden coffee shop table, ceramic coffee cup at the edge of frame, morning light raking across the lid.
+
+**Logo mockup — Business card:**
+A documentary-style shot of the v9.3 logo printed on a premium business card. Two cards on a light marble surface, soft top-light. Below the logo on the card: "AI MAVENS COLLECTIVE" name line and "aigovops.foundation" contact line. Moo/VistaPrint premium quality aesthetic.
+
+### Assets Generated (committed to `assets/ai-mavens/v9/mockups/`)
+| Asset | Path |
+|-------|------|
+| T-shirt conference mockup | `assets/ai-mavens/v9/mockups/ai-mavens-tshirt-conference-mockup.png` |
+| Sticker MacBook mockup | `assets/ai-mavens/v9/mockups/ai-mavens-sticker-macbook-mockup.png` |
+| Logo business card mockup | `assets/ai-mavens/v9/mockups/ai-mavens-logo-business-card-mockup.png` |
+
+### Notes
+- All three mockups used the v9.3 source designs as `inputImages` to preserve the artwork faithfully (printed t-shirt graphic, applied sticker, printed card logo).
+- Documentary/editorial photography aesthetic across all three for board-presentation grade. Shallow depth of field with the artwork in crisp focus.
+- These mockups are ready for inclusion in a brand sheet webpage or pitch deck for the AIgovops Foundation board.
