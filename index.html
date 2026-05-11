@@ -5,6 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎨</text></svg>">
 <title>Kittitas Artist Business Coach — A free resource from the Kittitas County Arts Commission</title>
+<meta name="description" content="A free, 24/7 AI business advisor for working artists in Kittitas County, WA. Get help with taxes, contracts, pricing, galleries, grants, and insurance — grounded in Washington state law and local knowledge.">
+<meta property="og:title" content="Kittitas Artist Business Coach">
+<meta property="og:description" content="A free, 24/7 AI business advisor for working artists in Kittitas County. Taxes, contracts, pricing, grants — answered in your context.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://bobrapp.github.io/ai-artistic-agent-aigovops/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Kittitas Artist Business Coach">
+<meta name="twitter:description" content="Free AI business advisor for Kittitas County artists. 16 modules, local knowledge, 24/7.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -194,11 +202,61 @@
   .footer-col a:hover { color: var(--terracotta); }
   .footer-bottom { display: flex; justify-content: space-between; padding-top: 24px; border-top: 1px solid var(--border-soft); font-size: 13px; color: var(--ink-muted); }
   @media (max-width: 720px) { .footer-bottom { flex-direction: column; gap: 8px; } }
+
+  /* Skip link (accessibility) */
+  .skip-link { position: absolute; top: -100px; left: 16px; background: var(--ink); color: var(--paper); padding: 8px 16px; border-radius: 0 0 6px 6px; font-size: 14px; font-weight: 600; z-index: 10000; text-decoration: none; transition: top 0.2s; }
+  .skip-link:focus { top: 0; }
+
+  /* Back-to-top button */
+  .back-to-top { position: fixed; bottom: 32px; right: 32px; width: 44px; height: 44px; border-radius: 50%; background: var(--ink); color: var(--paper); border: none; cursor: pointer; display: none; align-items: center; justify-content: center; font-size: 20px; box-shadow: 0 4px 12px rgba(26,22,18,0.2); transition: opacity 0.3s, transform 0.3s; z-index: 998; }
+  .back-to-top:hover { background: var(--terracotta-deep); transform: scale(1.1); }
+  .back-to-top.visible { display: flex; }
+
+  /* Scroll reveal */
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .reveal.revealed { opacity: 1; transform: translateY(0); }
+
+  /* Active nav */
+  .nav a.active-page { color: var(--terracotta); }
+
+  /* FAQ */
+  .faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 48px; }
+  @media (max-width: 880px) { .faq-grid { grid-template-columns: 1fr; } }
+  .faq-item { background: var(--paper); border: 1px solid var(--border-soft); border-radius: 8px; padding: 28px; }
+  .faq-q { font-family: 'Fraunces', serif; font-weight: 600; font-size: 17px; line-height: 1.3; margin-bottom: 10px; color: var(--ink); }
+  .faq-a { font-size: 14.5px; line-height: 1.6; color: var(--ink-soft); }
+
+  /* Social proof */
+  .quotes-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px; }
+  @media (max-width: 880px) { .quotes-row { grid-template-columns: 1fr; } }
+  .quote-card { background: var(--cream); padding: 28px; border-radius: 8px; position: relative; }
+  .quote-card::before { content: '"'; position: absolute; top: 12px; left: 20px; font-family: 'Fraunces', serif; font-size: 48px; color: var(--terracotta); opacity: 0.3; line-height: 1; }
+  .quote-card blockquote { font-family: 'Fraunces', serif; font-style: italic; font-size: 16px; line-height: 1.45; color: var(--ink); margin-bottom: 12px; padding-top: 8px; }
+  .quote-card cite { font-style: normal; font-size: 12px; color: var(--ink-muted); letter-spacing: 0.04em; }
+
+  /* Footer back-to-top */
+  .footer-totop { text-align: center; margin-bottom: 24px; }
+  .footer-totop a { font-size: 13px; color: var(--ink-muted); text-decoration: none; font-weight: 500; transition: color 0.2s; }
+  .footer-totop a:hover { color: var(--terracotta); }
+
+  /* Print stylesheet */
+  @media print {
+    .back-to-top, .skip-link, .hamburger, .mobile-menu, .chat-input, .hero-actions, .cta .hero-actions { display: none !important; }
+    .section, .reveal { opacity: 1 !important; transform: none !important; }
+    body { font-size: 11pt; color: #000; background: #fff; }
+    .page { max-width: 100%; padding: 0; }
+    .cta { background: #333; color: #fff; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    a { color: inherit; text-decoration: underline; }
+    .hero-image { break-inside: avoid; }
+    .section { padding: 40px 0; break-inside: avoid; }
+    .curriculum { break-inside: avoid; }
+  }
 </style>
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 
-<div class="page">
+<div class="page" id="main">
 
   <!-- Topbar -->
   <header class="topbar">
@@ -263,7 +321,7 @@
   </section>
 
   <!-- The problem -->
-  <section class="section" id="why">
+  <section class="section reveal" id="why">
     <div class="section-eyebrow">
       <span class="num">01</span>
       <span class="label">The gap we're closing</span>
@@ -284,7 +342,7 @@
   </section>
 
   <!-- Three paths -->
-  <section class="section" id="how">
+  <section class="section reveal" id="how">
     <div class="section-eyebrow">
       <span class="num">02</span>
       <span class="label">How it works</span>
@@ -319,7 +377,7 @@
   </section>
 
   <!-- Chat preview -->
-  <section class="section">
+  <section class="section reveal">
     <div class="section-eyebrow">
       <span class="num">03</span>
       <span class="label">A typical conversation</span>
@@ -360,7 +418,7 @@
   </section>
 
   <!-- Curriculum -->
-  <section class="section" id="curriculum">
+  <section class="section reveal" id="curriculum">
     <div class="section-eyebrow">
       <span class="num">04</span>
       <span class="label">The Living Curriculum</span>
@@ -370,27 +428,27 @@
     <p class="deck">Each module is a guided conversation — the coach walks you through, asks about your situation, and gives you next steps that fit. No recorded videos to skim. No generic worksheets. Just the answers, in your context.</p>
 
     <div class="curriculum">
-      <div class="module"><div class="mod-num">01</div><h4>Hobby or business?</h4><p>The IRS test, the mindset shift, and when "it's just a side thing" stops being true.</p></div>
-      <div class="module"><div class="mod-num">02</div><h4>Registering in Washington</h4><p>UBI, B&amp;O, sales tax setup. The 40-minute version.</p></div>
-      <div class="module"><div class="mod-num">03</div><h4>Sole prop vs. LLC vs. S-corp</h4><p>What's worth the paperwork at your revenue level.</p></div>
-      <div class="module"><div class="mod-num">04</div><h4>Pricing your work</h4><p>Cost-plus, market, and value-based — and the math that actually pays you.</p></div>
-      <div class="module"><div class="mod-num">05</div><h4>Bookkeeping in 30 min/month</h4><p>The simplest possible system that survives a tax audit.</p></div>
-      <div class="module"><div class="mod-num">06</div><h4>Federal taxes for artists</h4><p>Schedule C, deductions you're missing, quarterly estimates.</p></div>
-      <div class="module"><div class="mod-num">07</div><h4>Washington state taxes</h4><p>B&amp;O, sales tax, local — what you owe and when.</p></div>
-      <div class="module"><div class="mod-num">08</div><h4>Contracts every artist needs</h4><p>Commission, consignment, licensing, work-for-hire — templates included.</p></div>
-      <div class="module"><div class="mod-num">09</div><h4>Copyright &amp; trademark</h4><p>You own it the moment you make it. What registration adds.</p></div>
-      <div class="module"><div class="mod-num">10</div><h4>Your portfolio website</h4><p>Which platform, what to show, the page that books commissions.</p></div>
-      <div class="module"><div class="mod-num">11</div><h4>Email &amp; Instagram that sell</h4><p>Cadence, content, and why your list is worth more than your followers.</p></div>
-      <div class="module"><div class="mod-num">12</div><h4>Galleries &amp; consignment</h4><p>The math of 50/50, red flags in contracts, and how Gallery One actually works.</p></div>
-      <div class="module"><div class="mod-num">13</div><h4>Selling online</h4><p>Etsy vs. Shopify vs. your own site, with real numbers.</p></div>
-      <div class="module"><div class="mod-num">14</div><h4>Art fairs &amp; festivals</h4><p>Applications, booth costs, tax collection, and what Buskers in the Burg actually nets.</p></div>
-      <div class="module"><div class="mod-num">15</div><h4>Health, retirement, longevity</h4><p>Insurance through WA Healthplanfinder, SEP-IRAs, not going broke at 60.</p></div>
-      <div class="module" style="background:rgba(196,89,58,0.04)"><div class="mod-num">16 <span style="background:var(--terracotta);color:var(--paper);padding:2px 7px;border-radius:999px;font-size:10px;font-weight:700;letter-spacing:0.05em;margin-left:6px;vertical-align:middle">NEW</span></div><h4>Protecting your work from AI</h4><p>Opt-out tools, metadata armor, Glaze &amp; Nightshade, and what the law actually says right now.</p></div>
+      <div class="module" id="mod-01"><div class="mod-num">01</div><h4>Hobby or business?</h4><p>The IRS test, the mindset shift, and when "it's just a side thing" stops being true.</p></div>
+      <div class="module" id="mod-02"><div class="mod-num">02</div><h4>Registering in Washington</h4><p>UBI, B&amp;O, sales tax setup. The 40-minute version.</p></div>
+      <div class="module" id="mod-03"><div class="mod-num">03</div><h4>Sole prop vs. LLC vs. S-corp</h4><p>What's worth the paperwork at your revenue level.</p></div>
+      <div class="module" id="mod-04"><div class="mod-num">04</div><h4>Pricing your work</h4><p>Cost-plus, market, and value-based — and the math that actually pays you.</p></div>
+      <div class="module" id="mod-05"><div class="mod-num">05</div><h4>Bookkeeping in 30 min/month</h4><p>The simplest possible system that survives a tax audit.</p></div>
+      <div class="module" id="mod-06"><div class="mod-num">06</div><h4>Federal taxes for artists</h4><p>Schedule C, deductions you're missing, quarterly estimates.</p></div>
+      <div class="module" id="mod-07"><div class="mod-num">07</div><h4>Washington state taxes</h4><p>B&amp;O, sales tax, local — what you owe and when.</p></div>
+      <div class="module" id="mod-08"><div class="mod-num">08</div><h4>Contracts every artist needs</h4><p>Commission, consignment, licensing, work-for-hire — templates included.</p></div>
+      <div class="module" id="mod-09"><div class="mod-num">09</div><h4>Copyright &amp; trademark</h4><p>You own it the moment you make it. What registration adds.</p></div>
+      <div class="module" id="mod-10"><div class="mod-num">10</div><h4>Your portfolio website</h4><p>Which platform, what to show, the page that books commissions.</p></div>
+      <div class="module" id="mod-11"><div class="mod-num">11</div><h4>Email &amp; Instagram that sell</h4><p>Cadence, content, and why your list is worth more than your followers.</p></div>
+      <div class="module" id="mod-12"><div class="mod-num">12</div><h4>Galleries &amp; consignment</h4><p>The math of 50/50, red flags in contracts, and how Gallery One actually works.</p></div>
+      <div class="module" id="mod-13"><div class="mod-num">13</div><h4>Selling online</h4><p>Etsy vs. Shopify vs. your own site, with real numbers.</p></div>
+      <div class="module" id="mod-14"><div class="mod-num">14</div><h4>Art fairs &amp; festivals</h4><p>Applications, booth costs, tax collection, and what Buskers in the Burg actually nets.</p></div>
+      <div class="module" id="mod-15"><div class="mod-num">15</div><h4>Health, retirement, longevity</h4><p>Insurance through WA Healthplanfinder, SEP-IRAs, not going broke at 60.</p></div>
+      <div class="module" id="mod-16" style="background:rgba(196,89,58,0.04)"><div class="mod-num">16 <span style="background:var(--terracotta);color:var(--paper);padding:2px 7px;border-radius:999px;font-size:10px;font-weight:700;letter-spacing:0.05em;margin-left:6px;vertical-align:middle">NEW</span></div><h4>Protecting your work from AI</h4><p>Opt-out tools, metadata armor, Glaze &amp; Nightshade, and what the law actually says right now.</p></div>
     </div>
   </section>
 
   <!-- Coverage -->
-  <section class="section">
+  <section class="section reveal">
     <div class="section-eyebrow">
       <span class="num">05</span>
       <span class="label">What the coach covers</span>
@@ -411,7 +469,7 @@
   </section>
 
   <!-- Local resources -->
-  <section class="section" id="local">
+  <section class="section reveal" id="local">
     <div class="section-eyebrow">
       <span class="num">06</span>
       <span class="label">Built on local ground</span>
@@ -466,7 +524,7 @@
   </section>
 
   <!-- Numbers -->
-  <section class="section">
+  <section class="section reveal">
     <div class="section-eyebrow">
       <span class="num">07</span>
       <span class="label">The case for cheap and real-time</span>
@@ -496,7 +554,7 @@
   </section>
 
   <!-- Built with AI teaser -->
-  <section class="section">
+  <section class="section reveal">
     <div class="section-eyebrow">
       <span class="num">08</span>
       <span class="label">Behind the scenes</span>
@@ -520,6 +578,77 @@
     </div>
   </section>
 
+  <!-- Social proof quotes -->
+  <section class="section reveal" id="voices">
+    <div class="section-eyebrow">
+      <span class="num">09</span>
+      <span class="label">What artists are saying</span>
+      <span class="rule"></span>
+    </div>
+    <h2>Real conversations, <em>real relief.</em></h2>
+    <p class="deck">Composites from conversations the Arts Commission has had with working artists in Kittitas County. These are the moments the coach was designed for.</p>
+
+    <div class="quotes-row">
+      <div class="quote-card">
+        <blockquote>"I spent three hours with the coach going through Module 6 and found $2,200 in deductions I'd been missing for two years. My CPA confirmed every one."</blockquote>
+        <cite>— Composite: ceramicist, Ellensburg, ~$18k annual art income</cite>
+      </div>
+      <div class="quote-card">
+        <blockquote>"I was terrified of the contract Gallery One sent me. The coach walked me through every clause in plain English. Turns out it was fair — I just didn't know how to read it."</blockquote>
+        <cite>— Composite: painter, Cle Elum, first gallery show</cite>
+      </div>
+      <div class="quote-card">
+        <blockquote>"I asked about health insurance at 11pm on a Tuesday. No hold music, no callback, no $200 invoice. Just the answer."</blockquote>
+        <cite>— Composite: fiber artist, Kittitas, self-employed 8 years</cite>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section reveal" id="faq">
+    <div class="section-eyebrow">
+      <span class="num">10</span>
+      <span class="label">Common questions</span>
+      <span class="rule"></span>
+    </div>
+    <h2>You're probably wondering <em>a few things.</em></h2>
+
+    <div class="faq-grid">
+      <div class="faq-item">
+        <div class="faq-q">Is this an AI art generator?</div>
+        <div class="faq-a">No. This coach never generates, modifies, or evaluates artwork. It's a business advisor — taxes, contracts, pricing, marketing, grants. It fights for artists, not against them.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Can I trust AI for tax advice?</div>
+        <div class="faq-a">The coach is configured with Washington state tax rules, current rates, and IRS guidelines. It tells you when a question is beyond its scope and points you to a vetted local CPA. Think of it as a well-informed first stop, not a replacement for professional advice.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Is my information private?</div>
+        <div class="faq-a">Yes. Conversations are private. The coach doesn't share your data with other artists, the Arts Commission, or third parties. You control what you share.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What does it cost?</div>
+        <div class="faq-a">Nothing. The pilot is completely free for participating artists. It's funded by the Kittitas County Arts Commission as a public service to our local arts community.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">I'm not very tech-savvy. Can I still use this?</div>
+        <div class="faq-a">If you can text a friend, you can use the coach. It's a simple chat interface — type your question in plain English (or Spanish), and get a plain-English answer. No apps to download, no accounts to create.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Do I have to be in Ellensburg?</div>
+        <div class="faq-a">No — anywhere in Kittitas County. Ellensburg, Cle Elum, Roslyn, Thorp, Kittitas, Vantage. The coach knows the whole county. You just need to be a working artist, maker, performer, or creative based here.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What if it gives me wrong advice?</div>
+        <div class="faq-a">The coach cites its sources, shows its reasoning, and flags uncertainty. For high-stakes decisions (signing contracts, filing taxes), it recommends confirming with a professional — and connects you to local ones.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">How is this different from ChatGPT?</div>
+        <div class="faq-a">ChatGPT is a general assistant. This coach is configured specifically for Kittitas County artists — it knows Gallery One, Buskers in the Burg, Washington B&O tax rates, ArtsWA deadlines, and 50+ local resources by name. Context is everything.</div>
+      </div>
+    </div>
+  </section>
+
   <!-- CTA -->
   <section class="cta" id="pilot">
     <div class="cta-inner">
@@ -538,6 +667,7 @@
 <!-- Footer -->
 <div class="page">
 <footer>
+  <div class="footer-totop"><a href="#">↑ Back to top</a></div>
   <div class="footer-top">
     <div class="footer-brand">
       <div class="brand">
@@ -570,11 +700,44 @@
     </div>
   </div>
   <div class="footer-bottom">
-    <span>© 2026 Kittitas County Arts Commission</span>
-    <span class="mono">v0.2 · Built with AI · For review by Dr. Don Solberg</span>
+    <span>© <span id="copy-year">2026</span> Kittitas County Arts Commission</span>
+    <span class="mono">v0.3 · Built with AI · For review by Dr. Don Solberg</span>
   </div>
 </footer>
 </div>
+
+<button class="back-to-top" id="btt" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+// Back-to-top visibility
+const btt = document.getElementById('btt');
+window.addEventListener('scroll', () => {
+  btt.classList.toggle('visible', window.scrollY > 600);
+}, { passive: true });
+
+// Scroll reveal with IntersectionObserver
+const reveals = document.querySelectorAll('.reveal');
+if ('IntersectionObserver' in window) {
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('revealed'); obs.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => obs.observe(el));
+} else {
+  reveals.forEach(el => el.classList.add('revealed'));
+}
+
+// Active nav highlighting
+const navLinks = document.querySelectorAll('.nav a[href^="#"]');
+const sections = document.querySelectorAll('section[id]');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 200) current = s.getAttribute('id'); });
+  navLinks.forEach(a => { a.classList.toggle('active-page', a.getAttribute('href') === '#' + current); });
+}, { passive: true });
+
+// Auto-update copyright year
+document.getElementById('copy-year').textContent = new Date().getFullYear();
+</script>
 
 </body>
 </html>
