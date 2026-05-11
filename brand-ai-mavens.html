@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AI Mavens — Brand System v9.3 · AIgovops Foundation</title>
+<meta name="description" content="The AI Mavens brand system for the AIgovops Foundation — Let the Tokens Flow. Hero character, palette, typography, mantra, and product mockups for production handoff." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --paper: #D7DDE3;
+    --paper-soft: #E4E8EC;
+    --steel: #A8B2BD;
+    --slate: #5C7A99;
+    --navy: #1B2A4A;
+    --electric: #3D8BFF;
+    --green: #2BB673;
+    --white: #FAFBFC;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: var(--paper);
+    color: var(--navy);
+    line-height: 1.6;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  .container {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 6vw;
+  }
+  /* ───── topbar ───── */
+  .topbar {
+    padding: 1.75rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(27, 42, 74, 0.08);
+  }
+  .topbar-brand {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--navy);
+    font-weight: 500;
+  }
+  .topbar-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--slate);
+  }
+  /* ───── hero ───── */
+  .hero {
+    padding: 10vh 0 6vh;
+    text-align: center;
+  }
+  .hero-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--slate);
+    margin-bottom: 2rem;
+  }
+  .hero h1 {
+    font-size: clamp(3rem, 8vw, 6.5rem);
+    font-weight: 800;
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+    color: var(--navy);
+    margin-bottom: 2rem;
+  }
+  .hero h1 .green {
+    color: var(--green);
+  }
+  .hero-tagline {
+    font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+    color: var(--slate);
+    max-width: 620px;
+    margin: 0 auto;
+    line-height: 1.55;
+  }
+  /* ───── hero visual ───── */
+  .hero-visual {
+    margin: 6vh 0 12vh;
+    display: flex;
+    justify-content: center;
+  }
+  .hero-visual img {
+    max-width: min(620px, 100%);
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+    box-shadow: 0 30px 80px -20px rgba(27, 42, 74, 0.25), 0 10px 30px -10px rgba(27, 42, 74, 0.15);
+  }
+  /* ───── mantra ───── */
+  .mantra {
+    padding: 10vh 0;
+    text-align: center;
+    background: var(--paper-soft);
+    margin: 0 -100vw;
+    padding-left: 100vw;
+    padding-right: 100vw;
+  }
+  .mantra-inner {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 6vw;
+  }
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--slate);
+    margin-bottom: 2rem;
+  }
+  .mantra h2 {
+    font-size: clamp(1.5rem, 2.5vw, 2rem);
+    font-weight: 400;
+    color: var(--slate);
+    margin-bottom: 4rem;
+    letter-spacing: -0.02em;
+  }
+  .mantra-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+  .mantra-line {
+    font-size: clamp(1.6rem, 3.5vw, 2.5rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 0.7em;
+  }
+  .mantra-yes {
+    color: var(--electric);
+  }
+  .mantra-dash {
+    color: var(--slate);
+    font-weight: 300;
+  }
+  .mantra-verb {
+    color: var(--navy);
+  }
+  /* ───── designs (the three pieces) ───── */
+  .designs {
+    padding: 12vh 0;
+  }
+  .designs h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: var(--navy);
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+  .designs p.lede {
+    text-align: center;
+    color: var(--slate);
+    max-width: 580px;
+    margin: 0 auto 6rem;
+    font-size: 1.1rem;
+  }
+  .designs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 3rem;
+    align-items: end;
+  }
+  .design-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .design-card img {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    border-radius: 6px;
+    box-shadow: 0 20px 50px -15px rgba(27, 42, 74, 0.25), 0 5px 15px -5px rgba(27, 42, 74, 0.12);
+  }
+  .design-card .design-label {
+    margin-top: 1.5rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--slate);
+  }
+  .design-card.tshirt img {
+    max-width: 360px;
+  }
+  /* ───── mockups ───── */
+  .mockups {
+    padding: 12vh 0;
+    background: var(--navy);
+    color: var(--paper);
+    margin: 0 -100vw;
+    padding-left: 100vw;
+    padding-right: 100vw;
+  }
+  .mockups-inner {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 6vw;
+  }
+  .mockups .section-label {
+    color: var(--steel);
+  }
+  .mockups h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: var(--paper);
+    margin-bottom: 1rem;
+  }
+  .mockups p.lede {
+    color: var(--steel);
+    max-width: 580px;
+    margin-bottom: 5rem;
+    font-size: 1.1rem;
+  }
+  .mockups-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 4rem;
+  }
+  @media (min-width: 760px) {
+    .mockups-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+    .mockups-grid > .mockup-hero {
+      grid-column: 1 / -1;
+    }
+  }
+  .mockup-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+    box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.5);
+  }
+  .mockup-item .mockup-caption {
+    margin-top: 1.25rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--steel);
+  }
+  /* ───── palette ───── */
+  .palette {
+    padding: 12vh 0;
+  }
+  .palette h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+  .palette p.lede {
+    text-align: center;
+    color: var(--slate);
+    max-width: 580px;
+    margin: 0 auto 5rem;
+  }
+  .palette-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1.25rem;
+  }
+  .swatch {
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid rgba(27, 42, 74, 0.08);
+  }
+  .swatch-color {
+    height: 140px;
+  }
+  .swatch-info {
+    padding: 1rem 1.1rem 1.2rem;
+    background: var(--white);
+  }
+  .swatch-name {
+    font-weight: 600;
+    font-size: 0.92rem;
+    color: var(--navy);
+    margin-bottom: 0.3rem;
+  }
+  .swatch-hex {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--slate);
+    letter-spacing: 0.04em;
+  }
+  /* ───── typography ───── */
+  .typography {
+    padding: 12vh 0;
+    background: var(--paper-soft);
+    margin: 0 -100vw;
+    padding-left: 100vw;
+    padding-right: 100vw;
+  }
+  .typography-inner {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 6vw;
+  }
+  .typography h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+  .typography p.lede {
+    text-align: center;
+    color: var(--slate);
+    max-width: 580px;
+    margin: 0 auto 5rem;
+  }
+  .type-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .type-sample {
+    border-left: 3px solid var(--electric);
+    padding-left: 2rem;
+  }
+  .type-sample h3 {
+    font-size: 0.7rem;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--slate);
+    margin-bottom: 1.25rem;
+    font-weight: 500;
+  }
+  .type-headline {
+    font-size: clamp(1.8rem, 3.5vw, 2.75rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    color: var(--navy);
+  }
+  .type-mantra-sample {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--navy);
+  }
+  .type-mantra-sample .yes-blue { color: var(--electric); }
+  .type-mono-sample {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.95rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--slate);
+  }
+  /* ───── character ───── */
+  .character {
+    padding: 12vh 0;
+  }
+  .character-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+  @media (min-width: 760px) {
+    .character-grid {
+      grid-template-columns: 1fr 1.2fr;
+      gap: 6rem;
+    }
+  }
+  .character-img img {
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+    box-shadow: 0 30px 60px -20px rgba(27, 42, 74, 0.25);
+  }
+  .character-content h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    margin-bottom: 1.5rem;
+    color: var(--navy);
+  }
+  .character-content p {
+    font-size: 1.05rem;
+    color: var(--slate);
+    margin-bottom: 1.25rem;
+    line-height: 1.65;
+  }
+  .character-content p strong {
+    color: var(--navy);
+    font-weight: 600;
+  }
+  /* ───── usage ───── */
+  .usage {
+    padding: 12vh 0;
+    background: var(--paper-soft);
+    margin: 0 -100vw;
+    padding-left: 100vw;
+    padding-right: 100vw;
+  }
+  .usage-inner {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 6vw;
+  }
+  .usage h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+  .usage p.lede {
+    text-align: center;
+    color: var(--slate);
+    max-width: 580px;
+    margin: 0 auto 5rem;
+  }
+  .usage-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  @media (min-width: 700px) {
+    .usage-list {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  .usage-card {
+    background: var(--white);
+    border-radius: 8px;
+    padding: 2rem;
+    border: 1px solid rgba(27, 42, 74, 0.08);
+  }
+  .usage-card h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 0.75rem;
+  }
+  .usage-card p {
+    color: var(--slate);
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+  /* ───── footer ───── */
+  .footer {
+    padding: 6vh 0 4vh;
+    text-align: center;
+    border-top: 1px solid rgba(27, 42, 74, 0.1);
+  }
+  .footer-mark {
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--navy);
+    margin-bottom: 0.75rem;
+  }
+  .footer-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--slate);
+  }
+  .footer-meta a {
+    color: var(--electric);
+    text-decoration: none;
+  }
+  .footer-meta a:hover {
+    text-decoration: underline;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- topbar -->
+  <div class="topbar">
+    <div class="topbar-brand">AIgovops Foundation · Brand System v9.3</div>
+    <div class="topbar-meta">© 2026 · All Rights Reserved</div>
+  </div>
+
+  <!-- hero -->
+  <section class="hero">
+    <div class="hero-eyebrow">AI MAVENS · BRAND SHEET</div>
+    <h1>Let the<br />Tokens <span class="green">Flow</span>.</h1>
+    <p class="hero-tagline">
+      The visual identity for the AIgovops Foundation — a human-and-silicon partnership built around three simple promises. Ship. Steady. Recover. Always yes.
+    </p>
+  </section>
+
+  <!-- hero visual: the t-shirt -->
+  <div class="hero-visual">
+    <img src="assets/ai-mavens/v9/ai-mavens-tshirt-v9.png" alt="The AI Mavens t-shirt graphic — human/silicon hybrid hero with the YES chest emblem and the foundation mantra" />
+  </div>
+
+</div>
+
+<!-- mantra -->
+<section class="mantra">
+  <div class="mantra-inner">
+    <div class="section-label">The Mantra</div>
+    <h2>Three promises. One word at the start of each.</h2>
+    <div class="mantra-list">
+      <div class="mantra-line">
+        <span class="mantra-yes">YES</span>
+        <span class="mantra-dash">—</span>
+        <span class="mantra-verb">Ship AI</span>
+      </div>
+      <div class="mantra-line">
+        <span class="mantra-yes">YES</span>
+        <span class="mantra-dash">—</span>
+        <span class="mantra-verb">Steady AI</span>
+      </div>
+      <div class="mantra-line">
+        <span class="mantra-yes">YES</span>
+        <span class="mantra-dash">—</span>
+        <span class="mantra-verb">Recover AI</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="container">
+
+  <!-- designs -->
+  <section class="designs">
+    <div class="section-label" style="text-align: center;">The Designs</div>
+    <h2>Three pieces. One family.</h2>
+    <p class="lede">
+      The t-shirt carries the full creed. The logo seals it as a badge. The sticker travels.
+    </p>
+    <div class="designs-grid">
+      <div class="design-card">
+        <img src="assets/ai-mavens/v9/ai-mavens-logo-v9.png" alt="AI Mavens logo — circular badge with hybrid hero portrait and mantra ring" />
+        <div class="design-label">Logo · 1:1 Badge</div>
+      </div>
+      <div class="design-card tshirt">
+        <img src="assets/ai-mavens/v9/ai-mavens-tshirt-v9.png" alt="AI Mavens t-shirt — hero composition with the mantra credo" />
+        <div class="design-label">T-Shirt · 4:5 Hero</div>
+      </div>
+      <div class="design-card">
+        <img src="assets/ai-mavens/v9/ai-mavens-sticker-v9.png" alt="AI Mavens sticker — die-cut companion with mantra arcs" />
+        <div class="design-label">Sticker · 1:1 Die-Cut</div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- character -->
+<div class="container">
+  <section class="character">
+    <div class="character-grid">
+      <div class="character-img">
+        <img src="assets/ai-mavens/v9/ai-mavens-logo-v9.png" alt="Portrait detail of AI-Yes, the hybrid hero" />
+      </div>
+      <div class="character-content">
+        <div class="section-label">The Character</div>
+        <h2>AI-Yes.</h2>
+        <p>
+          <strong>A human-and-silicon hybrid hero.</strong> The face, head, and arms are human; the torso, hips, legs, and cape are chrome silicon armor. The cybernetic seam at the neck and the shoulder pauldrons where the human arms emerge are where the partnership reads.
+        </p>
+        <p>
+          The human is a beautifully multi-ethnic person of color of blended East Asian, South Asian, Native American, and Anglo heritage, with a graceful blend of feminine and masculine features — a singular fusion person embodying the unity of humanity itself. The doubled hybridity (human-blends-human, then human-blends-silicon) makes the character a literal embodiment of the foundation's whole story.
+        </p>
+        <p>
+          The green YES emblem at the chest is the brand's beating heart — a single spot color in an otherwise blue-and-grey duotone. When you read the design, your eye lands there first. That's intentional. The foundation says yes.
+        </p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- mockups -->
+<section class="mockups">
+  <div class="mockups-inner">
+    <div class="section-label">In the Wild</div>
+    <h2>Worn. Stuck. Printed.</h2>
+    <p class="lede">
+      Three real-world studies showing the system at production scale.
+    </p>
+    <div class="mockups-grid">
+      <div class="mockup-item mockup-hero">
+        <img src="assets/ai-mavens/v9/mockups/ai-mavens-sticker-macbook-mockup.png" alt="The sticker applied to a MacBook lid surrounded by other developer stickers" />
+        <div class="mockup-caption">Sticker · MacBook Lid · Coffee Shop</div>
+      </div>
+      <div class="mockup-item">
+        <img src="assets/ai-mavens/v9/mockups/ai-mavens-tshirt-conference-mockup.png" alt="The t-shirt worn at an AI conference" />
+        <div class="mockup-caption">T-Shirt · AI Conference · Documentary</div>
+      </div>
+      <div class="mockup-item">
+        <img src="assets/ai-mavens/v9/mockups/ai-mavens-logo-business-card-mockup.png" alt="The logo printed on a premium business card" />
+        <div class="mockup-caption">Logo · Business Card · Premium Cardstock</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- palette -->
+<div class="container">
+  <section class="palette">
+    <div class="section-label" style="text-align: center;">The Palette</div>
+    <h2>Six tones. One spot color.</h2>
+    <p class="lede">
+      Designed to ladder cleanly into grayscale halftone separations for screen printing. The go-green is the only spot color — used exclusively for the YES chest emblem.
+    </p>
+    <div class="palette-grid">
+      <div class="swatch">
+        <div class="swatch-color" style="background: #D7DDE3;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Paper</div>
+          <div class="swatch-hex">#D7DDE3</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background: #A8B2BD;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Steel Grey</div>
+          <div class="swatch-hex">#A8B2BD</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background: #5C7A99;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Slate Blue</div>
+          <div class="swatch-hex">#5C7A99</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background: #1B2A4A;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Deep Navy</div>
+          <div class="swatch-hex">#1B2A4A</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background: #3D8BFF;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Electric Blue</div>
+          <div class="swatch-hex">#3D8BFF</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background: #2BB673;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Go-Green · Spot</div>
+          <div class="swatch-hex">#2BB673</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- typography -->
+<section class="typography">
+  <div class="typography-inner">
+    <div class="section-label" style="text-align: center;">The Typography</div>
+    <h2>Professional. Precise. Confident.</h2>
+    <p class="lede">
+      Inter for everything. The kind of type you'd see on a Stripe billboard or a Linear product page.
+    </p>
+    <div class="type-grid">
+      <div class="type-sample">
+        <h3>Display · Inter Bold 800</h3>
+        <div class="type-headline">LET THE TOKENS FLOW</div>
+      </div>
+      <div class="type-sample">
+        <h3>Mantra · Inter Semibold 600</h3>
+        <div class="type-mantra-sample"><span class="yes-blue">YES</span> — Ship AI</div>
+      </div>
+      <div class="type-sample">
+        <h3>Foundation Mark · Inter Bold</h3>
+        <div class="type-headline" style="font-size: clamp(1.5rem, 3vw, 2.25rem);">AIGOVOPS FOUNDATION</div>
+      </div>
+      <div class="type-sample">
+        <h3>Micro · JetBrains Mono 500</h3>
+        <div class="type-mono-sample">© 2026 · All Rights Reserved</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- usage -->
+<section class="usage">
+  <div class="usage-inner">
+    <div class="section-label" style="text-align: center;">Usage</div>
+    <h2>How to ship it.</h2>
+    <p class="lede">
+      Production notes for the print shop, the merch store, and anyone applying the system.
+    </p>
+    <div class="usage-list">
+      <div class="usage-card">
+        <h3>T-Shirt Print</h3>
+        <p>Heather grey or charcoal cotton tee. Chest placement, centered. Spot-color screen print preferred — six screens (paper, steel, slate, navy, electric blue, green). DTG acceptable for short runs.</p>
+      </div>
+      <div class="usage-card">
+        <h3>Logo Application</h3>
+        <p>Use the badge at any size ≥ 18mm for the foundation plaque to remain legible. Maintain 0.5× badge-radius of clear space on all sides. Avoid placing on busy backgrounds.</p>
+      </div>
+      <div class="usage-card">
+        <h3>Sticker Production</h3>
+        <p>Die-cut vinyl, 75mm diameter recommended. White outer border 3mm wide. UV-resistant ink for outdoor use. Designed to survive on laptop lids and water bottles.</p>
+      </div>
+      <div class="usage-card">
+        <h3>Business Card</h3>
+        <p>Premium 350gsm matte cardstock, 85×55mm or US 2×3.5in. Logo at 55-60% card width, centered upper-third. Foundation name + URL in Inter 8pt below.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- footer -->
+<div class="container">
+  <footer class="footer">
+    <div class="footer-mark">AIGOVOPS FOUNDATION</div>
+    <div class="footer-meta">
+      © 2026 · All Rights Reserved ·
+      <a href="https://github.com/bobrapp/ai-artistic-agent-aigovops">View Repository</a>
+    </div>
+  </footer>
+</div>
+
+</body>
+</html>
