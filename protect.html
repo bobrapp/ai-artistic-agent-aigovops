@@ -431,6 +431,58 @@
 </style>
 </head>
 <body>
+<!-- Shared Site Nav -->
+<style>
+.site-nav{font-family:'Inter',-apple-system,sans-serif;background:#fdfaf3;border-bottom:1px solid rgba(26,22,18,0.08);padding:0 6vw;position:sticky;top:0;z-index:999}
+.site-nav-inner{max-width:1280px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;height:56px}
+.site-nav .sn-brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:#1a1612}
+.site-nav .sn-mark{width:32px;height:32px;border-radius:50%;background:#c4593a;display:grid;place-items:center;color:#fdfaf3;font-family:'Fraunces',serif;font-weight:700;font-size:15px}
+.site-nav .sn-name{font-family:'Fraunces',serif;font-weight:600;font-size:14px}
+.site-nav .sn-links{display:flex;gap:24px;font-size:13px;font-weight:500}
+.site-nav .sn-links a{color:#4a3f33;text-decoration:none;transition:color 0.2s}
+.site-nav .sn-links a:hover{color:#c4593a}
+.site-nav .sn-links a.sn-cta{background:#1a1612;color:#fdfaf3;padding:6px 14px;border-radius:999px;font-weight:600}
+.site-nav .sn-links a.sn-cta:hover{background:#973f25}
+.site-nav .sn-hamburger{display:none;background:none;border:none;cursor:pointer;padding:8px;color:#1a1612}
+.site-nav .sn-hamburger svg{width:24px;height:24px}
+.site-nav .sn-mobile{display:none;position:absolute;top:56px;left:0;right:0;background:#fdfaf3;border-bottom:1px solid rgba(26,22,18,0.12);padding:16px 6vw;box-shadow:0 8px 24px rgba(26,22,18,0.08)}
+.site-nav .sn-mobile a{display:block;padding:10px 0;color:#4a3f33;text-decoration:none;font-size:15px;font-weight:500;border-bottom:1px solid rgba(26,22,18,0.06)}
+.site-nav .sn-mobile a:last-child{border-bottom:none}
+.site-nav .sn-mobile a:hover{color:#c4593a}
+.site-nav .sn-mobile a.sn-cta{display:inline-block;margin-top:8px;background:#1a1612;color:#fdfaf3;padding:10px 20px;border-radius:999px;font-weight:600;border-bottom:none}
+@media(max-width:720px){.site-nav .sn-links{display:none}.site-nav .sn-hamburger{display:block}.site-nav .sn-mobile.open{display:block}}
+</style>
+<nav class="site-nav">
+  <div class="site-nav-inner">
+    <a href="index.html" class="sn-brand">
+      <div class="sn-mark">K</div>
+      <div class="sn-name">Kittitas Artist Business Coach</div>
+    </a>
+    <div class="sn-links">
+      <a href="index.html">Home</a>
+      <a href="directory.html">Directory</a>
+      <a href="protect.html">AI protection</a>
+      <a href="roadmap.html">Roadmap</a>
+      <a href="pitch.html">Board pitch</a>
+      <a href="signup.html">Join the pilot</a>
+      <a href="showcase.html" class="sn-cta">See demo →</a>
+    </div>
+    <button class="sn-hamburger" onclick="document.querySelector('.sn-mobile').classList.toggle('open')" aria-label="Menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+  </div>
+  <div class="sn-mobile">
+    <a href="index.html">Home</a>
+    <a href="directory.html">Arts directory</a>
+    <a href="protect.html">AI protection</a>
+    <a href="roadmap.html">Roadmap</a>
+    <a href="pitch.html">Board pitch</a>
+    <a href="signup.html">Join the pilot</a>
+    <a href="showcase.html" class="sn-cta">See demo →</a>
+  </div>
+</nav>
+<!-- /Shared Site Nav -->
+
 
 <div class="hero">
   <div class="hero-label">🛡️ AI Protection Framework</div>

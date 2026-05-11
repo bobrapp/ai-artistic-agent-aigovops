@@ -42,6 +42,17 @@
   .nav a:hover { color: var(--terracotta); }
   @media (max-width: 720px) { .nav { display: none; } }
 
+  /* Hamburger menu */
+  .hamburger { display: none; background: none; border: none; cursor: pointer; padding: 8px; color: var(--ink); }
+  .hamburger svg { width: 26px; height: 26px; }
+  .mobile-menu { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--paper); border-bottom: 1px solid var(--border); padding: 16px 6vw; box-shadow: 0 8px 24px rgba(26,22,18,0.08); z-index: 999; }
+  .mobile-menu a { display: block; padding: 12px 0; color: var(--ink-soft); text-decoration: none; font-size: 15px; font-weight: 500; border-bottom: 1px solid var(--border-soft); }
+  .mobile-menu a:last-child { border-bottom: none; }
+  .mobile-menu a:hover { color: var(--terracotta); }
+  .mobile-menu a.mm-cta { display: inline-block; margin-top: 10px; background: var(--ink); color: var(--paper); padding: 10px 20px; border-radius: 999px; font-weight: 600; border-bottom: none; }
+  .mobile-menu a.mm-cta:hover { background: var(--terracotta-deep); }
+  @media (max-width: 720px) { .hamburger { display: block; } .mobile-menu.open { display: block; } .topbar { position: relative; } }
+
   /* Hero */
   .hero { padding: 24px 0 80px; }
   .eyebrow { font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--terracotta); margin-bottom: 24px; }
@@ -206,6 +217,19 @@
       <a href="signup.html">Join the pilot</a>
       <a href="showcase.html" style="background:rgba(253,248,240,0.15); padding:0.35rem 0.9rem; border-radius:6px; border:1px solid rgba(253,248,240,0.25);">See it in action →</a>
     </nav>
+    <button class="hamburger" onclick="document.querySelector('.mobile-menu').classList.toggle('open')" aria-label="Menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+    <div class="mobile-menu">
+      <a href="#how">How it works</a>
+      <a href="#curriculum">Curriculum</a>
+      <a href="directory.html">Arts directory</a>
+      <a href="protect.html">AI protection</a>
+      <a href="roadmap.html">Roadmap</a>
+      <a href="pitch.html">Board pitch</a>
+      <a href="signup.html">Join the pilot</a>
+      <a href="showcase.html" class="mm-cta">See it in action →</a>
+    </div>
   </header>
 
   <!-- Hero -->
@@ -215,6 +239,7 @@
     <p class="lede">A free, 24/7 advisor for working artists in Kittitas County. Ask anything about taxes, contracts, pricing, galleries, grants, insurance — get answers grounded in Washington state law and our local arts community.</p>
     <div class="hero-actions">
       <a class="btn btn-primary" href="#pilot">Start chatting <span class="arr">→</span></a>
+      <a class="btn btn-ghost" href="showcase.html">See the demo <span class="arr">→</span></a>
       <a class="btn btn-ghost" href="#how">How it works</a>
     </div>
 
