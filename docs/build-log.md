@@ -332,3 +332,28 @@ https://bobrapp.github.io/ai-artistic-agent-aigovops/print-pack-ai-mavens.html
 - The clean print-ready versions live at `assets/ai-mavens/v9/print/` — same brand, simpler rendering optimized for production.
 - Print pack tested for letter-size paper (US default). For A4, the user would adjust the `@page` size and margins.
 - Browser print settings to use: paper Letter, margins None, background graphics On.
+
+---
+
+## Session: v9.3 Sticker Text Fix — "YES — RECOVER AI" cleanup
+
+**Timestamp (UTC):** 2026-05-11T20:26:44Z
+**User:** bobrapp
+**Model:** Claude Opus 4.7 (orchestrator) + Gemini Nano Banana Pro
+**Platform:** Hyperagent
+
+### Issue
+The previous v9.3 sticker render contained a garbled AI text-rendering artifact on the bottom arc near the third Yes phrase — appeared as 'YES-EROH' instead of clean 'YES — RECOVER AI'.
+
+### Fix
+Regenerated the sticker with explicit text-rendering constraints: bottom arc instructed to contain EXACTLY three phrases with no extras and no garbled letters. User verified the result reads cleanly before commit.
+
+### Result
+Overwrote `assets/ai-mavens/v9/ai-mavens-sticker-v9.png` at the same path. No other changes — same multi-ethnic fusion hybrid hero, same palette, same top arc, same inner footer band, same character pose.
+
+### File Updated
+| Asset | Path |
+|-------|------|
+| Sticker (text fixed) | `assets/ai-mavens/v9/ai-mavens-sticker-v9.png` |
+
+The brand sheet (brand-ai-mavens.html) and the mockup gallery references resolve to the new sticker automatically since they reference the canonical path.
